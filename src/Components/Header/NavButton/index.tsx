@@ -7,8 +7,7 @@ type NavButtonProps = {
 
   return (
     // add routing to use navlinks
-    // <NavLink to='/' className='m-4 bg-lime-900'>{props.title}</NavLink>
-    <button className='m-4 bg-lime-900'>{props.title}</button>
+    <NavLink to='/filter' className='m-4 bg-lime-900'>{props.title}</NavLink>
   )
 }
 
