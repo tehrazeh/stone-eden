@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom"
 type NavButtonProps = {
     title: string
 }
- const NavButton = (props: NavButtonProps) => {
+ const NavButton: React.FC<NavButtonProps> = (props) => {
 
   return (
     // add routing to use navlinks
