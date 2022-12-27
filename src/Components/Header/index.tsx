@@ -1,5 +1,5 @@
 import NavButton from "./NavButton"
-export const Header = () => {
+export const Header: React.FC = () => {
 
   const navButtons = [
     {name: 'Class'},
@@ -15,7 +15,7 @@ export const Header = () => {
 
 
   return (
-    <div className='bg-blue-300'>{buttonElems}</div>
+    <div className='bg-blue-300 h-14'>{buttonElems}</div>
   )
 }
 
