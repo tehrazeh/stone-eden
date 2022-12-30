@@ -15,7 +15,7 @@ export const Header: React.FC = () => {
 
 
   return (
-    <div className='bg-blue-300 h-14'>{buttonElems}</div>
+    <div className='bg-neutral-800 h-16 flex justify-center items-center'>{buttonElems}</div>
   )
 }
 
