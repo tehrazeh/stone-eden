@@ -14,7 +14,7 @@ type NavButtonProps = {
   duration-200 ease-linear w-20 flex justify-center items-center`
 
   return (
-    <NavLink to={`/${props.title}`}
+    <NavLink to={`/search/${props.title.toLowerCase()}`}
       className={({ isActive }) => isActive ? activeStyle : regularStyle }>
       {props.title}
     </NavLink>
