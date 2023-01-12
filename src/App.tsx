@@ -28,7 +28,6 @@ function App() {
         </Route>
         <Route path='/filter' element={<div>bro its a test bro</div>}/>
       </Routes>
-
       <Footer/>
     </div>
   );
