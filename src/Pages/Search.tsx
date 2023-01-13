@@ -16,9 +16,13 @@ const Search:React.FC = () => {
   }, [status, dispatch])
   return (
     <>
-    <div className='bg-stone-700 pt-8 flex justify-center'>
-    <Filter type={(type) ? type : 'classes'}/>
-    <OptionalFilter />
+    <div className='bg-stone-700 p-4 grid grid-cols-4 grid-rows-1 gap-4'>
+      <div className='bg-stone-600 rounded col-span-3 flex justify-center items-center'>
+        <Filter type={(type) ? type : 'classes'}/>
+      </div>
+      <div className='bg-stone-600 rounded'>
+        <OptionalFilter />
+      </div>  
     </div>   
     <div>bro this is seacrh my friend</div>
     </>
