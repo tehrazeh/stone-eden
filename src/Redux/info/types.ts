@@ -21,3 +21,4 @@ export interface InfoSliceState {
     info: Info | {},
     status: Status;
 }
+

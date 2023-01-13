@@ -6,11 +6,11 @@
   .button-regular {
     @apply mx-4 text-emerald-300 p-1 uppercase bg-stone-700
            rounded shadow-lg hover:text-emerald-200 hover:scale-125 transition-all
-           duration-200 ease-linear w-20 flex justify-center items-center
+           duration-200 ease-linear w-24 flex justify-center items-center
   }
   .button-active {
     @apply mx-4 text-emerald-200 uppercase bg-emerald-800
-           p-1 rounded transition-all duration-200 ease-linear w-20
+           p-1 rounded transition-all duration-200 ease-linear w-24
            flex justify-center items-center shadow-lg
   }
 }

@@ -5,7 +5,7 @@ import OptionalFilter from "../Components/OptionalFilter"
 import { fetchInfo } from "../Redux/info/asyncActions"
 import { useAppDispatch, useAppSelector } from "../utils/hooks"
 
-const Search = () => {
+const Search:React.FC = () => {
   const {type} = useParams()
   const status = useAppSelector((state) => state.info.status)
   const dispatch = useAppDispatch()

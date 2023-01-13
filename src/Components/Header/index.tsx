@@ -2,11 +2,11 @@ import NavButton from "./NavButton"
 export const Header: React.FC = () => {
 
   const navButtons = [
-    {name: 'Class'},
-    {name: 'Race'},
-    {name: 'Quality'},
-    {name: 'Type'},
-    {name: 'Set'},   
+    {name: 'Classes'},
+    {name: 'Races'},
+    {name: 'Qualities'},
+    {name: 'Types'},
+    {name: 'Sets'},   
   ]
 
   const buttonElems = navButtons.map((item) => {
