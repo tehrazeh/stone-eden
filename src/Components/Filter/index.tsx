@@ -1,17 +1,13 @@
 import { Info } from "../../Redux/info/types"
 import { useAppSelector, useAppDispatch } from "../../utils/hooks"
 import {setFilterType, setFilterValue} from "../../Redux/filter/slice"
+import { isInfo } from "../../utils/guards"
 
 type FilterProps = {
     type: string
 }
 
 const Filter: React.FC<FilterProps> = (props) => {
-
-    // guard to check that we have info and not empty object
-    function isInfo(infoObj: {} | Info): infoObj is Info {
-        return (infoObj as Info).classes !== undefined || ('classes' in infoObj)
-    }
 
     const type = props.type
     const elements = useAppSelector(state => {

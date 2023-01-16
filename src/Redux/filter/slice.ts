@@ -4,10 +4,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 const initialState:FilterSliceState = {
     filterType: '',
     filterValue: '',
-    attack: null,
-    cost: null,
-    health: null,
-    durability: null  
+    additionalFilters: {
+        attack: null,
+        cost: null,
+        health: null,
+        durability: null  
+    }
 }
 
 const filterSlice = createSlice({

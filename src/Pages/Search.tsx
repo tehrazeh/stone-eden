@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from "../utils/hooks"
 
 const Search:React.FC = () => {
   const {type} = useParams()
-  const status = useAppSelector((state) => state.info.status)
+  const {status} = useAppSelector((state) => state.info)
   const dispatch = useAppDispatch()
   useEffect(() => {
     if(status === 'loading') {
