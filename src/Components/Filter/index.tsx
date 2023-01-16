@@ -1,5 +1,6 @@
 import { Info } from "../../Redux/info/types"
-import { useAppSelector } from "../../utils/hooks"
+import { useAppSelector, useAppDispatch } from "../../utils/hooks"
+import {setFilterType, setFilterValue} from "../../Redux/filter/slice"
 
 type FilterProps = {
     type: string
@@ -19,15 +20,25 @@ const Filter: React.FC<FilterProps> = (props) => {
             return state.info.info[type as keyof Info]
         }
     }) as string[]
+
+    const { filterType, filterValue } = useAppSelector(state => state.filter)
+    const dispatch = useAppDispatch()
+    const handleFilterClick = (filterName: string) => {
+        dispatch(setFilterValue(filterName))
+        dispatch(setFilterType(type))
+    }
     return (
         <div className="flex flex-wrap justify-center items-center">
             {(elements) ? (elements.map((item, index) => {
                 return <button className="button-regular text-emerald-200 h-12 p-x-2 m-1 text-[11px]
                         hover:scale-105"
+                        onClick={() => handleFilterClick(item)}
                         key={index}>{item}
                        </button>
             }))
                 : <h2>Loading...</h2>}
+                {/* <p>{filterType}</p>
+                <p>{filterValue}</p> */}
         </div>
     )
 }
