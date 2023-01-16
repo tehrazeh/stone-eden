@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit"
 import info from './info/slice'
+import filter from './filter/slice'
 
 export const store = configureStore({
   reducer: {
-    info
+    info,
+    filter
   }
 })
 
