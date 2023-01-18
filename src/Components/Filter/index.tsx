@@ -23,9 +23,15 @@ const Filter: React.FC<FilterProps> = (props) => {
         dispatch(setFilterValue(filterName))
         dispatch(setFilterType(type))
     }
+    /* const filtered = optionalFilters.filter((item, index) => {
+    return optionalFilters.indexOf(item) === index
+  })
+
+  console.log(filtered)*/
     return (
         <div className="flex flex-wrap justify-center items-center">
-            {(elements) ? (elements.map((item, index) => {
+            {(elements) ? (elements.filter((item, index) => { // indexOf to return first occurence and filter duplicates
+                return elements.indexOf(item) === index}).map((item, index) => {
                 return <button className="button-regular text-emerald-200 h-12 p-x-2 m-1 text-[11px]
                         hover:scale-105"
                         onClick={() => handleFilterClick(item)}

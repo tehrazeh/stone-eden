@@ -10,7 +10,7 @@ const OptionalFilter = () => {
   focus:bg-stone-800 focus:outline-none focus:text-emerald-200`
 
   const filterInputs = optionalFilters.map(item => {
-    return <input type='text' placeholder={`Enter ${item}...`}   
+    return <input type='text' key={item} placeholder={`Enter ${item}...`}   
     className={inputStyle}
     />
   })
