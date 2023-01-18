@@ -21,10 +21,13 @@ const filterSlice = createSlice({
         },
         setFilterValue: (state, action: PayloadAction<string>) => {
             state.filterValue = action.payload
+        },
+        resetFilterValue: (state) => {
+            state.filterValue = ''
         }
     }
 })
 
-export const {setFilterType, setFilterValue} = filterSlice.actions
+export const {setFilterType, setFilterValue, resetFilterValue} = filterSlice.actions
 
 export default filterSlice.reducer
