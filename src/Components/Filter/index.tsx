@@ -17,7 +17,7 @@ const Filter: React.FC<FilterProps> = (props) => {
         }
     }) as string[]
 
-    const { filterType, filterValue } = useAppSelector(state => state.filter)
+    const { filterValue } = useAppSelector(state => state.filter)
     const dispatch = useAppDispatch()
     const handleFilterClick = (filterName: string) => {
         dispatch(setFilterValue(filterName))
@@ -35,8 +35,6 @@ const Filter: React.FC<FilterProps> = (props) => {
                        </button>
             }))
                 : <h2>Loading...</h2>}
-                {/* <p>{filterType}</p>
-                <p>{filterValue}</p> */}
         </div>
     )
 }
