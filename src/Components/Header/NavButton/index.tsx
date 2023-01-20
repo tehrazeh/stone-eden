@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom"
-import { resetFilterValue } from "../../../Redux/filter/slice"
+import { resetFilterValue, setFilterType } from "../../../Redux/filter/slice"
 import {useAppDispatch} from '../../../utils/hooks'
 
 type NavButtonProps = {
@@ -11,6 +11,7 @@ type NavButtonProps = {
     <NavLink to={`/search/${props.title.toLowerCase()}`}
       className={({ isActive }) => isActive ? 'button-active' : 'button-regular' }
       onClick={() => {
+        dispatch(setFilterType(props.title))
         dispatch(resetFilterValue())
       }}>
       {props.title}
