@@ -16,7 +16,7 @@ const SearchBlock = () => {
             2.fix tip for filtervalue to display filterType
              */}
             {!isValid && <p>Invalid input for filters</p>}
-            {filterValue.length <= 0 && <p>Select {filterType} option</p>}
+            {filterValue.length <= 0 && <p>Select <b>{filterType.toUpperCase()}</b> option</p>}
         <button className={(isValid && filterValue.length > 0) ? activeClass : disabledClass}>
             Search
         </button>

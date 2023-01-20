@@ -1,5 +1,6 @@
 import { setAdditionalFilter } from "../../Redux/filter/slice"
 import { useAppSelector, useAppDispatch } from "../../utils/hooks"
+import {useState} from 'react'
 
 
 const OptionalFilter = () => {
@@ -15,15 +16,6 @@ const OptionalFilter = () => {
   
   const optionalFilters = useAppSelector(state => state.filter.additionalFilters)
   const dispatch = useAppDispatch()
-  
-  /*
-  1. user inputs the value
-  2. we change the state with onchange after each symbol
-  3. we run check if user inputs string
-  4. we add p element below input and change the unput border to red if user inputs a letter
-  5. add a slight tip between search button and filter bar reminding user to select filter, and disable the search button if:
-   a - user did not select a filter, b - user entered incorrect value to aditional filter
-  */
 
    // function that checks if input is valid
    // maybe move this function to slice and check the validity there...

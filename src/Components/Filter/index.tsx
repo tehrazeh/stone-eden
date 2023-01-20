@@ -1,6 +1,6 @@
 import { Info } from "../../Redux/info/types"
 import { useAppSelector, useAppDispatch } from "../../utils/hooks"
-import {setFilterType, setFilterValue} from "../../Redux/filter/slice"
+import {setFilterValue} from "../../Redux/filter/slice"
 import { isInfo } from "../../utils/guards"
 
 type FilterProps = {
