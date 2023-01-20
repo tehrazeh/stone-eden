@@ -2,9 +2,16 @@ export type FilterSliceState = {
     filterType: string,
     filterValue: string,
     additionalFilters: {
-        attack: number | null,
-        cost: number | null,
-        health: number | null,
-        durability: number | null,
+        attack: number | string,
+        cost: number | string,
+        health: number | string,
+        durability: number | string,
     }
+    isValid: boolean
+}
+
+export type AdditionalFilterAction = {
+    filterType: keyof FilterSliceState["additionalFilters"],
+    value: number | string,
+    isValid: boolean
 }

@@ -1,15 +1,16 @@
-import { FilterSliceState } from "./types"
+import { AdditionalFilterAction, FilterSliceState } from "./types"
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
 const initialState:FilterSliceState = {
     filterType: '',
     filterValue: '',
     additionalFilters: {
-        attack: null,
-        cost: null,
-        health: null,
-        durability: null  
-    }
+        attack: '',
+        cost: '',
+        health: '',
+        durability: ''  
+    },
+    isValid: true
 }
 
 const filterSlice = createSlice({
@@ -24,10 +25,14 @@ const filterSlice = createSlice({
         },
         resetFilterValue: (state) => {
             state.filterValue = ''
+        },
+        setAdditionalFilter: (state, action: PayloadAction<AdditionalFilterAction>) => {
+            state.additionalFilters[action.payload.filterType] = action.payload.value
+            state.isValid = action.payload.isValid
         }
     }
 })
 
-export const {setFilterType, setFilterValue, resetFilterValue} = filterSlice.actions
+export const {setFilterType, setFilterValue, resetFilterValue, setAdditionalFilter} = filterSlice.actions
 
 export default filterSlice.reducer

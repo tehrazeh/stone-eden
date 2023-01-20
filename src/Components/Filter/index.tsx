@@ -19,6 +19,8 @@ const Filter: React.FC<FilterProps> = (props) => {
 
     const { filterValue } = useAppSelector(state => state.filter)
     const dispatch = useAppDispatch()
+
+    // DELETE THIS FUNC, MOVE SETFILTERVALUE TO ONCLICK AND MOVE FILTERTYPE TO ONCLICK FOR NAV BUTTON
     const handleFilterClick = (filterName: string) => {
         dispatch(setFilterValue(filterName))
         dispatch(setFilterType(type))
