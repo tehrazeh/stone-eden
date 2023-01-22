@@ -5,12 +5,15 @@ const initialState:FilterSliceState = {
     filterType: '',
     filterValue: '',
     additionalFilters: {
-        attack: '',
-        cost: '',
-        health: '',
-        durability: ''  
+        attack: {value: '', isValid: true},
+        cost: {value: '', isValid: true},
+        health: {value: '', isValid: true},
+        durability: {value: '', isValid: true}  
     },
-    isValid: true
+}
+
+const isInputValid = (input: string | number) => {
+    return ((!isNaN(input as any) && input >=0) || input === '')
 }
 
 const filterSlice = createSlice({
@@ -27,8 +30,8 @@ const filterSlice = createSlice({
             state.filterValue = ''
         },
         setAdditionalFilter: (state, action: PayloadAction<AdditionalFilterAction>) => {
-            state.additionalFilters[action.payload.filterType] = action.payload.value
-            state.isValid = action.payload.isValid
+            state.additionalFilters[action.payload.filterType].value = action.payload.value
+            state.additionalFilters[action.payload.filterType].isValid = isInputValid(action.payload.value)
         }
     }
 })

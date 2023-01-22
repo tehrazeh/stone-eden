@@ -1,7 +1,5 @@
 import { setAdditionalFilter } from "../../Redux/filter/slice"
 import { useAppSelector, useAppDispatch } from "../../utils/hooks"
-import {useState} from 'react'
-
 
 const OptionalFilter = () => {
 
@@ -17,23 +15,15 @@ const OptionalFilter = () => {
   const optionalFilters = useAppSelector(state => state.filter.additionalFilters)
   const dispatch = useAppDispatch()
 
-   // function that checks if input is valid
-   // maybe move this function to slice and check the validity there...
-   // or create usestate here to check validity quickly
-   const isInputValid = (item: string) => {
-    return (!isNaN(optionalFilters[item as keyof typeof optionalFilters] as any) &&
-    optionalFilters[item as keyof typeof optionalFilters] >= 0) 
-   }
-
   const filterInputs = Object.keys(optionalFilters).map(item => {
     return <div key={item}><input type='text' placeholder={`Enter ${item}...`}   
-    className={isInputValid(item) ? inputValid: inputInvalid}
-    value={optionalFilters[item as keyof typeof optionalFilters]}
+    className={optionalFilters[item as keyof typeof optionalFilters].isValid ? inputValid: inputInvalid}
+    value={optionalFilters[item as keyof typeof optionalFilters].value}
     onChange={(e) => {dispatch(setAdditionalFilter({value: e.target.value,
-      filterType: item as keyof typeof optionalFilters, isValid: isInputValid(item)}))
+      filterType: item as keyof typeof optionalFilters}))
     }}
     />
-    {!isInputValid(item) && // input invalid - show tip
+    {!optionalFilters[item as keyof typeof optionalFilters].isValid && // input invalid - show tip
     <p className="text-red-400 text-[14px]">Enter valid positive number</p>}
     </div>
   })
