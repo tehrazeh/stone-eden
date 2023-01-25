@@ -11,7 +11,15 @@ export type FilterSliceState = {
 
 type AdditionalFilter = {
     value: number | string,
-    isValid: boolean
+    isValid?: boolean
+}
+
+export type Params = {
+    type: string,
+    attack?: string,
+    cost?: string,
+    health?: string,
+    durability?: string
 }
 
 export type AdditionalFilterAction = {

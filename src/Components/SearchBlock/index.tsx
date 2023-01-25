@@ -1,7 +1,8 @@
 import { useAppSelector, useAppDispatch } from "../../utils/hooks"
 import { useSearchParams } from "react-router-dom"
-import { setFilterValue } from "../../Redux/filter/slice"
+import { setAdditionalFilter, setFilterValue } from "../../Redux/filter/slice"
 import { useEffect } from "react"
+import { Params } from "../../Redux/filter/types"
 
 const activeClass = `bg-yellow-900 m-2 border-yellow-600 h-14 w-40 text-yellow-600 text-lg
 border-solid border-2 rounded shadow-inner shadow-yellow-700
@@ -15,27 +16,39 @@ const SearchBlock = () => {
     const [searchParams, setSearchParams] = useSearchParams()
     const dispatch = useAppDispatch()
 
-    const searchQuery = searchParams.get('type') || ''
-
-    useEffect(() => {
-        if (filterValue === '') {
-            dispatch(setFilterValue(searchQuery))  
-        }
-    }, [filterValue, dispatch, searchQuery])
-
     // TRY TO FIND BETTER SOLUTION THAN ITERATING THROUGH OBJECT WITH 4 KEYS FOR EVERY RERENDER
-    let key: keyof typeof additionalFilters
+    let filterKey: keyof typeof additionalFilters
     let isInputsValid = true
-    for (key in additionalFilters) {
-        if (!additionalFilters[key].isValid) {
+    for (filterKey in additionalFilters) {
+        if (!additionalFilters[filterKey].isValid) {
             isInputsValid = false
         }
     }
 
+    useEffect(() => {
+        if (filterValue === '') {
+            dispatch(setFilterValue(searchParams.get('type') || ''))  
+        }
+        // check if search params has('type') and then do iteration bro
+        if (searchParams.has('type')) {
+            for (const [key, value] of Array.from(searchParams.entries())) {
+                if (key !== 'type') {
+                    dispatch(setAdditionalFilter({filterType: key as keyof typeof additionalFilters, value}))
+                }
+            }
+        }
+    }, [])
+
     const handleClick = () => {
-        setSearchParams({
-            type: filterValue
-        })
+        const params: Params = {
+            type: filterValue,
+        }
+        for (filterKey in additionalFilters) {
+            if (additionalFilters[filterKey].value !== '') {
+                params[filterKey] = additionalFilters[filterKey].value.toString()
+            }
+        }
+        setSearchParams(params)
     }
     return (
         <div>
