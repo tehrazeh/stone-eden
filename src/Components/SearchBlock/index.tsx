@@ -26,10 +26,13 @@ const SearchBlock = () => {
     }
 
     useEffect(() => {
+
+        // if filtervalue is empty, we set up the selected option from link
         if (filterValue === '') {
             dispatch(setFilterValue(searchParams.get('type') || ''))  
         }
-        // check if search params has('type') and then do iteration bro
+
+        // we check and set up additional filters if there are some
         if (searchParams.has('type')) {
             for (const [key, value] of Array.from(searchParams.entries())) {
                 if (key !== 'type') {

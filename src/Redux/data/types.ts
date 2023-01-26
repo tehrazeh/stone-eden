@@ -1,2 +1,6 @@
+import { Status } from "../info/types"
+
 // create types for all types of cards with optional fields
-export const x = 3
+export type DataSliceState = {
+    status: Status
+}
