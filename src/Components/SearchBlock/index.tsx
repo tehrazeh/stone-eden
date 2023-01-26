@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom"
 import { setAdditionalFilter, setFilterValue } from "../../Redux/filter/slice"
 import { useEffect } from "react"
 import { Params } from "../../Redux/filter/types"
+import { fetchData } from "../../Redux/data/asyncActions"
 
 const activeClass = `bg-yellow-900 m-2 border-yellow-600 h-14 w-40 text-yellow-600 text-lg
 border-solid border-2 rounded shadow-inner shadow-yellow-700
@@ -52,6 +53,7 @@ const SearchBlock = () => {
             }
         }
         setSearchParams(params)
+        fetchData(params, filterType)
     }
     return (
         <div>
@@ -59,6 +61,7 @@ const SearchBlock = () => {
             {filterValue.length <= 0 && <p>Select <b>{filterType.toUpperCase()}</b> option</p>}
             <button className={(isInputsValid && filterValue.length > 0) ? activeClass : disabledClass}
                     onClick={handleClick}
+                    disabled={!(isInputsValid && filterValue.length > 0)}
             >
                 Search
             </button>

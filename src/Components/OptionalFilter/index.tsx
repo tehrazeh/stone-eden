@@ -17,7 +17,7 @@ const OptionalFilter = () => {
 
   const filterInputs = Object.keys(optionalFilters).map(item => {
     return <div key={item}><input type='text' placeholder={`Enter ${item}...`}   
-    className={optionalFilters[item as keyof typeof optionalFilters].isValid ? inputValid: inputInvalid}
+    className={optionalFilters[item as keyof typeof optionalFilters].isValid ? inputValid : inputInvalid}
     value={optionalFilters[item as keyof typeof optionalFilters].value}
     onChange={(e) => {dispatch(setAdditionalFilter({value: e.target.value,
       filterType: item as keyof typeof optionalFilters}))
