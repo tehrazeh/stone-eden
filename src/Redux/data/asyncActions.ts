@@ -30,10 +30,15 @@ export const fetchData = (params:Params, filterType: string) => {
             }
           }
 
-        //   if (true) {
-        //     options.para
-        //   }
-    console.log(Object.entries(params).length)
+          if (Object.entries(params).length > 1) {
+            let additionalParams: RequestOptions["params"] = {}
+            let key: keyof typeof params
+                for (key in params) {
+                    if (key !== 'type')
+                    additionalParams[key] = params[key]
+                }
+            options.params = additionalParams
+          }
 }
 
   
