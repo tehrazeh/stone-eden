@@ -27,17 +27,16 @@ const SearchBlock = () => {
     }
 
     useEffect(() => {
-
         // if filtervalue is empty, we set up the selected option from link
         if (filterValue === '') {
-            dispatch(setFilterValue(searchParams.get('type') || ''))  
+            dispatch(setFilterValue(searchParams.get('value') || ''))  
         }
 
         // we check and set up additional filters if there are some
-        if (searchParams.has('type')) {
+        if (searchParams.has('value')) {
             for (const [key, value] of Array.from(searchParams.entries())) {
-                if (key !== 'type') {
-                    dispatch(setAdditionalFilter({filterType: key as keyof typeof additionalFilters, value}))
+                if (key !== 'value') {
+                    dispatch(setAdditionalFilter({filterValue: key as keyof typeof additionalFilters, value}))
                 }
             }
         }
@@ -45,7 +44,7 @@ const SearchBlock = () => {
 
     const handleClick = () => {
         const params: Params = {
-            type: filterValue,
+            value: filterValue,
         }
         for (filterKey in additionalFilters) {
             if (additionalFilters[filterKey].value !== '') {
@@ -53,7 +52,8 @@ const SearchBlock = () => {
             }
         }
         setSearchParams(params)
-        fetchData(params, filterType)
+        params.type = filterType
+        dispatch(fetchData(params))
     }
     return (
         <div>

@@ -20,7 +20,7 @@ const OptionalFilter = () => {
     className={optionalFilters[item as keyof typeof optionalFilters].isValid ? inputValid : inputInvalid}
     value={optionalFilters[item as keyof typeof optionalFilters].value}
     onChange={(e) => {dispatch(setAdditionalFilter({value: e.target.value,
-      filterType: item as keyof typeof optionalFilters}))
+      filterValue: item as keyof typeof optionalFilters}))
     }}
     />
     {!optionalFilters[item as keyof typeof optionalFilters].isValid && // input invalid - show tip

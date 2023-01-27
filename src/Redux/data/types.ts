@@ -3,7 +3,30 @@ import { Status } from "../info/types"
 // create types for all types of cards with optional fields
 export type DataSliceState = {
     status: Status
-    url: string
+    data: Array<Card>
+}
+
+export type Card = {
+  cardId: string
+  dbfId: number
+  name: string
+  cardSet: string
+  type: string
+  faction?: string
+  rarity?: string
+  cost?: number
+  attack?: number
+  health?: number
+  text?: string
+  flavor?: string
+  artist?: string
+  collectible?: boolean
+  elite?: boolean
+  race?: string
+  playerClass?: string
+  img?: string
+  imgGold?: string
+  locale?: string
 }
 
 export type RequestOptions = {

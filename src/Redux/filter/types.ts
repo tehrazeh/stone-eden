@@ -15,7 +15,8 @@ type AdditionalFilter = {
 }
 
 export type Params = {
-    type: string,
+    type?: string,
+    value: string,
     attack?: string,
     cost?: string,
     health?: string,
@@ -23,6 +24,6 @@ export type Params = {
 }
 
 export type AdditionalFilterAction = {
-    filterType: keyof FilterSliceState["additionalFilters"],
+    filterValue: keyof FilterSliceState["additionalFilters"],
     value: number | string,
 }

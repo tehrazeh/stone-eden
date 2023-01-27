@@ -30,8 +30,8 @@ const filterSlice = createSlice({
             state.filterValue = ''
         },
         setAdditionalFilter: (state, action: PayloadAction<AdditionalFilterAction>) => {
-            state.additionalFilters[action.payload.filterType].value = action.payload.value
-            state.additionalFilters[action.payload.filterType].isValid = isInputValid(action.payload.value)
+            state.additionalFilters[action.payload.filterValue].value = action.payload.value
+            state.additionalFilters[action.payload.filterValue].isValid = isInputValid(action.payload.value)
         }
     }
 })
