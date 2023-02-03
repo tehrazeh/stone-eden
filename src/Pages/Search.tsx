@@ -6,10 +6,12 @@ import { fetchInfo } from "../Redux/info/asyncActions"
 import { useAppDispatch, useAppSelector } from "../utils/hooks"
 import SearchBlock from "../Components/SearchBlock"
 import { setFilterType } from "../Redux/filter/slice"
+import ResultBlock from "../Components/SearchResult/ResultBlock"
 
 const Search: React.FC = () => {
   const { type } = useParams()
   const { status } = useAppSelector((state) => state.info)
+  const fetchStatus = useAppSelector((state) => state.data.status)
   const dispatch = useAppDispatch()
   useEffect(() => {
     if (status === 'loading') {
@@ -30,7 +32,8 @@ const Search: React.FC = () => {
         </div>
       </div>
       <SearchBlock/>
-      <div>bro this is seacrh my friend</div>
+      <ResultBlock/>
+      <div>{fetchStatus}</div>
     </div>
   )
 }
