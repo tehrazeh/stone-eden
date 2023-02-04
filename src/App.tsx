@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="flex flex-col h-screen justify-between">
       <Header/>
-      <div className='flex h-full flex-col bg-stone-500'>
+      <div className='flex flex-grow flex-col bg-stone-500'>
         <Routes>
           <Route path='/' element={
                   <div className='h-full bg-amber-900'>

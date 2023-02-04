@@ -15,8 +15,11 @@ const CardBlock: React.FC<CardProps> = (props) => {
          m-4'>
       <p>{props.card.name}</p>
       <p>{props.card.type}</p>
-      <img className='w-40 h-40 rounded' 
+      {/* <img className='w-40 h-40 rounded' 
       src={`https://art.hearthstonejson.com/v1/256x/${props.card.cardId}.jpg`} alt='card'
+      onError={addImageFallback}/> */}
+      <img className='w-40 rounded' 
+      src={`https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${props.card.cardId}.png`} alt='card'
       onError={addImageFallback}/>
     </div>
   )

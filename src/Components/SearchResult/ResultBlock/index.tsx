@@ -2,7 +2,8 @@ import { useAppSelector } from "../../../utils/hooks"
 import CardBlock from "../CardBlock"
 const ResultBlock = () => {
     const {data} = useAppSelector((state) => state.data)
-    const cards = data.map((element, index) => {
+    const cards = data.filter((element, index, arr) => 
+    arr.findIndex(element2 => (element2.name===element.name)) === index).map((element, index) => {
       return <CardBlock key={index} card={element} />
     })
   return (
