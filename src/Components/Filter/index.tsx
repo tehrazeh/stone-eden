@@ -23,7 +23,9 @@ const Filter: React.FC<FilterProps> = (props) => {
     return (
         <div className="flex flex-wrap justify-center items-center">
             {(elements) ? (elements.filter((item, index) => { // indexOf to return first occurence and filter duplicates
-                return elements.indexOf(item) === index}).map((item, index) => {
+                return elements.indexOf(item) === index}).filter((item) => {
+                    return item.toLowerCase() !== 'enchantment' // temporarily avoid enchantments cause they are baggy
+                }).map((item, index) => {
                 return <button className={`${(filterValue === item) ? 'button-active' : 'button-regular'} 
                         text-emerald-200 w-28 h-20 p-x-2 m-1 text-[14px] hover:scale-105`}
                         onClick={() => dispatch(setFilterValue(item))}
