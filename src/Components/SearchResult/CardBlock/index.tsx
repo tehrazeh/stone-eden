@@ -1,6 +1,6 @@
 import { SyntheticEvent } from "react";
 import { Card } from "../../../Redux/data/types"
-
+import fallBackImg from "../../../Assets/fallback.png"
 type CardProps = {
   card: Card
 }
@@ -8,7 +8,7 @@ type CardProps = {
 const CardBlock: React.FC<CardProps> = (props) => {
 
   const addImageFallback = (event: SyntheticEvent<HTMLImageElement, Event>) => {
-    event.currentTarget.src = 'https://art.hearthstonejson.com/v1/256x/EX1_001.jpg';
+    event.currentTarget.src = fallBackImg;
   };
   return (
     <div className='border-solid border-2 border-red-400 rounded flex justify-center items-center flex-col p-4 w-64
