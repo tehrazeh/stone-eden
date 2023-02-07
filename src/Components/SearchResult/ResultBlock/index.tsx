@@ -5,7 +5,7 @@ const ResultBlock = () => {
     const cards = data.filter((element, index, arr) => 
     // thanks! https://stackoverflow.com/questions/2218999/how-to-remove-all-duplicates-from-an-array-of-objects
     arr.findIndex(element2 => (element2.name===element.name)) === index).filter((item) => {
-      return item.type.toLowerCase() !== 'enchantment' // temporarily avoid enchantments cause they are baggy
+      return item.type?.toLowerCase() !== 'enchantment' // temporarily avoid enchantments cause they are baggy
     }).map((element, index) => {
       return <CardBlock key={index} card={element} />
     })
