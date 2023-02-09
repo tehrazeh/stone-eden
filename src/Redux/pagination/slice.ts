@@ -6,7 +6,6 @@ const initialState = {
     elementsPerPage: 10,
     totalPages: 0,
     totalItems: 0
-
 }
 
 const paginationSlice = createSlice({
