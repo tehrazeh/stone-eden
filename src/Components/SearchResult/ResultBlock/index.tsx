@@ -5,15 +5,15 @@ import Pagination from "../PaginationBlock"
 const ResultBlock = () => {
     const {data} = useAppSelector((state) => state.data)
     const {currentPage, elementsPerPage} = useAppSelector(state => state.pagination)
-    const cards = data.filter((element, index, arr) => 
-    // thanks! https://stackoverflow.com/questions/2218999/how-to-remove-all-duplicates-from-an-array-of-objects
-    arr.findIndex(element2 => (element2.name===element.name)) === index).filter((item) => {
-      return item.type?.toLowerCase() !== 'enchantment' // temporarily avoid enchantments cause they are baggy
-    })
+    // const cards = data.filter((element, index, arr) => 
+    // // thanks! https://stackoverflow.com/questions/2218999/how-to-remove-all-duplicates-from-an-array-of-objects
+    // arr.findIndex(element2 => (element2.name===element.name)) === index).filter((item) => {
+    //   return item.type?.toLowerCase() !== 'enchantment' // temporarily avoid enchantments cause they are baggy
+    // })
 
-    const paginatedCards = paginateArray(cards, elementsPerPage, currentPage)
+    const cards = paginateArray(data, elementsPerPage, currentPage)
     
-    const pageElements = paginatedCards.map((element, index) => {
+    const pageElements = cards.map((element, index) => {
       return <CardBlock key={index} card={element} />
     })
   return (

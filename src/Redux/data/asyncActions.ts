@@ -26,6 +26,11 @@ export const fetchData = createAsyncThunk<Array<Card>, Params>(
       options.params = additionalParams
     }
     const {data} = await axios.request<Array<Card>>(options)
-    return data
+    const filteredData = data.filter((element, index, arr) => 
+    // thanks! https://stackoverflow.com/questions/2218999/how-to-remove-all-duplicates-from-an-array-of-objects
+    arr.findIndex(element2 => (element2.name===element.name)) === index).filter((item) => {
+      return item.type?.toLowerCase() !== 'enchantment' // temporarily avoid enchantments cause they are baggy
+    })
+    return filteredData
   }
 )
