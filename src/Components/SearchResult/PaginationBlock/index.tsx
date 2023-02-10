@@ -11,12 +11,19 @@ const Pagination = () => {
         dispatch(setTotalItems(cards.length))
     }, [cards, dispatch])
 
-    const regularButton = `bg-stone-700 border-solid border-2 border-stone-500
-                          m-2 w-6 h-6 p-4 flex items-center justify-center
-                          rounded-full text-emerald-400  transition-all duration-200 ease-linear`
-    const activeButton = `bg-stone-400 border-solid border-2 border-stone-200
-                          m-2 w-6 h-6 p-4 flex items-center justify-center
-                          rounded-full text-emerald-200  transition-all duration-200 ease-linear`
+    const regularButton = `bg-stone-800 border-solid border-2 border-stone-500
+    m-2 w-10 h-10 flex items-center justify-center align-middle leading-10
+    rounded-full text-emerald-400 text-xl transition-all duration-200 ease-linear
+    hover:bg-stone-700 hover:border-stone-400`
+
+    const activeButton = `bg-stone-600 border-solid border-2 border-stone-400
+    m-2 w-10 h-10 flex items-center justify-center align-middle leading-10
+    rounded-full text-emerald-200 text-xl transition-all duration-200 ease-linear
+    hover:bg-stone-500 hover:border-stone-300`
+    
+    const changePageButton = `bg-stone-800 border-solid border-2 border-stone-500
+    m-2 w-10 h-10 flex items-center justify-center align-middle leading-10
+    rounded-full text-emerald-400 text-2xl transition-all duration-200 ease-linear`
 
 
     let pageButtons = []
@@ -27,24 +34,28 @@ const Pagination = () => {
         <button className={currentPage === i ? activeButton : regularButton}
                 key={i}
                 onClick={() => {dispatch(setCurrentPage(i))}}>
-          {i + 1}
+        {i + 1}
         </button>)
       }
     }
-    
   return (
     <div>
         <p>pagesize: {elementsPerPage}</p>
         <p>totalPages: {totalPages}</p>
         <p>current page: {currentPage + 1}</p>
         <p>total items: {cards.length}</p>
-        {/* <div>
-          <button className='border-2 border-solid border-red-400 m-2'>{`<`}</button>
-
-          <button className='border-2 border-solid border-red-400 m-2'>{`>`}</button>
-        </div> */}
         <div className="flex bg-slate-700 rounded">
-        {pageButtons}
+          <button className={`${changePageButton} ${currentPage - 1 < 0 ? 
+          'opacity-60' : 'hover:bg-stone-700 hover:border-stone-400'}`}
+          disabled={currentPage - 1 < 0}>
+            <p>{`<`}</p>
+          </button>
+          {pageButtons}
+          <button className={`${changePageButton} ${currentPage + 1 >= totalPages ? 
+          'opacity-60' : 'hover:bg-stone-700 hover:border-stone-400'}`}
+          disabled={currentPage + 1 >= totalPages}>
+            {`>`}
+          </button>
         </div>
     </div>
   )
