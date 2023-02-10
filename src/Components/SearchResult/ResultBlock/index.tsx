@@ -17,9 +17,13 @@ const ResultBlock = () => {
       return <CardBlock key={index} card={element} />
     })
   return (
-    <div className='bg-slate-500 w-full flex flex-wrap justify-center items-center'>
+    <div className='bg-slate-500 w-full flex flex-wrap justify-center items-center flex-col'>
+      <div>
       <Pagination />
+      </div>
+      <div className='flex flex-wrap'>
         {pageElements}
+      </div>
     </div>
   )
 }
