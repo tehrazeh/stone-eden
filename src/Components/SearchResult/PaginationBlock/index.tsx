@@ -29,12 +29,12 @@ const Pagination = () => {
     let pageButtons = []
 
     if (totalPages > 1) {
-      for (let i = 0; i < totalPages; i++) {
+      for (let i = 1; i <= totalPages; i++) {
         pageButtons.push(
         <button className={currentPage === i ? activeButton : regularButton}
                 key={i}
                 onClick={() => {dispatch(setCurrentPage(i))}}>
-        {i + 1}
+        {i}
         </button>)
       }
     }
@@ -42,19 +42,19 @@ const Pagination = () => {
     <div>
         <p>pagesize: {elementsPerPage}</p>
         <p>totalPages: {totalPages}</p>
-        <p>current page: {currentPage + 1}</p>
+        <p>current page: {currentPage}</p>
         <p>total items: {cards.length}</p>
         <div className="flex bg-slate-700 rounded">
-          <button className={`${changePageButton} ${currentPage - 1 < 0 ? 
+          <button className={`${changePageButton} ${currentPage - 1 === 0 ? 
           'opacity-60' : 'hover:bg-stone-700 hover:border-stone-400'}`}
-          disabled={currentPage - 1 < 0}
+          disabled={currentPage - 1 === 0}
           onClick={() => dispatch(setCurrentPage(currentPage - 1))}>
             <p>{`<`}</p>
           </button>
           {pageButtons}
-          <button className={`${changePageButton} ${currentPage + 1 >= totalPages ? 
+          <button className={`${changePageButton} ${currentPage === totalPages ? 
           'opacity-60' : 'hover:bg-stone-700 hover:border-stone-400'}`}
-          disabled={currentPage + 1 >= totalPages}
+          disabled={currentPage === totalPages}
           onClick={() => dispatch(setCurrentPage(currentPage + 1))}>
             {`>`}
           </button>

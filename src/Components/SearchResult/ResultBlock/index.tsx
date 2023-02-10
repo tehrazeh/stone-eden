@@ -6,7 +6,7 @@ const ResultBlock = () => {
     const {data} = useAppSelector((state) => state.data)
     const {currentPage, elementsPerPage} = useAppSelector(state => state.pagination)
 
-    const cards = paginateArray(data, elementsPerPage, currentPage)
+    const cards = paginateArray(data, elementsPerPage, currentPage - 1)
     
     const pageElements = cards.map((element, index) => {
       return <CardBlock key={index} card={element} />
