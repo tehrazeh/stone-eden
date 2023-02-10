@@ -47,13 +47,15 @@ const Pagination = () => {
         <div className="flex bg-slate-700 rounded">
           <button className={`${changePageButton} ${currentPage - 1 < 0 ? 
           'opacity-60' : 'hover:bg-stone-700 hover:border-stone-400'}`}
-          disabled={currentPage - 1 < 0}>
+          disabled={currentPage - 1 < 0}
+          onClick={() => dispatch(setCurrentPage(currentPage - 1))}>
             <p>{`<`}</p>
           </button>
           {pageButtons}
           <button className={`${changePageButton} ${currentPage + 1 >= totalPages ? 
           'opacity-60' : 'hover:bg-stone-700 hover:border-stone-400'}`}
-          disabled={currentPage + 1 >= totalPages}>
+          disabled={currentPage + 1 >= totalPages}
+          onClick={() => dispatch(setCurrentPage(currentPage + 1))}>
             {`>`}
           </button>
         </div>
