@@ -14,7 +14,7 @@ const ResultBlock = () => {
   return (
     <div className='bg-slate-500 w-full flex flex-wrap justify-center items-center flex-col'>
       <div>
-      {data.length > 0 && <Pagination />}
+      {Math.ceil(data.length / elementsPerPage) > 1 && <Pagination />}
       </div>
       <div className='flex flex-wrap'>
         {pageElements}

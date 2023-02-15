@@ -33,7 +33,7 @@ const Search: React.FC = () => {
       </div>
       <SearchBlock/>
       <ResultBlock/>
-      <div>{fetchStatus}</div>
+      {/* <div>{fetchStatus}</div> */}
     </div>
   )
 }

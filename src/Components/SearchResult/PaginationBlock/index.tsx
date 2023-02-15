@@ -1,15 +1,16 @@
 import { useEffect } from "react"
+import { Status } from "../../../Redux/info/types"
 import { setCurrentPage, setTotalItems, setTotalPages } from "../../../Redux/pagination/slice"
 import { useAppSelector, useAppDispatch, returnPagination, DOTS } from "../../../utils/hooks"
 
 const Pagination = () => {
-  const cards = useAppSelector(state => state.data.data)
+  const {data, status} = useAppSelector(state => state.data)
   const dispatch = useAppDispatch()
   const { currentPage, elementsPerPage, totalPages } = useAppSelector(state => state.pagination)
   useEffect(() => {
-    dispatch(setTotalPages(cards.length))
-    dispatch(setTotalItems(cards.length))
-  }, [cards, dispatch])
+    dispatch(setTotalPages(data.length))
+    dispatch(setTotalItems(data.length))
+  }, [data, dispatch])
 
   const regularButton = `bg-stone-800 border-solid border-2 border-stone-500
     m-2 w-10 h-10 flex items-center justify-center align-middle leading-10
@@ -25,12 +26,14 @@ const Pagination = () => {
     m-2 w-10 h-10 flex items-center justify-center align-middle leading-10
     rounded-full text-emerald-400 text-2xl transition-all duration-200 ease-linear`
 
+  if (status === Status.LOADING) { 
+    return <div>Loading...</div>
+  }
 
   let pageButtons: JSX.Element[] = []
 
   if (totalPages > 1) {
     const buttonValues = returnPagination(totalPages, currentPage)
-    // for (let i = 1; i <= totalPages; i++) {
     buttonValues.map((element, index) => {
       if (element === DOTS) {
         pageButtons.push(
@@ -48,10 +51,6 @@ const Pagination = () => {
 
       return (
         <div>
-          <p>pagesize: {elementsPerPage}</p>
-          <p>totalPages: {totalPages}</p>
-          <p>current page: {currentPage}</p>
-          <p>total items: {cards.length}</p>
           <div className="flex bg-slate-700 rounded">
             <button className={`${changePageButton} ${currentPage - 1 === 0 ?
               'opacity-60' : 'hover:bg-stone-700 hover:border-stone-400'}`}
