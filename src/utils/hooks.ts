@@ -8,14 +8,16 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 
 
 export const DOTS = '...'
-export const usePagination = (totalPages: number, currentPage: number) => {
+export const returnPagination = (totalPages: number, currentPage: number) => {
     const pages = []
     for (let i = 1; i <= totalPages; i++) {
     pages.push(i)
 }
     let displayedPages: Array<string | number> = [...pages]
 
-if (currentPage >= 1 && currentPage <= 3) { // [1, 2, 3 ... last page]
+if (pages.length <= 5) {
+    displayedPages = pages
+    } else if (currentPage >= 1 && currentPage <= 3 && pages.length > 5) { // [1, 2, 3 ... last page]
     displayedPages = [1, 2, 3, 4, DOTS, totalPages]
     } else if (currentPage >= 4 && currentPage < pages.length - 2) { // [1 ... 2, 3, 4 ... last page]
     const slicedPortion = pages.slice(currentPage -2, currentPage + 1) // 3 middle buttons (2, 3, 4)^
