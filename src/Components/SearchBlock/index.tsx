@@ -55,7 +55,7 @@ const SearchBlock = () => {
         setSearchParams(params)
         params.type = filterType
         dispatch(fetchData(params))
-        dispatch(setCurrentPage(0))
+        dispatch(setCurrentPage(1))
     }
     return (
         <div>
