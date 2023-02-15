@@ -32,10 +32,9 @@ const Pagination = () => {
     const buttonValues = returnPagination(totalPages, currentPage)
     // for (let i = 1; i <= totalPages; i++) {
     buttonValues.map((element, index) => {
-
       if (element === DOTS) {
         pageButtons.push(
-          <button className={regularButton} key={index}>
+          <button className={`${changePageButton} border-none background-none text-2xl text-emerald-400`} disabled key={index}>
             {DOTS}
           </button>)
       } else {
