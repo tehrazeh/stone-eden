@@ -16,7 +16,7 @@ const ResultBlock = () => {
       <div>
       {Math.ceil(data.length / elementsPerPage) > 1 && <Pagination />}
       </div>
-      <div className='flex flex-wrap'>
+      <div className='flex flex-wrap justify-center items-center'>
         {pageElements}
       </div>
     </div>

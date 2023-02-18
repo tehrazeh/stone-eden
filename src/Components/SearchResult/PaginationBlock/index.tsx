@@ -2,11 +2,12 @@ import { useEffect } from "react"
 import { Status } from "../../../Redux/info/types"
 import { setCurrentPage, setTotalItems, setTotalPages } from "../../../Redux/pagination/slice"
 import { useAppSelector, useAppDispatch, returnPagination, DOTS } from "../../../utils/hooks"
+import ElementsNumber from "./dropdown"
 
 const Pagination = () => {
   const {data, status} = useAppSelector(state => state.data)
   const dispatch = useAppDispatch()
-  const { currentPage, elementsPerPage, totalPages } = useAppSelector(state => state.pagination)
+  const { currentPage, totalPages } = useAppSelector(state => state.pagination)
   useEffect(() => {
     dispatch(setTotalPages(data.length))
     dispatch(setTotalItems(data.length))
@@ -50,8 +51,7 @@ const Pagination = () => {
       }})}
 
       return (
-        <div>
-          <div className="flex bg-slate-700 rounded">
+          <div className="flex bg-slate-700 rounded justify-center items-center">
             <button className={`${changePageButton} ${currentPage - 1 === 0 ?
               'opacity-60' : 'hover:bg-stone-700 hover:border-stone-400'}`}
               disabled={currentPage - 1 === 0}
@@ -65,8 +65,8 @@ const Pagination = () => {
               onClick={() => dispatch(setCurrentPage(currentPage + 1))}>
               {`>`}
             </button>
+            <ElementsNumber/>
           </div>
-        </div>
       )
     }
 

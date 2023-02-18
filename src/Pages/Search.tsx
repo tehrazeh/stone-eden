@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "../utils/hooks"
 import SearchBlock from "../Components/SearchBlock"
 import { setFilterType } from "../Redux/filter/slice"
 import ResultBlock from "../Components/SearchResult/ResultBlock"
+import { Status } from "../Redux/info/types"
 
 const Search: React.FC = () => {
   const { type } = useParams()
@@ -33,7 +34,7 @@ const Search: React.FC = () => {
       </div>
       <SearchBlock/>
       <ResultBlock/>
-      {/* <div>{fetchStatus}</div> */}
+      {fetchStatus === Status.ERROR && <div>{fetchStatus}</div>}
     </div>
   )
 }
