@@ -20,6 +20,7 @@ const paginationSlice = createSlice({
         },
         setElementsPerPage: (state, action: PayloadAction<number>) => {
             state.elementsPerPage = action.payload
+            state.totalPages = Math.ceil(state.totalItems / action.payload)
         },
         setCurrentPage: (state, action: PayloadAction<number>) => {
             state.currentPage = action.payload
