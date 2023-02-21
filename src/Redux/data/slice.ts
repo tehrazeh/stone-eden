@@ -4,7 +4,7 @@ import { fetchData } from "./asyncActions";
 import { DataSliceState } from "./types";
 
 const initialState: DataSliceState = {
-    status: Status.LOADING,
+    status: Status.IDLE,
     data: []
 }
 

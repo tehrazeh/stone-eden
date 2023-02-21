@@ -33,7 +33,7 @@ const Search: React.FC = () => {
         </div>
       </div>
       <SearchBlock/>
-      <ResultBlock/>
+      {(fetchStatus === Status.SUCCESS || fetchStatus === Status.LOADING) && <ResultBlock/>}
       {fetchStatus === Status.ERROR && <div>{fetchStatus}</div>}
     </div>
   )

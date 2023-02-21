@@ -15,6 +15,7 @@ export enum Status {
     LOADING = 'loading',
     SUCCESS = 'completed',
     ERROR = 'error',
+    IDLE = 'idle'
 }
 
 export interface InfoSliceState {
