@@ -1,4 +1,4 @@
-import { setElementsPerPage } from "../../../Redux/pagination/slice";
+import { setCurrentPage, setElementsPerPage } from "../../../Redux/pagination/slice";
 import { useAppSelector, useAppDispatch } from "../../../utils/hooks";
 
 const ElementsNumber = () => {
@@ -11,6 +11,7 @@ const ElementsNumber = () => {
       hover:bg-stone-600 hover:border-stone-400 focus:ring-0 focus:bg-stone-700 focus:border-stone-500"
         onChange={(e) => {
           dispatch(setElementsPerPage(Number(e.target.value)));
+          dispatch(setCurrentPage(1))
           }}
         defaultValue={elementsPerPage}>
         <option>10</option>
