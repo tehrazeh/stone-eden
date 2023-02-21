@@ -5,8 +5,13 @@ import Pagination from "../PaginationBlock"
 const ResultBlock = () => {
     const {data} = useAppSelector((state) => state.data)
     const {currentPage, elementsPerPage} = useAppSelector(state => state.pagination)
+    const nameFilter = useAppSelector(state => state.dataFilter.nameFilter)
 
-    const cards = paginateArray(data, elementsPerPage, currentPage - 1)
+    const filteredData = data.filter(element => {
+      return element.name.toLowerCase().includes(nameFilter.toLowerCase())
+    })
+
+    const cards = paginateArray(filteredData, elementsPerPage, currentPage - 1)
     
     const pageElements = cards.map((element, index) => {
       return <CardBlock key={index} card={element} />
