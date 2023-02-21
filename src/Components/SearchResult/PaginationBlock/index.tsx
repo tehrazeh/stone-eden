@@ -1,6 +1,7 @@
 import { Status } from "../../../Redux/info/types"
 import { useAppSelector} from "../../../utils/hooks"
 import ElementsNumber from "./dropdown"
+import InputFilter from "./inputFilter"
 import PaginationButtons from "./paginationButtons"
 
 const Pagination = () => {
@@ -12,10 +13,14 @@ const Pagination = () => {
   }
 
       return (
-          <div className="flex bg-slate-700 rounded justify-center items-center">
-            {/* move buttons below to its own component, create input to filter the cards */}
-            <PaginationButtons/>
-            <ElementsNumber/>
+          <div className="grid w-11/12 rounded grid-cols-2 grid-rows-1">
+            <div>
+              <InputFilter/>
+            </div>
+            <div className="flex justify-between items-center">
+              <PaginationButtons/>
+              <ElementsNumber/>
+            </div>
           </div>
       )
     }
