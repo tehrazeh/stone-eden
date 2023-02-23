@@ -5,7 +5,7 @@ const initialState = {
     currentPage: 0,
     elementsPerPage: 10,
     totalPages: 0,
-    totalItems: 0,
+    totalItems: 0, // noot needed for now
     displayedItems: 0
 }
 
@@ -16,6 +16,7 @@ const paginationSlice = createSlice({
         setTotalPages: (state, action: PayloadAction<number>) => {
             state.totalPages = Math.ceil(action.payload / state.elementsPerPage)
         },
+        // not needed for now
         setTotalItems: (state, action: PayloadAction<number>) => {
             state.totalItems = action.payload
         },
