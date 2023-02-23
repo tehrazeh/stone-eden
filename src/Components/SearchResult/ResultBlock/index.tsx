@@ -17,7 +17,7 @@ const ResultBlock = () => {
       return <CardBlock key={index} card={element} />
     })
   return (
-    <div className='bg-neutral-600 w-full flex flex-wrap justify-center items-center flex-col'>
+    <div className='bg-neutral-700 w-full flex flex-wrap justify-center items-center flex-col'>
       <div className="w-full my-4 flex justify-center">
       <Pagination />
       </div>
