@@ -1,11 +1,20 @@
+import { useEffect } from "react"
 import { Status } from "../../../Redux/info/types"
-import { useAppSelector} from "../../../utils/hooks"
+import { setTotalPages, setTotalItems } from "../../../Redux/pagination/slice"
+import { useAppDispatch, useAppSelector} from "../../../utils/hooks"
 import ElementsNumber from "./dropdown"
 import InputFilter from "./inputFilter"
 import PaginationButtons from "./paginationButtons"
 
 const Pagination = () => {
-  const {status} = useAppSelector(state => state.data)
+  const {status, data} = useAppSelector(state => state.data)
+  const displayedItems = useAppSelector(state => state.pagination.displayedItems)
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(setTotalItems(data.length))
+    dispatch(setTotalPages(displayedItems))
+}, [data, dispatch, displayedItems])
 
 
   if (status === Status.LOADING) { 

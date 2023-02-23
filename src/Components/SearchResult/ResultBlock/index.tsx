@@ -1,18 +1,23 @@
+import { useEffect } from "react"
+import { setDisplayedItems, setTotalItems } from "../../../Redux/pagination/slice"
 import { paginateArray } from "../../../utils/functions"
-import { useAppSelector } from "../../../utils/hooks"
+import { useAppSelector, useAppDispatch } from "../../../utils/hooks"
 import CardBlock from "../CardBlock"
 import Pagination from "../PaginationBlock"
 const ResultBlock = () => {
     const {data} = useAppSelector((state) => state.data)
     const {currentPage, elementsPerPage} = useAppSelector(state => state.pagination)
     const nameFilter = useAppSelector(state => state.dataFilter.nameFilter)
-
+    const dispatch = useAppDispatch()
     const filteredData = data.filter(element => {
       return element.name.toLowerCase().includes(nameFilter.toLowerCase())
     })
 
-    const cards = paginateArray(filteredData, elementsPerPage, currentPage - 1)
-    
+    useEffect(() => {
+      dispatch(setDisplayedItems(filteredData.length))
+    }, [filteredData.length, dispatch, data.length])
+
+    const cards = paginateArray(filteredData, elementsPerPage, currentPage - 1)   
     const pageElements = cards.map((element, index) => {
       return <CardBlock key={index} card={element} />
     })

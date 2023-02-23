@@ -1,15 +1,10 @@
-import React, { useEffect } from 'react'
-import { setCurrentPage, setTotalItems, setTotalPages } from '../../../Redux/pagination/slice'
+import { setCurrentPage } from '../../../Redux/pagination/slice'
 import { DOTS, returnPagination, useAppDispatch, useAppSelector } from '../../../utils/hooks'
 
 const PaginationButtons = () => {
-    const { data } = useAppSelector(state => state.data)
-    const dispatch = useAppDispatch()
+
     const { currentPage, totalPages } = useAppSelector(state => state.pagination)
-    useEffect(() => {
-        dispatch(setTotalPages(data.length))
-        dispatch(setTotalItems(data.length))
-    }, [data, dispatch])
+    const dispatch = useAppDispatch()
 
     const regularButton = `bg-stone-800 border-solid border-2 border-stone-500
       m-2 w-10 h-10 flex items-center justify-center align-middle leading-10
@@ -27,7 +22,6 @@ const PaginationButtons = () => {
 
 
     let pageButtons: JSX.Element[] = []
-
     if (totalPages > 1) {
         const buttonValues = returnPagination(totalPages, currentPage)
         buttonValues.map((element, index) => {
