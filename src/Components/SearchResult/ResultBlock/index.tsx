@@ -26,7 +26,7 @@ const ResultBlock = () => {
 
   // sort the data depending on type user selected
   useEffect(() => {
-    setDisplayedData(sortArray(displayedData, sortFilter))
+    setDisplayedData(sortArray(displayedData, data, sortFilter))
   }, [sortFilter])
 
   // seems like I do not need total items count for now, but just in case i will leave it here

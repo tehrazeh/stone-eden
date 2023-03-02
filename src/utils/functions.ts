@@ -7,7 +7,6 @@ export const paginateArray = (arr: Card[], elementsPerPage: number, currentPage:
     return arr.filter((element, index) => index >= indexMin && index < indexMax)
 }
 
-
 function sortByProperty(property: keyof Card, order: string) {
     const sortOrder = (order === 'asc') ? 1 : -1 // determine the order of filter
     return function (card1: Card, card2: Card) { // ?? -1 is default value if the property is not present
@@ -17,7 +16,10 @@ function sortByProperty(property: keyof Card, order: string) {
     }
 }
 
-export const sortArray = (arr: Card[], sortFilter: DataSort) => {
+export const sortArray = (arr: Card[], defaultArr: Card[], sortFilter: DataSort) => {
     const arrCopy = [...arr] // make a copy to avoid mutation
+    if (sortFilter === DataSort.DEFAULT) { // if the filter is back to default, we return the first version we got from api
+        return [...defaultArr]
+    }
     return arrCopy.sort(sortByProperty(sortFilter.split(' ')[0] as keyof Card, sortFilter.split(' ')[1]))
 }
