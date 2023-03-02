@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { DataFilterSliceState } from "./types";
+import { DataFilterSliceState, DataSort } from "./types";
 
 const initialState: DataFilterSliceState = {
-    nameFilter: ''
+    nameFilter: '',
+    sortFilter: DataSort.DEFAULT
 }
 
 const dataFilterSlice = createSlice({
@@ -11,9 +12,12 @@ const dataFilterSlice = createSlice({
     reducers: {
         setNameFilter: (state, action:PayloadAction<string>) => {
             state.nameFilter = action.payload
+        },
+        setDataFilter: (state, action:PayloadAction<string>) => {
+            state.sortFilter = action.payload as DataSort
         }
     }
 })
 
-export const {setNameFilter} = dataFilterSlice.actions
+export const {setNameFilter, setDataFilter} = dataFilterSlice.actions
 export default dataFilterSlice.reducer

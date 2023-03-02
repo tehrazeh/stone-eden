@@ -5,6 +5,8 @@ import { useEffect } from "react"
 import { Params } from "../../Redux/filter/types"
 import { fetchData } from "../../Redux/data/asyncActions"
 import { setCurrentPage } from "../../Redux/pagination/slice"
+import { setDataFilter } from "../../Redux/datafilter/slice"
+import { DataSort } from "../../Redux/datafilter/types"
 
 const activeClass = `bg-yellow-900 m-2 border-yellow-600 h-14 w-40 text-yellow-600 text-lg
 border-solid border-2 rounded shadow-inner shadow-yellow-700
@@ -54,8 +56,9 @@ const SearchBlock = () => {
         }
         setSearchParams(params)
         params.type = filterType
-        dispatch(fetchData(params))
-        dispatch(setCurrentPage(1))
+        dispatch(fetchData(params)) // fetch data from api
+        dispatch(setCurrentPage(1)) // set 1st page by default
+        dispatch(setDataFilter(DataSort.DEFAULT)) // reset sort filters
     }
     return (
         <div>
