@@ -61,7 +61,7 @@ const SearchBlock = () => {
         dispatch(setDataFilter(DataSort.DEFAULT)) // reset sort filters
     }
     return (
-        <div>
+        <div className="bg-emerald-800 w-full flex justify-center p-4">
             {!isInputsValid && <p>Invalid input for filters</p>}
             {filterValue.length <= 0 && <p>Select <b>{filterType.toUpperCase()}</b> option</p>}
             <button className={(isInputsValid && filterValue.length > 0) ? activeClass : disabledClass}
