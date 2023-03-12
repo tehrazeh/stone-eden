@@ -7,6 +7,8 @@ import { fetchData } from "../../Redux/data/asyncActions"
 import { setCurrentPage } from "../../Redux/pagination/slice"
 import { setDataFilter } from "../../Redux/datafilter/slice"
 import { DataSort } from "../../Redux/datafilter/types"
+import WarningBlock from "./warningBlock"
+
 
 const activeClass = `bg-yellow-900 m-2 border-yellow-600 h-14 w-40 text-yellow-600 text-lg
 border-solid border-2 rounded shadow-inner shadow-yellow-700
@@ -61,15 +63,23 @@ const SearchBlock = () => {
         dispatch(setDataFilter(DataSort.DEFAULT)) // reset sort filters
     }
     return (
-        <div className="bg-emerald-800 w-full flex justify-center p-4">
-            {!isInputsValid && <p>Invalid input for filters</p>}
-            {filterValue.length <= 0 && <p>Select <b>{filterType.toUpperCase()}</b> option</p>}
-            <button className={(isInputsValid && filterValue.length > 0) ? activeClass : disabledClass}
-                    onClick={handleClick}
-                    disabled={!(isInputsValid && filterValue.length > 0)}
-            >
-                Search
-            </button>
+        <div className=" w-full grid grid-cols-3 h-24 grid-rows-1">
+            <div className="bg-zinc-900 flex justify-center items-center">
+                {!isInputsValid && 
+                <WarningBlock text='Invalid input for filters'/>}
+            </div>
+            <div className="bg-zinc-800 flex justify-center items-center">
+                <button className={(isInputsValid && filterValue.length > 0) ? activeClass : disabledClass}
+                        onClick={handleClick}
+                        disabled={!(isInputsValid && filterValue.length > 0)}
+                >
+                    Search
+                </button>
+            </div>
+            <div className="bg-zinc-900 flex justify-center items-center">
+                {filterValue.length <= 0 && 
+                <WarningBlock text={`Select ${filterType.toUpperCase()} option`}/>}
+            </div>
         </div>
     )
 }
