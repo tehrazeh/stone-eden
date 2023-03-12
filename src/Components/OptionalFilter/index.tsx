@@ -23,7 +23,7 @@ const OptionalFilter = () => {
       <div className="flex w-full justify-evenly absolute top-1">
         <img src={require(`../../Assets/Attributes/${item}.png`)}
             alt='attribute'
-            className="w-9 h-11" />
+            className="w-12 h-11" />
         <input type='text' placeholder={`Enter ${item}...`}
           className={optionalFilters[item as keyof typeof optionalFilters].isValid ? inputValid : inputInvalid}
           value={optionalFilters[item as keyof typeof optionalFilters].value}
