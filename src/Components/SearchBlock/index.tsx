@@ -10,12 +10,12 @@ import { DataSort } from "../../Redux/datafilter/types"
 import WarningBlock from "./warningBlock"
 
 
-const activeClass = `bg-yellow-900 m-2 border-yellow-600 h-14 w-40 text-yellow-600 text-lg
-border-solid border-2 rounded shadow-inner shadow-yellow-700
-hover:bg-yellow-800 hover:border-yellow-500 hover:text-yellow-500`
+const activeClass = `bg-green-900 m-2 border-green-600 h-14 w-40 text-green-600 text-lg
+border-solid border-2 rounded shadow-inner shadow-green-700
+hover:bg-green-800 hover:border-green-500 hover:text-green-500`
 
-const disabledClass = `bg-yellow-900 m-2 border-yellow-600 h-14 w-40 text-yellow-600 text-lg
-border-solid border-2 rounded shadow-inner shadow-yellow-700 opacity-50 cursor-auto`
+const disabledClass = `bg-red-900 m-2 border-red-600 h-14 w-40 text-red-600 text-lg
+border-solid border-2 rounded shadow-inner shadow-red-700 opacity-50 cursor-auto`
 
 const SearchBlock = () => {
     const { filterValue, filterType, additionalFilters } = useAppSelector(state => state.filter)
