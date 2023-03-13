@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../../utils/hooks";
 
 const ResultFilter = () => {
     const dispatch = useAppDispatch()
+    console.log(DataSort.HEALTH_DESC.split(' ')[0])
     const sortFilter = useAppSelector(state => state.dataFilter.sortFilter)
   return (
     <div className="rounded bg-yellow-800 border-2 border-yellow-600 w-full flex justify-center items-start">
@@ -12,15 +13,14 @@ const ResultFilter = () => {
         onChange={(e) => {
           dispatch(setDataFilter(e.target.value))
           }}
-        value={sortFilter}
-        defaultValue={DataSort.DEFAULT}>
-        <option value={DataSort.DEFAULT}>Sort</option>
-        <option value={DataSort.HEALTH_DESC}>health down</option>
-        <option value={DataSort.HEALTH_ASC}>health up</option>
-        <option value={DataSort.COST_DESC}>cost down</option>
-        <option value={DataSort.COST_ASC}>cost up</option>
-        <option value={DataSort.ATTACK_DESC}>attack down</option>
-        <option value={DataSort.ATTACK_ASC}>attack up</option>
+        value={sortFilter}>
+        <option value={DataSort.DEFAULT}>{DataSort.DEFAULT.toUpperCase()}</option>
+        <option value={DataSort.HEALTH_DESC}>{DataSort.HEALTH_DESC}</option>
+        <option value={DataSort.HEALTH_ASC}>{DataSort.HEALTH_ASC}</option>
+        <option value={DataSort.COST_DESC}>{DataSort.COST_DESC}</option>
+        <option value={DataSort.COST_ASC}>{DataSort.COST_ASC}</option>
+        <option value={DataSort.ATTACK_DESC}>{DataSort.ATTACK_DESC}</option>
+        <option value={DataSort.ATTACK_ASC}>{DataSort.ATTACK_ASC}</option>
       </select>
     </div>
   )
