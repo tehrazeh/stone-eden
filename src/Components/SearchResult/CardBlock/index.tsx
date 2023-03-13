@@ -9,6 +9,16 @@ const textClass = 'text-base text-emerald-200 opacity-85 tracking-wider'
 
 const CardBlock: React.FC<CardProps> = (props) => {
 
+  const attributes = ['attack', 'health', 'cost']
+
+  const attributesBlocks = attributes.map(attribute => {
+      return <div className="flex justify-center items-center relative">
+      <img src={require(`../../../Assets/Attributes/${attribute}.png`)} className='w-14 h-12 brightness-50' alt='attack'/>
+      <p className="absolute text-[30px] font-bold shadow-zinc-900 text-emerald-100 top-auto right-auto">
+        {props.card[attribute as keyof Card]}
+      </p>
+    </div>
+  })
   const addImageFallback = (event: SyntheticEvent<HTMLImageElement, Event>) => {
     event.currentTarget.src = fallBackImg;
   };
@@ -17,26 +27,8 @@ const CardBlock: React.FC<CardProps> = (props) => {
          m-2'>
       <p className={textClass}><i>{props.card.name}</i></p>
       <p className={textClass}>{(props.card.playerClass || '')  + ' ' + props.card.type}</p>
-      <div className="bg-slate-800 w-[90%] grid grid-cols-3 grid-rows-1">
-        {/* <p className={textClass}><i>attack {props.card.attack}</i></p> */}
-        {/* <div className="bg-green-800 flex justify-center relative">
-          <img src={require(`../../../Assets/Attributes/attack.png`)} className='w-12 brightness-50' alt='attack'/>
-          <p className="absolute text-[32px] shadow-2xl shadow-black text-blue-100 top-1.5 right-6">
-            {props.card.attack}
-          </p>
-        </div>
-        <div className="bg-green-800 flex justify-center relative">
-          <img src={require(`../../../Assets/Attributes/health.png`)} className='w-12 h-10 brightness-50' alt='health'/>
-          <p className="absolute text-[32px] shadow-2xl shadow-black text-blue-100 top-1.5 right-6">
-          {props.card.health}
-          </p>
-        </div>
-        <div className="bg-green-800 flex justify-center relative">
-          <img src={require(`../../../Assets/Attributes/cost.png`)} className='w-12 brightness-50' alt='cost'/>
-          <p className="absolute text-[32px] shadow-2xl shadow-black text-blue-100 top-1.5 right-6">
-          {props.card.cost}
-          </p>
-        </div> */}
+      <div className=" mt-2 w-[70%] bg-zinc-900 rounded h-14 grid grid-cols-3 grid-rows-1">
+        {attributesBlocks}
       </div>
       <img className='w-56 rounded align-middle p-0 m-0 hover:brightness-110 hover:cursor-pointer' 
       src={`https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${props.card.cardId}.png`} alt='card'
