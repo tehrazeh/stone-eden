@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from "../../../utils/hooks";
 
 const ResultFilter = () => {
   const dispatch = useAppDispatch()
-  const options = [<li value={DataSort.DEFAULT}
+  const options = [<li value={DataSort.DEFAULT} className="flex cursor-pointer justify-around hover:brightness-125 bg-stone-800 h-9 items-center text-emerald-300"
     onClick={(() => {
       dispatch(setDataFilter((DataSort.DEFAULT)))
     })} key={DataSort.DEFAULT}>Default</li>]
@@ -14,32 +14,31 @@ const ResultFilter = () => {
     if (value !== "DEFAULT") {
       options.push(
         <li value={value} key={value} 
-        className="flex justify-around"
+        className="flex justify-around h-9 cursor-pointer bg-stone-800 items-center hover:brightness-125"
         onClick={(() => {
           dispatch(setDataFilter(DataSort[value as keyof typeof DataSort]))
         })}>
           <img src={require(`../../../Assets/Attributes/${value.split('_')[0].toLowerCase()}.png`)}
-            className="w-8"
+            className="w-8 h-8"
             alt={value.toLowerCase()} />
           <img src={require(`../../../Assets/${value.split('_')[1].toLowerCase()}.png`)}
-            className="w-8"
+            className="w-8 h-8 brightness-75"
             alt={value.toLowerCase()} />
         </li>)
     }
-    // console.log(value.split('_')[1])
   }
 
   const [isDisplayed, toggleDisplay] = useState(false)
   const sortFilter = useAppSelector(state => state.dataFilter.sortFilter)
   return (
-    <div>
-      <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+    <div className="bg-neutral-900 text-lg border-solid border-2 border-neutral-600 w-[95%] flex flex-col items-center rounded">
+      <button className="bg-stone-800 m-2 h-8 hover:bg-stone-600 w-[80%] rounded text-emerald-300"
         onClick={() => {
           toggleDisplay(!isDisplayed)
-        }}>Filter</button>
+        }}>Sort</button>
       <div id="dropdownHover" className={`${(isDisplayed ? 'visible' : 'hidden')}
-  z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700`}>
-        <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownHoverButton">
+        w-[80%] bg-stone-800 rounded `}>
+        <ul className="divide-y divide-zinc-600">
           {options}
         </ul>
       </div>
