@@ -6,7 +6,8 @@ import { useAppDispatch, useAppSelector } from "../../../utils/hooks";
 
 const ResultFilter = () => {
   const dispatch = useAppDispatch()
-  const options = [<li value={DataSort.DEFAULT} className="flex cursor-pointer justify-around hover:brightness-125 bg-stone-800 h-9 items-center text-emerald-300"
+  const liClass = `flex cursor-pointer justify-around hover:brightness-125 bg-stone-800 h-9 items-center text-emerald-300`
+  const options = [<li value={DataSort.DEFAULT} className={liClass}
     onClick={(() => {
       dispatch(setDataFilter((DataSort.DEFAULT)))
     })} key={DataSort.DEFAULT}>Default</li>]
@@ -14,7 +15,7 @@ const ResultFilter = () => {
     if (value !== "DEFAULT") {
       options.push(
         <li value={value} key={value} 
-        className="flex justify-around h-9 cursor-pointer bg-stone-800 items-center hover:brightness-125"
+        className={liClass}
         onClick={(() => {
           dispatch(setDataFilter(DataSort[value as keyof typeof DataSort]))
         })}>
@@ -36,7 +37,7 @@ const ResultFilter = () => {
         onClick={() => {
           toggleDisplay(!isDisplayed)
         }}>Sort</button>
-      <div id="dropdownHover" className={`${(isDisplayed ? 'visible' : 'hidden')}
+      <div className={`${(isDisplayed ? 'visible' : 'hidden')}
         w-[80%] bg-stone-800 rounded `}>
         <ul className="divide-y divide-zinc-600">
           {options}
