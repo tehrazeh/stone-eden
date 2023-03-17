@@ -1,7 +1,7 @@
 
 export const Footer: React.FC = () => {
   return (
-    <div className='bg-neutral-800 flex justify-center flex-col items-center text-xs text-gray-400'>
+    <div className='bg-neutral-900 flex justify-center flex-col items-center text-xs text-gray-400'>
       <p>tehrazeh dev, 2022</p>
       <p> Data provided by <a className='text-gray-200 hover:underline'
         href='https://rapidapi.com/omgvamp/api/hearthstone'>Hearthstone</a> and <a
