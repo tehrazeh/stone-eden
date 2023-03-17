@@ -6,7 +6,9 @@ import { useAppDispatch, useAppSelector } from "../../../utils/hooks";
 
 const ResultFilter = () => {
   const dispatch = useAppDispatch()
-  const liClass = `flex cursor-pointer justify-around hover:brightness-125 bg-stone-800 h-9 items-center text-emerald-300`
+  const [isDisplayed, toggleDisplay] = useState(false)
+  const sortFilter = useAppSelector(state => state.dataFilter.sortFilter)
+  const liClass = `flex cursor-pointer justify-around hover:brightness-150 bg-stone-800 h-9 items-center text-emerald-300`
   const options = [<li value={DataSort.DEFAULT} className={liClass}
     onClick={(() => {
       dispatch(setDataFilter((DataSort.DEFAULT)))
@@ -15,7 +17,7 @@ const ResultFilter = () => {
     if (value !== "DEFAULT") {
       options.push(
         <li value={value} key={value} 
-        className={liClass}
+        className={`${liClass} ${DataSort[value as keyof typeof DataSort] === sortFilter ? 'brightness-150' : ''}`}
         onClick={(() => {
           dispatch(setDataFilter(DataSort[value as keyof typeof DataSort]))
         })}>
@@ -28,9 +30,6 @@ const ResultFilter = () => {
         </li>)
     }
   }
-
-  const [isDisplayed, toggleDisplay] = useState(false)
-  const sortFilter = useAppSelector(state => state.dataFilter.sortFilter)
   return (
     <div className="bg-neutral-900 text-lg border-solid border-2 border-neutral-600 w-[95%] flex flex-col items-center rounded">
       <button className="bg-stone-800 m-2 h-8 hover:bg-stone-600 w-[80%] rounded text-emerald-300"
