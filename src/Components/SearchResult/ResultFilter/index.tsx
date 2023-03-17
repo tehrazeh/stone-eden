@@ -36,6 +36,9 @@ const ResultFilter = () => {
       <button className="bg-stone-800 m-2 h-8 hover:bg-stone-600 w-[80%] rounded text-emerald-300 relative"
         onClick={() => {
           toggleDisplay(!isDisplayed)
+        }} 
+        onBlur={() => { // to give time for onclick of li element to execute before rerender that caused by onblur
+          setTimeout(() => toggleDisplay(false), 150)
         }}>
           Sort
           <img src={dropdownImg}
