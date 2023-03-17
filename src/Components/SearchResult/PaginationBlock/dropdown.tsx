@@ -14,10 +14,10 @@ const ElementsNumber = () => {
           dispatch(setCurrentPage(1))
           }}
         defaultValue={elementsPerPage}>
-        <option>10</option>
-        <option>25</option>
-        <option>50</option>
-        <option>100</option>
+        <option>12</option>
+        <option>24</option>
+        <option>48</option>
+        <option>96</option>
       </select>
     </div>
   )
