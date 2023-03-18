@@ -4,11 +4,6 @@ export type FilterSliceState = {
     additionalFilters: AdditionalFilters
 }
 
-type AdditionalFilter = {
-    value: number | string,
-    isValid?: boolean
-}
-
 export type Params = {
     type?: string,
     value: string,

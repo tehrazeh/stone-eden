@@ -5,7 +5,7 @@ import { useAppDispatch } from '../../../utils/hooks'
 
 type OptionalBlockProps = {
     optionalFilters: AdditionalFilters,
-    item: string
+    item: keyof AdditionalFilters
 }
 
 
@@ -28,18 +28,18 @@ const OptionalFilterBlock: React.FC<OptionalBlockProps> = ({ optionalFilters, it
                     alt='attribute'
                     className="w-12 h-11" />
                 <input type='text' placeholder={`Enter ${item}...`}
-                    className={optionalFilters[item as keyof typeof optionalFilters].isValid ? inputValid : inputInvalid}
-                    value={optionalFilters[item as keyof typeof optionalFilters].value}
+                    className={optionalFilters[item].isValid ? inputValid : inputInvalid}
+                    value={optionalFilters[item].value}
                     onChange={(e) => {
                         dispatch(setAdditionalFilter({
                             value: e.target.value,
-                            filterValue: item as keyof typeof optionalFilters
+                            filterValue: item
                         }))
                     }}
                 />
             </div>
             <div className="flex w-full justify-center absolute bottom-0">
-                {!optionalFilters[item as keyof typeof optionalFilters].isValid && // input invalid - show tip
+                {!optionalFilters[item].isValid && // input invalid - show tip
                     <p className="text-red-400 text-[14px]">Enter valid positive number</p>
                 }
             </div>
