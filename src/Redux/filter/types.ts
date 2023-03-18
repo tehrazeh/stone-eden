@@ -1,12 +1,7 @@
 export type FilterSliceState = {
     filterType: string,
     filterValue: string,
-    additionalFilters: {
-        attack: AdditionalFilter,
-        cost: AdditionalFilter,
-        health: AdditionalFilter,
-        durability: AdditionalFilter,
-    }
+    additionalFilters: AdditionalFilters
 }
 
 type AdditionalFilter = {
@@ -25,5 +20,12 @@ export type Params = {
 
 export type AdditionalFilterAction = {
     filterValue: keyof FilterSliceState["additionalFilters"],
-    value: number | string,
+    value: string,
+}
+
+export type AdditionalFilters = {
+        attack: {value: string, isValid: boolean},
+        cost: {value: string, isValid: boolean},
+        health: {value: string, isValid: boolean},
+        durability: {value: string, isValid: boolean}  
 }
