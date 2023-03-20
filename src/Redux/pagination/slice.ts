@@ -3,9 +3,9 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
 const initialState = {
     currentPage: 0,
-    elementsPerPage: 10,
+    elementsPerPage: 12,
     totalPages: 0,
-    totalItems: 0, // noot needed for now
+    totalItems: 0, // not needed for now
     displayedItems: 0
 }
 

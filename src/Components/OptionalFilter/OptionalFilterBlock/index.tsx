@@ -11,11 +11,11 @@ type OptionalBlockProps = {
 const OptionalFilterBlock: React.FC<OptionalBlockProps> = ({ optionalFilters, item }) => {
 
     // function that returns style of the input
-    const getInputStyle = (isValid: boolean) => {
+    const getInputStyle = (isValid: boolean = true) => {
         const color = isValid ? 'emerald' : 'red'
         return `bg-stone-900 rounded border-2 text-${color}-200 placeholder-${color}-100
         placeholder-opacity-50 p-1 border-solid border-${color}-700 focus:border-${color}-600
-        focus:bg-stone-800 focus:outline-none focus:text-${color}-200`
+        focus:bg-stone-800 focus:outline-none`
     }
 
     const dispatch = useAppDispatch()
