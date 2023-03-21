@@ -9,7 +9,6 @@ import { setDataFilter } from "../../Redux/datafilter/slice"
 import { DataSort } from "../../Redux/datafilter/types"
 import WarningBlock from "./warningBlock"
 
-
 const activeClass = `bg-green-900 m-2 border-green-600 h-14 w-40 text-green-600 text-lg
 border-solid border-2 rounded shadow-inner shadow-green-700
 hover:bg-green-800 hover:border-green-500 hover:text-green-500`
@@ -56,14 +55,14 @@ const SearchBlock = () => {
                 params[filterKey] = additionalFilters[filterKey].value.toString()
             }
         }
-        setSearchParams(params)
-        params.type = filterType
+        setSearchParams(params) // update url with selected search parameters
+        params.type = filterType // add type for the fetch request
         dispatch(fetchData(params)) // fetch data from api
         dispatch(setCurrentPage(1)) // set 1st page by default
         dispatch(setDataFilter(DataSort.DEFAULT)) // reset sort filters
     }
     return (
-        <div className=" w-full grid grid-cols-3 h-24 grid-rows-1">
+        <div className="w-full grid grid-cols-3 h-24 grid-rows-1">
             <div className="bg-zinc-900 flex justify-center items-center">
                 {!isInputsValid && 
                 <WarningBlock text='Invalid input for filters'/>}
