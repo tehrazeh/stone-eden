@@ -6,12 +6,12 @@ import Search from './Pages/Search';
 
 function App() {
   return (
-    <div className="flex flex-col h-screen justify-between">
+    <div className='h-full'>
       <Header/>
-      <div className='flex flex-grow flex-col bg-stone-500'>
+      <div className='flex flex-grow flex-col h-screen bg-stone-500'>
         <Routes>
           <Route path='/' element={
-                  <div className='h-full bg-amber-900'>
+                  <div className='h-screen bg-amber-900'>
                   main section my friend
                 </div>
           } />
