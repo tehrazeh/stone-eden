@@ -1,6 +1,7 @@
 export type DataFilterSliceState = {
     nameFilter: string
     sortFilter: DataSort
+    isDropdownVisible: boolean
 }
 
 export enum DataSort {

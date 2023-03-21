@@ -3,7 +3,8 @@ import { DataFilterSliceState, DataSort } from "./types";
 
 const initialState: DataFilterSliceState = {
     nameFilter: '',
-    sortFilter: DataSort.DEFAULT
+    sortFilter: DataSort.DEFAULT,
+    isDropdownVisible: false
 }
 
 const dataFilterSlice = createSlice({
@@ -15,9 +16,12 @@ const dataFilterSlice = createSlice({
         },
         setDataFilter: (state, action:PayloadAction<string>) => {
             state.sortFilter = action.payload as DataSort
+        },
+        toggleDropdown: (state, action:PayloadAction<boolean>) => {
+            state.isDropdownVisible = action.payload
         }
     }
 })
 
-export const {setNameFilter, setDataFilter} = dataFilterSlice.actions
+export const {setNameFilter, setDataFilter, toggleDropdown} = dataFilterSlice.actions
 export default dataFilterSlice.reducer
