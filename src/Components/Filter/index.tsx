@@ -23,7 +23,7 @@ const Filter: React.FC<FilterProps> = ({type}) => {
     const dispatch = useAppDispatch()
 
     return (
-        <div className="flex flex-wrap bg-stone-700 justify-center items-center">
+        <div className="flex flex-wrap justify-center items-center">
             {(elements) ? (elements.filter((item, index) => { // indexOf to return first occurence and filter duplicates
                 return elements.indexOf(item) === index
             }).filter((item) => {
@@ -31,7 +31,7 @@ const Filter: React.FC<FilterProps> = ({type}) => {
             }).map((item, index) => {
                 return <button className={`${(filterValue === item) ? 'button-active' :
                  'button-regular hover:bg-stone-800 bg-stone-700'} 
-                        text-emerald-200 w-24 h-[44px] p-x-2 m-1 text-[10px] tracking-wider hover:scale-105`}
+                        text-emerald-200 w-24 h-[44px] p-x-2 m-1 text-[10px] tracking-wider`}
                     onClick={() => dispatch(setFilterValue(item))}
                     key={index}>{item}
                 </button>
