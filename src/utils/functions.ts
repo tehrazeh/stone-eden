@@ -29,7 +29,7 @@ export  const getInputStyle = (isValid: boolean = true) => {
         // const color = isValid ? 'emerald' : 'red' for some reason substitution with color variable does not work properly
         return isValid ? `bg-stone-900 rounded border-2 text-green-200 placeholder-green-100
         placeholder-opacity-50 p-1 border-solid border-green-700 focus:border-green-600
-        focus:bg-stone-800 focus:outline-none` : `bg-stone-900 rounded border-2 text-red-200 placeholder-red-100
+        focus:bg-stone-800 focus:outline-none h-7` : `bg-stone-900 rounded border-2 text-red-200 placeholder-red-100
         placeholder-opacity-50 p-1 border-solid border-red-700 focus:border-red-600
-        focus:bg-stone-800 focus:outline-none`
+        focus:bg-stone-800 focus:outline-none h-7`
     }

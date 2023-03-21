@@ -14,12 +14,12 @@ const OptionalFilterBlock: React.FC<OptionalBlockProps> = ({ optionalFilters, it
     const dispatch = useAppDispatch()
     return (
         <div key={item}
-            className='flex flex-col wrap relative rounded-sm w-full h-[74px]
+            className='flex flex-col wrap relative rounded-sm w-full h-[50px]
     bg-stone-800'>
             <div className="flex w-full justify-evenly absolute top-1">
                 <img src={require(`../../../Assets/Attributes/${item}.png`)}
                     alt='attribute'
-                    className="w-12 h-11" />
+                    className="w-8 h-8" />
                 <input type='text' placeholder={`Enter ${item}...`}
                     className={getInputStyle(optionalFilters[item].isValid)}
                     value={optionalFilters[item].value}

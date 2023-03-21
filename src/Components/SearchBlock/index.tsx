@@ -63,11 +63,11 @@ const SearchBlock = () => {
     }
     return (
         <div className="w-full grid grid-cols-3 h-24 grid-rows-1">
-            <div className="bg-zinc-900 flex justify-center items-center">
+            <div className="bg-stone-900 flex justify-center items-center">
                 {!isInputsValid && 
                 <WarningBlock text='Invalid input for filters'/>}
             </div>
-            <div className="bg-zinc-800 flex justify-center items-center">
+            <div className="bg-stone-900 flex justify-center items-center">
                 <button className={(isInputsValid && filterValue.length > 0) ? activeClass : disabledClass}
                         onClick={handleClick}
                         disabled={!(isInputsValid && filterValue.length > 0)}
@@ -75,7 +75,7 @@ const SearchBlock = () => {
                     Search
                 </button>
             </div>
-            <div className="bg-zinc-900 flex justify-center items-center">
+            <div className="bg-stone-900 flex justify-center items-center">
                 {filterValue.length <= 0 && 
                 <WarningBlock text={`Select ${filterType.toUpperCase()} option`}/>}
             </div>
