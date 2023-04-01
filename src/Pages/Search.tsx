@@ -13,13 +13,14 @@ const Search: React.FC = () => {
   const { type } = useParams()
   const { status } = useAppSelector((state) => state.info)
   const fetchStatus = useAppSelector((state) => state.data.status)
+
   const dispatch = useAppDispatch()
   useEffect(() => {
     if (status === 'loading') {
       dispatch(fetchInfo())
       if (type) {
         dispatch(setFilterType(type))
-      }   
+      }
     }
   }, [status, dispatch, type])
   return (
@@ -32,8 +33,10 @@ const Search: React.FC = () => {
           <OptionalFilter />
         </div>
       </div>
-      <SearchBlock/>
-      {(fetchStatus === Status.SUCCESS || fetchStatus === Status.LOADING) && <ResultBlock/>}
+
+      <SearchBlock />
+
+      {(fetchStatus === Status.SUCCESS || fetchStatus === Status.LOADING) && <ResultBlock />}
       {fetchStatus === Status.ERROR && <div>{fetchStatus}</div>}
     </div>
   )

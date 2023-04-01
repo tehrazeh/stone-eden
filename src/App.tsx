@@ -11,7 +11,7 @@ function App() {
       <div className='flex flex-grow flex-col bg-stone-500'>
         <Routes>
           <Route path='/' element={
-                  <div className=' bg-amber-900'>
+                  <div className='bg-amber-900'>
                   main section my friend
                 </div>
           } />
