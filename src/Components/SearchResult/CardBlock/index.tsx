@@ -20,9 +20,12 @@ const CardBlock: React.FC<CardProps> = (props) => {
     </div>
   })
 
+  const fallBackClass = 'w-52 rounded align-middle p-0 m-0 hover:brightness-110 hover:cursor-pointer'
+  const regularClass = 'w-56 rounded align-middle p-0 m-0 hover:brightness-110 hover:cursor-pointer'
   // in case the api does not have an image for the card
   const addImageFallback = (event: SyntheticEvent<HTMLImageElement, Event>) => {
     event.currentTarget.src = fallBackImg;
+    event.currentTarget.className = fallBackClass
   };
   return (
     <div className='border-solid border-2 border-neutral-600 bg-neutral-800 rounded flex justify-center items-center flex-col w-64
@@ -32,7 +35,7 @@ const CardBlock: React.FC<CardProps> = (props) => {
       <div className=" mt-2 w-[70%] bg-zinc-900 rounded h-14 grid grid-cols-3 grid-rows-1">
         {attributesBlocks}
       </div>
-      <img className='w-56 rounded align-middle p-0 m-0 hover:brightness-110 hover:cursor-pointer'
+      <img className={regularClass}
         src={`https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${props.card.cardId}.png`} alt='card'
         onError={addImageFallback} />
     </div>
