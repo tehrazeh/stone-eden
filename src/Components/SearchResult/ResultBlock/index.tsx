@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import { useInView } from "react-intersection-observer"
-import { setDisplayedItems } from "../../../Redux/pagination/slice"
+import { addCardsToPile, setDisplayedItems } from "../../../Redux/pagination/slice"
 import { paginateArray, sortArray } from "../../../utils/functions"
 import { useAppSelector, useAppDispatch } from "../../../utils/hooks"
 import scrollUpImg from "../../../Assets/scrollup.png"
@@ -11,7 +11,7 @@ const ResultBlock = () => {
 
   // get data from state
   const { data } = useAppSelector((state) => state.data)
-  const { currentPage, elementsPerPage } = useAppSelector(state => state.pagination)
+  const { currentPage, elementsPerPage, infiniteScroll, infinitePile } = useAppSelector(state => state.pagination)
   const { nameFilter, sortFilter } = useAppSelector(state => state.dataFilter)
   const [displayedData, setDisplayedData] = useState(data)
 
@@ -30,7 +30,7 @@ const ResultBlock = () => {
       block: 'nearest',
       inline: 'center'
     })
-  } 
+  }
 
   // @ts-ignore
   const setRefs = useCallback((node) => {
@@ -65,11 +65,29 @@ const ResultBlock = () => {
 
   // return paginated version to display the specific number of elemets per page
   const cards = paginateArray(displayedData, elementsPerPage, currentPage - 1)
+  let pageElements: JSX.Element[]
 
-  // get array of component elements to display
-  const pageElements = cards.map((element, index) => {
-    return <CardBlock key={index} card={element} />
-  })
+  // if infinitescroll is on, add cards to pile with each currentpage change
+  // in case of infinitescroll when the footer is seen, page is incremented
+  useEffect(() => {
+    if (infiniteScroll) {
+      dispatch(addCardsToPile(cards))
+    }
+  }, [currentPage, infiniteScroll])
+
+  if (infiniteScroll) { // infinit scroll is one, display pile that will be updated with each scroll to footer
+    pageElements = infinitePile.map((element, index) => {
+      return <CardBlock key={index} card={element} />
+    })
+  } else { // regular pagination mode
+    // get array of component elements to display
+    pageElements = cards.map((element, index) => {
+      return <CardBlock key={index} card={element} />
+    })
+  }
+
+
+
   return (
     <div className='bg-neutral-700 w-full flex flex-wrap justify-center items-center flex-col'>
       <div ref={setRefs} className="w-full my-4 flex justify-center">
@@ -81,9 +99,9 @@ const ResultBlock = () => {
         {!inView &&
           <div className="rounded-xl opacity-80 w-14 h-14 fixed bottom-[50px]
            left-[30px] cursor-pointer  hover:brightness-125"
-           onClick={() => {
-            handleScroll()         
-           }}>
+            onClick={() => {
+              handleScroll()
+            }}>
             <img src={scrollUpImg} alt='scroll up' /></div>}
       </div>
     </div>

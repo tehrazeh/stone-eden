@@ -1,4 +1,4 @@
-import { setCurrentPage, setElementsPerPage } from "../../../Redux/pagination/slice";
+import { setCurrentPage, setElementsPerPage, setInfiniteScroll, setTotalPages } from "../../../Redux/pagination/slice";
 import { useAppSelector, useAppDispatch } from "../../../utils/hooks";
 
 const ElementsNumber = () => {
@@ -10,14 +10,23 @@ const ElementsNumber = () => {
       <select className="rounded ring-0 bg-stone-800 border-solid border-2 mb-2 border-stone-500 text-emerald-400
       hover:bg-stone-600 hover:border-stone-400 focus:ring-0 focus:bg-stone-700 focus:border-stone-500 outline-0"
         onChange={(e) => {
-          dispatch(setElementsPerPage(Number(e.target.value)));
-          dispatch(setCurrentPage(1))
-          }}
+          
+          if (e.target.value === '0') { // condition for infinite scrolling
+            dispatch(setTotalPages(0))
+            dispatch(setInfiniteScroll(true))
+            dispatch(setElementsPerPage(12))
+          } else { // conditions for regular pagination
+            dispatch(setElementsPerPage(Number(e.target.value)))
+            dispatch(setInfiniteScroll(false))
+          }
+          dispatch(setCurrentPage(1)) // after filter reset set the fisrt page as current bu default
+        }}
         defaultValue={elementsPerPage}>
         <option>12</option>
         <option>24</option>
         <option>48</option>
         <option>96</option>
+        <option value={0}>All</option>
       </select>
     </div>
   )
