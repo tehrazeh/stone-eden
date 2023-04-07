@@ -53,11 +53,6 @@ const ResultBlock = () => {
     setDisplayedData(sortArray(displayedData, data, sortFilter))
   }, [sortFilter])
 
-  // seems like I do not need total items count for now, but just in case i will leave it here
-  // useEffect(() => {
-  //   dispatch(setTotalItems(data.length))
-  // })  
-
   // set the number of displayed items based on the input filter
   useEffect(() => {
     dispatch(setDisplayedItems(displayedData.length))
@@ -85,8 +80,6 @@ const ResultBlock = () => {
       return <CardBlock key={index} card={element} />
     })
   }
-
-
 
   return (
     <div className='bg-neutral-700 w-full flex flex-wrap justify-center items-center flex-col'>

@@ -19,10 +19,6 @@ const paginationSlice = createSlice({
         setTotalPages: (state, action: PayloadAction<number>) => {
             state.totalPages = Math.ceil(action.payload / state.elementsPerPage)
         },
-        // not needed for now
-        setTotalItems: (state, action: PayloadAction<number>) => {
-            state.totalItems = action.payload
-        },
         setElementsPerPage: (state, action: PayloadAction<number>) => {
             state.elementsPerPage = action.payload
             state.totalPages = Math.ceil(state.displayedItems / action.payload)
@@ -37,15 +33,17 @@ const paginationSlice = createSlice({
             state.infiniteScroll = action.payload
         },
         addCardsToPile: (state, action: PayloadAction<Card[]>) => {
-            // console.log(action.payload)
             state.infinitePile = state.infinitePile.concat(action.payload)
-            console.log(state.infinitePile)
-        }
+        },
+        // not needed for now
+        // setTotalItems: (state, action: PayloadAction<number>) => {
+        //     state.totalItems = action.payload
+        // },
 
     }
 })
 
-export const { setTotalPages, setTotalItems, setElementsPerPage,
-    setCurrentPage, setDisplayedItems, setInfiniteScroll, addCardsToPile } = paginationSlice.actions
+export const { setTotalPages, setElementsPerPage, setCurrentPage,
+    setDisplayedItems, setInfiniteScroll, addCardsToPile } = paginationSlice.actions
 
 export default paginationSlice.reducer
