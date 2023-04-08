@@ -27,8 +27,8 @@ const CardBlock: React.FC<CardProps> = (props) => {
     triggerOnce: true
   })
 
-  const fallBackClass = 'w-52 rounded align-middle p-0 m-0 hover:brightness-110 hover:cursor-pointer transition-all'
-  const regularClass = 'w-56 rounded align-middle p-0 m-0 hover:brightness-110 hover:cursor-pointer transition-all'
+  const fallBackClass = 'w-52 rounded align-middle p-0 m-0 hover:brightness-110 hover:cursor-pointer'
+  const regularClass = 'w-56 rounded align-middle p-0 m-0 hover:brightness-110 hover:cursor-pointer'
   // in case the api does not have an image for the card
   const addImageFallback = (event: SyntheticEvent<HTMLImageElement, Event>) => {
     event.currentTarget.src = fallBackImg;
@@ -37,16 +37,23 @@ const CardBlock: React.FC<CardProps> = (props) => {
   return (
     <div ref={ref}
       className='border-solid border-2 border-neutral-600 bg-neutral-800 rounded 
-    flex justify-center items-center flex-col w-64 m-2'>
-      <p className={textClass}><i>{props.card.name}</i></p>
-      <p className={textClass}>{(props.card.playerClass || '') + ' ' + props.card.type}</p>
-      <div className=" mt-2 w-[70%] bg-zinc-900 rounded h-14 grid grid-cols-3 grid-rows-1">
-        {attributesBlocks}
+    flex justify-between items-center flex-col w-64 m-2'>
+      <div className="w-full flex justify-center flex-col items-center">
+        <p className={textClass}><i>{props.card.name}</i></p>
+        <p className={textClass}>{(props.card.playerClass || '') + ' ' + props.card.type}</p>
+        <div className=" mt-2 w-[90%] bg-zinc-900 rounded h-14 grid grid-cols-3 grid-rows-1">
+          {attributesBlocks}
+        </div>
       </div>
 
-      <img className={regularClass}
-        src={`https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${props.card.cardId}.png`} alt='card'
-        onError={addImageFallback} />
+      <div className="bg-slate-800 w-[90%] h-full flex justify-center items-center">
+      {inView ?
+        <img className={regularClass}
+          src={`https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${props.card.cardId}.png`} alt='card'
+          onError={addImageFallback} /> : <img className={fallBackClass} src={lazyImg} alt='card' />
+      }
+      </div>
+
     </div>
   )
 }
