@@ -4,7 +4,7 @@ import { setAdditionalFilter, setFilterValue } from "../../Redux/filter/slice"
 import { useEffect } from "react"
 import { Params } from "../../Redux/filter/types"
 import { fetchData } from "../../Redux/data/asyncActions"
-import { setCurrentPage } from "../../Redux/pagination/slice"
+import { resetPile, setCurrentPage, setInfiniteScroll } from "../../Redux/pagination/slice"
 import { setDataFilter } from "../../Redux/datafilter/slice"
 import { DataSort } from "../../Redux/datafilter/types"
 import WarningBlock from "./warningBlock"
@@ -18,6 +18,7 @@ border-solid border-2 rounded shadow-inner shadow-red-700 opacity-50 cursor-auto
 
 const SearchBlock = () => {
     const { filterValue, filterType, additionalFilters } = useAppSelector(state => state.filter)
+    const {infiniteScroll} = useAppSelector(state => state.pagination)
     const [searchParams, setSearchParams] = useSearchParams()
     const dispatch = useAppDispatch()
 
@@ -60,6 +61,11 @@ const SearchBlock = () => {
         dispatch(fetchData(params)) // fetch data from api
         dispatch(setCurrentPage(1)) // set 1st page by default
         dispatch(setDataFilter(DataSort.DEFAULT)) // reset sort filters
+        if (infiniteScroll) {
+            dispatch(resetPile()) // reset infinite pile of cards to empty array
+            dispatch(setInfiniteScroll(false)) // set infinite scroll to false
+        }
+        
     }
     return (
         <div className="w-full grid grid-cols-3 h-24 grid-rows-1">
