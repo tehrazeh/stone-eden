@@ -1,4 +1,4 @@
-import { SyntheticEvent } from "react";
+import { SyntheticEvent, useState } from "react";
 import { Card } from "../../../Redux/data/types"
 import fallBackImg from "../../../Assets/fallback.png"
 import lazyImg from "../../../Assets/lazy.png"
@@ -22,6 +22,8 @@ const CardBlock: React.FC<CardProps> = (props) => {
     </div>
   })
 
+  const [loaded, setLoaded] = useState(false);
+
   const { ref, inView } = useInView({
     threshold: 0.5,
     triggerOnce: true
@@ -44,15 +46,22 @@ const CardBlock: React.FC<CardProps> = (props) => {
           {attributesBlocks}
         </div>
       </div>
-
-      <div className= "w-[90%] h-full flex justify-center items-center">
-      {inView ?
-        <img className={regularClass}
-          src={`https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${props.card.cardId}.png`} alt='card'
-          onError={addImageFallback} /> : <img className={regularClass} src={lazyImg} alt='card' />
-      }
+      <div className="w-[90%] h-full flex justify-center items-center">
+        {/* thanks! https://stackoverflow.com/questions/37312122/how-to-do-a-nested-if-else-statement-in-reactjs-jsx */}
+        {inView ? 
+          <>{ loaded // image not loaded ? show skeleton
+              ? null        
+              : <img className={regularClass} src={lazyImg} alt='card' />
+            }
+            <img className={loaded ? regularClass : `hidden`} // show image only when its fully loaded
+                  src={`https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${props.card.cardId}.png`} alt='card'
+                  onError={addImageFallback} onLoad={() => {
+                    setLoaded(true) 
+                  }}/>
+          </>
+          : <img className={regularClass} src={lazyImg} alt='card' />
+        }
       </div>
-
     </div>
   )
 }
