@@ -17,16 +17,16 @@ const Options = () => {
         })}>
           {(value === "DEFAULT") ? 'DEFAULT' : <>
           <img src={require(`../../../../Assets/Attributes/${DataSort[value as keyof typeof DataSort].split(' ')[0].toLowerCase()}.png`)}
-            className="w-7 h-6"
+            className="w-8 h-7"
             alt={value.toLowerCase()} />
           <img src={require(`../../../../Assets/${DataSort[value as keyof typeof DataSort].split(' ')[1].toLowerCase()}.png`)}
-            className="w-7 h-6 brightness-75"
+            className="w-8 h-7 brightness-75"
             alt={value.toLowerCase()} /></>}
         </li>)
   }
   return (
     <div className={`${(isDropdownVisible ? 'visible' : 'hidden')}
-    w-[80%] bg-stone-800 rounded`}>
+    w-[90%] bg-stone-800 rounded`}>
       <ul className="divide-y divide-zinc-600">
         {options}
       </ul>
