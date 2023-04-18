@@ -38,7 +38,7 @@ const CardBlock: React.FC<CardProps> = (props) => {
   return (
     <div ref={ref}
       className='border-solid border-2 border-neutral-600 bg-neutral-800 rounded 
-    flex justify-between items-center flex-col w-64 m-2'>
+    flex justify-between items-center flex-col w-64 my-[4px] mx-[2px]'>
       <div className="w-full flex justify-center flex-col items-center">
         <p className={textClass}><i>{props.card.name}</i></p>
         <p className={textClass}>{(props.card.playerClass || '') + ' ' + props.card.type}</p>
