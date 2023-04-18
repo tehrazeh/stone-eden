@@ -26,7 +26,7 @@ const Options = () => {
   }
   return (
     <div className={`${(isDropdownVisible ? 'visible' : 'hidden')}
-    w-[80%] bg-stone-800 rounded `}>
+    w-[80%] bg-stone-800 rounded`}>
       <ul className="divide-y divide-zinc-600">
         {options}
       </ul>

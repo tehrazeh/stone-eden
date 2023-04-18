@@ -1,28 +1,34 @@
 import dropdownImg from "../../../../Assets/dropdown.png"
 import { toggleDropdown } from '../../../../Redux/datafilter/slice'
-import { useAppDispatch, useAppSelector } from '../../../../utils/hooks'
+import { DataSort } from "../../../../Redux/datafilter/types"
+import { useAppDispatch } from '../../../../utils/hooks'
 
-const DropdownButton = () => {
+type DropdownButtonProps = {
+  filter: DataSort,
+  dropdownVisibility: boolean
+  assetType: string
+}
+
+const DropdownButton:React.FC<DropdownButtonProps> = ({filter, dropdownVisibility, assetType}) => {
     const dispatch = useAppDispatch()
-    const {sortFilter, isDropdownVisible} = useAppSelector(state => state.dataFilter)
   return (
     <button className="bg-stone-800 m-2 h-8 hover:bg-stone-600 w-[80%]
     rounded font-thin text-emerald-300 relative flex items-center justify-start pl-2"
      onClick={() => {
-       dispatch(toggleDropdown(!isDropdownVisible))
+       dispatch(toggleDropdown(!dropdownVisibility))
      }} 
      onBlur={() => { // to give time for onclick of li element to execute before rerender that caused by onblur
-       setTimeout(() => dispatch(toggleDropdown(!isDropdownVisible)), 150)
+       setTimeout(() => dispatch(toggleDropdown(!dropdownVisibility)), 150)
      }}>
-       {(sortFilter === 'default') ? <>{sortFilter.toUpperCase()}</> : <>
-       <img src={require(`../../../../Assets/Attributes/${sortFilter.split(' ')[0].toLowerCase()}.png`)}
+       {(filter === 'default') ? <>{filter.toUpperCase()}</> : <>
+       <img src={require(`../../../../Assets/${assetType}/${filter.split(' ')[0].toLowerCase()}.png`)}
          className="w-7 h-6"
-         alt={sortFilter.toLowerCase()} />
-       <img src={require(`../../../../Assets/${sortFilter.split(' ')[1].toLowerCase()}.png`)}
+         alt={filter.toLowerCase()} />
+       <img src={require(`../../../../Assets/${filter.split(' ')[1].toLowerCase()}.png`)}
          className="w-7 h-6 brightness-75"
-         alt={sortFilter.toLowerCase()} /></>}
+         alt={filter.toLowerCase()} /></>}
        <img src={dropdownImg}
-        className={`${isDropdownVisible ? 'brightness-125' : 'brightness-75'} w-[9px] absolute bottom-1 right-1`}
+        className={`${dropdownVisibility ? 'brightness-125' : 'brightness-75'} w-[9px] absolute bottom-1 right-1`}
         alt='dropdown' />
        </button>
   )
