@@ -26,9 +26,9 @@ const DropdownButton:React.FC<DropdownButtonProps> = ({filter, dropdownVisibilit
        <img src={require(`../../../../Assets/${filterType}/${filter.split('_')[0].toLowerCase()}.png`)}
          className="w-11 h-11"
          alt={filter.toLowerCase()} />
-         {/* {(filter.split('_').length > 1) ? <img src={require(`../../../../Assets/${filter.split('_')[1].toLowerCase()}.png`)}
+         {(filterType === 'Attribute') ? <img src={require(`../../../../Assets/${filter.split('_')[1].toLowerCase()}.png`)}
          className="w-11 h-10 brightness-75"
-          alt={filter.toLowerCase()} /> : 'zdarova'} */}
+          alt={filter.toLowerCase()} /> : <p className="ml-4 uppercase">{filter}</p>}
          </>}
        <img src={dropdownImg}
         className={`${dropdownVisibility ? 'brightness-125' : 'brightness-75'} w-[9px] absolute bottom-1 right-1`}
