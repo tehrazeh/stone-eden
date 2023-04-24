@@ -15,7 +15,7 @@ const CardBlock: React.FC<CardProps> = (props) => {
   const attributes = ['attack', 'health', 'cost'] // attributes that are displayed on card
   const attributesBlocks = attributes.map(attribute => {
     return <div className="flex justify-center items-center relative" key={attribute}>
-      <img src={require(`../../../Assets/Attributes/${attribute}.png`)} className='w-14 h-12 brightness-50' alt='attack' />
+      <img src={require(`../../../Assets/Attribute/${attribute}.png`)} className='w-14 h-12 brightness-50' alt='attack' />
       <p className="absolute text-[38px] font-bold shadow-zinc-900 opacity-80 text-slate-100 top-auto right-auto">
         {props.card[attribute as keyof Card]}
       </p>

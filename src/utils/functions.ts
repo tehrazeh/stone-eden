@@ -21,7 +21,7 @@ export const sortArray = (arr: Card[], defaultArr: Card[], sortFilter: DataSort)
     if (sortFilter === DataSort.DEFAULT) { // if the filter is back to default, we return the first version we got from api
         return [...defaultArr]
     }
-    return arrCopy.sort(sortByProperty(sortFilter.split(' ')[0] as keyof Card, sortFilter.split(' ')[1]))
+    return arrCopy.sort(sortByProperty(sortFilter.split('_')[0] as keyof Card, sortFilter.split('_')[1]))
 }
 
     // function that returns style of the input

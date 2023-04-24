@@ -1,10 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { DataFilterSliceState, DataSort } from "./types";
+import { DataFilterSliceState, DataSort, VisibilityChecks } from "./types";
 
 const initialState: DataFilterSliceState = {
     nameFilter: '',
+    classFilter: '',
+    typeFilter: '',
     sortFilter: DataSort.DEFAULT,
-    isDropdownVisible: false
+    visibilityChecks: {
+        attributeDropdownVisibility: false,
+        typeDropdownVisibility: false,
+        classDropdownVisibility: false,
+    },
+    filterList: ['Class', 'Type']
 }
 
 const dataFilterSlice = createSlice({
@@ -17,11 +24,15 @@ const dataFilterSlice = createSlice({
         setDataFilter: (state, action:PayloadAction<string>) => {
             state.sortFilter = action.payload as DataSort
         },
-        toggleDropdown: (state, action:PayloadAction<boolean>) => {
-            state.isDropdownVisible = action.payload
+        toggleDropdown: (state, action:PayloadAction<{visibility:boolean, filterType:string}>) => {
+            const name: string = action.payload.filterType.toLowerCase() + 'DropdownVisibility'
+            state.visibilityChecks[name as keyof VisibilityChecks] = action.payload.visibility
+        },
+        setClassFilter: (state, action:PayloadAction<string>) => {
+            state.classFilter = action.payload
         }
     }
 })
 
-export const {setNameFilter, setDataFilter, toggleDropdown} = dataFilterSlice.actions
+export const {setNameFilter, setDataFilter, toggleDropdown, setClassFilter} = dataFilterSlice.actions
 export default dataFilterSlice.reducer

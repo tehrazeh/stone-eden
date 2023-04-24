@@ -1,15 +1,24 @@
 export type DataFilterSliceState = {
     nameFilter: string
-    sortFilter: DataSort
-    isDropdownVisible: boolean
+    sortFilter: DataSort,
+    typeFilter: string,
+    classFilter: string
+    visibilityChecks: VisibilityChecks,
+    filterList: ['Class', 'Type']
+}
+
+export type VisibilityChecks = {
+    attributeDropdownVisibility: boolean,
+    typeDropdownVisibility: boolean,
+    classDropdownVisibility: boolean
 }
 
 export enum DataSort {
-    COST_DESC = 'cost desc',
-    COST_ASC = 'cost asc',
-    HEALTH_DESC = 'health desc',
-    HEALTH_ASC = 'health asc',
-    ATTACK_DESC = 'attack desc',
-    ATTACK_ASC = 'attack asc',
-    DEFAULT = 'default'
+    COST_DESC = 'cost_desc',
+    COST_ASC = 'cost_asc',
+    HEALTH_DESC = 'health_desc',
+    HEALTH_ASC = 'health_asc',
+    ATTACK_DESC = 'attack_desc',
+    ATTACK_ASC = 'attack_asc',
+    DEFAULT = 'Attribute'
 }

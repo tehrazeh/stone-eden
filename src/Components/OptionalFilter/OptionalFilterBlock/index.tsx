@@ -17,7 +17,7 @@ const OptionalFilterBlock: React.FC<OptionalBlockProps> = ({ optionalFilters, it
             className='flex flex-col wrap relative rounded-sm w-full h-[50px]
     bg-stone-800'>
             <div className="flex w-full justify-evenly absolute top-1">
-                <img src={require(`../../../Assets/Attributes/${item}.png`)}
+                <img src={require(`../../../Assets/Attribute/${item}.png`)}
                     alt='attribute'
                     className="w-8 h-8" />
                 <input type='text' placeholder={`Enter ${item}...`}
