@@ -6,10 +6,11 @@ import { useAppDispatch } from '../../../../utils/hooks'
 type DropdownButtonProps = {
   filter: DataSort | string,
   dropdownVisibility: boolean,
-  filterType: string
+  filterType: string,
+  filterList: string[]
 }
 
-const DropdownButton:React.FC<DropdownButtonProps> = ({filter, dropdownVisibility, filterType}) => {
+const DropdownButton:React.FC<DropdownButtonProps> = ({filter, dropdownVisibility, filterType, filterList}) => {
     const dispatch = useAppDispatch()
   return (
     <button className="bg-stone-800 my-2 h-12 hover:bg-stone-600 w-full
@@ -22,7 +23,7 @@ const DropdownButton:React.FC<DropdownButtonProps> = ({filter, dropdownVisibilit
     //  }}
     >
       {/* if the default value, display the text of filter type, else show the current state of selected filter */}
-       {(filterType.includes(filter)) ? <>{filter.toUpperCase()}</> : <>
+       {(filterList.includes(filter) || filter === 'Attribute') ? <>{filter.toUpperCase()}</> : <>
        <img src={require(`../../../../Assets/${filterType}/${filter.split('_')[0].toLowerCase()}.png`)}
          className="w-11 h-11"
          alt={filter.toLowerCase()} />

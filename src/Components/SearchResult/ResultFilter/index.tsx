@@ -16,12 +16,12 @@ const ResultFilter = () => {
      border-neutral-600 w-full flex flex-col items-center rounded">
       <div className="w-[90%]">
         <DropdownButton filter={sortFilter} dropdownVisibility={visibilityChecks.attributeDropdownVisibility}
-         filterType='Attribute' />
+         filterType='Attribute' filterList={filterList}/>
         <SortOptions />
       </div>
       <div className="w-[90%]">
         <DropdownButton filter={classFilter} dropdownVisibility={visibilityChecks.classDropdownVisibility} 
-        filterType='Class'/>
+        filterType='Class' filterList={filterList}/>
         { info?.classes && <FilterOptions options={info.classes} 
         dropdownVisibility={visibilityChecks.classDropdownVisibility}
         assetType="Class" filter={classFilter}/>}

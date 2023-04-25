@@ -3,8 +3,8 @@ import { DataFilterSliceState, DataSort, VisibilityChecks } from "./types";
 
 const initialState: DataFilterSliceState = {
     nameFilter: '',
-    classFilter: '',
-    typeFilter: '',
+    classFilter: 'Class',
+    typeFilter: 'Type',
     sortFilter: DataSort.DEFAULT,
     visibilityChecks: {
         attributeDropdownVisibility: false,
