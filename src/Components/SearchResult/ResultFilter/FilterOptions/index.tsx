@@ -1,5 +1,5 @@
 import React from 'react'
-import { setClassFilter } from '../../../../Redux/datafilter/slice'
+import { setClassFilter, toggleDropdown } from '../../../../Redux/datafilter/slice'
 import { useAppDispatch } from '../../../../utils/hooks'
 type FilterOptionsProps = {
   options: string[] | undefined,
@@ -30,7 +30,10 @@ const FilterOptions:React.FC<FilterOptionsProps> = (props) => {
         require(`../../../../Assets/${props.assetType}/fallback.png`) )
         }
        alt='as' className='w-14 my-1 cursor-pointer brightness-75 hover:brightness-125 hover:scale-105 transition-all'
-       onClick={() => dispatch(setClassFilter(element.toLowerCase().split(' ').join('')))}/>
+       onClick={() => {
+        dispatch(setClassFilter(element.toLowerCase().split(' ').join('')))
+        dispatch(toggleDropdown({visibility: false, filterType: props.assetType}))
+      }}/>
     }) 
   }
   
