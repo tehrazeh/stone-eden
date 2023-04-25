@@ -1,4 +1,4 @@
-import { setDataFilter } from '../../../../Redux/datafilter/slice'
+import { setDataFilter, toggleDropdown } from '../../../../Redux/datafilter/slice'
 import { DataSort } from '../../../../Redux/datafilter/types'
 import { useAppDispatch, useAppSelector } from '../../../../utils/hooks'
 
@@ -14,6 +14,7 @@ const SortOptions = () => {
         className={`${liClass} ${DataSort[value as keyof typeof DataSort] === sortFilter ? 'brightness-150' : ''}`}
         onClick={(() => {
           dispatch(setDataFilter(DataSort[value as keyof typeof DataSort]))
+          dispatch(toggleDropdown({visibility: false, filterType: DataSort.DEFAULT}))
         })}>
         {(value === "DEFAULT") ? 'DEFAULT' : <>
           <img src={require(`../../../../Assets/Attribute/${DataSort[value as keyof typeof DataSort].split('_')[0].toLowerCase()}.png`)}
