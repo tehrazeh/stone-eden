@@ -8,35 +8,36 @@ type FilterOptionsProps = {
   filter: string
 }
 
-const FilterOptions:React.FC<FilterOptionsProps> = (props) => {
+const FilterOptions: React.FC<FilterOptionsProps> = (props) => {
   const dispatch = useAppDispatch()
 
   const optionCheck = () => {
-    
+
     // TODO! find a better way to set up a fallback image without creating pre supported data
-    return (props.assetType.toLowerCase() === 'class' ? 
-    ['deathknight', 'druid', 'hunter', 'mage', 'warrior', 'demonhunter',
-    'paladin', 'priest', 'rogue', 'shaman', 'warlock'] : [
-      'location', 'spell', 'minion', 'hero', 'weapon', 'heropower'
-    ])
+    return (props.assetType.toLowerCase() === 'class' ?
+      ['deathknight', 'druid', 'hunter', 'mage', 'warrior', 'demonhunter',
+        'paladin', 'priest', 'rogue', 'shaman', 'warlock'] : [
+        'location', 'spell', 'minion', 'hero', 'weapon', 'heropower'
+      ])
   }
 
-  
+
   let elements
   if (props.options) {
     elements = props.options.map(element => {
-      return <img key={element} src={ (optionCheck().includes(element.toLowerCase().split(' ').join('')) ? 
-        require(`../../../../Assets/${props.assetType}/${element.toLowerCase().split(' ').join('')}.png`) : 
-        require(`../../../../Assets/${props.assetType}/fallback.png`) )
-        }
-       alt='as' className='w-14 my-1 cursor-pointer brightness-75 hover:brightness-125 hover:scale-105 transition-all'
-       onClick={() => {
-        dispatch(setClassFilter(element.toLowerCase().split(' ').join('')))
-        dispatch(toggleDropdown({visibility: false, filterType: props.assetType}))
-      }}/>
-    }) 
+      return <img key={element} src={(optionCheck().includes(element.toLowerCase().split(' ').join('')) ?
+        require(`../../../../Assets/${props.assetType}/${element.toLowerCase().split(' ').join('')}.png`) :
+        require(`../../../../Assets/${props.assetType}/fallback.png`))
+      }
+        alt='as' className={`${(element.toLowerCase().split(' ').join('') === props.filter ? 'brightness-110' : 'brightness-75')}
+       w-14 my-1 cursor-pointer hover:brightness-125 hover:scale-105 transition-all`}
+        onClick={() => {
+          dispatch(setClassFilter(element.toLowerCase().split(' ').join('')))
+          dispatch(toggleDropdown({ visibility: false, filterType: props.assetType }))
+        }} />
+    })
   }
-  
+
   return (
     <div className={`${(props.dropdownVisibility ? 'visible' : 'hidden')}
     w-full rounded bg-emerald-800 flex flex-wrap justify-around`}>
