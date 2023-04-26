@@ -33,3 +33,13 @@ export  const getInputStyle = (isValid: boolean = true) => {
         placeholder-opacity-50 p-1 border-solid border-red-700 focus:border-red-600
         focus:bg-stone-800 focus:outline-none h-7`
     }
+
+
+export  const optionCheck = (option: string) => {
+    // TODO! find a better way to set up a fallback image without creating pre supported data
+    return (option.toLowerCase() === 'class' ?
+      ['deathknight', 'druid', 'hunter', 'mage', 'warrior', 'demonhunter',
+        'paladin', 'priest', 'rogue', 'shaman', 'warlock'] : [
+        'location', 'spell', 'minion', 'hero', 'weapon', 'heropower'
+      ])
+  }

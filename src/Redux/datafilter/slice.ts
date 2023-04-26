@@ -11,7 +11,7 @@ const initialState: DataFilterSliceState = {
         typeDropdownVisibility: false,
         classDropdownVisibility: false,
     },
-    filterList: ['Class', 'Type']
+    filterList: ['Class', 'Type', 'Attribute']
 }
 
 const dataFilterSlice = createSlice({

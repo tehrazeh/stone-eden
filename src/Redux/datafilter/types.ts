@@ -4,7 +4,7 @@ export type DataFilterSliceState = {
     typeFilter: string,
     classFilter: string
     visibilityChecks: VisibilityChecks,
-    filterList: ['Class', 'Type']
+    filterList: ['Class', 'Type', 'Attribute']
 }
 
 export type VisibilityChecks = {
