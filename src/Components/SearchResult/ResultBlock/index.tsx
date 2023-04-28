@@ -82,8 +82,8 @@ const ResultBlock = () => {
   }
 
   return (
-    <div className='bg-neutral-700 w-full flex flex-wrap justify-center items-center flex-col'>
-      <div ref={setRefs} className="w-full my-4 flex justify-center">
+    <div className='w-full bg-stone-800 flex flex-wrap justify-center items-center flex-col'>
+      <div ref={setRefs} className="w-full my-1 flex justify-center">
         <Pagination />
       </div>
       <div className='flex flex-col bg-stone-800'>
