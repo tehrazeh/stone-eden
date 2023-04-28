@@ -1,10 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { DataFilterSliceState, DataSort, VisibilityChecks } from "./types";
+import { DataFilterSliceState, DataSort, DropdownFilters, VisibilityChecks } from "./types";
 
 const initialState: DataFilterSliceState = {
     nameFilter: '',
-    classFilter: 'Class',
-    typeFilter: 'Type',
+    dropdownFilters: {
+        classFilter: 'Class',
+        typeFilter: 'Type',
+    },
     sortFilter: DataSort.DEFAULT,
     visibilityChecks: {
         attributeDropdownVisibility: false,
@@ -28,8 +30,9 @@ const dataFilterSlice = createSlice({
             const name: string = action.payload.filterType.toLowerCase() + 'DropdownVisibility'
             state.visibilityChecks[name as keyof VisibilityChecks] = action.payload.visibility
         },
-        setClassFilter: (state, action:PayloadAction<string>) => {
-            state.classFilter = action.payload
+        setClassFilter: (state, action:PayloadAction<{filterValue: string, filterType:string}>) => {
+            const name = action.payload.filterType.toLowerCase() + 'Filter'
+            state.dropdownFilters[name as keyof DropdownFilters] = action.payload.filterValue
         }
     }
 })
