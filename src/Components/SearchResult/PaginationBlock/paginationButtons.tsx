@@ -43,7 +43,7 @@ const PaginationButtons = () => {
     const leftButtonCondition = currentPage - 1 === 0 || infiniteScroll
     const rightButtonCondition = currentPage === totalPages || infiniteScroll
     return (
-        <div className='flex w-[80%] justify-between'>
+        <div className='flex w-[64%] justify-between'>
             <button className={`${changePageButton} ${leftButtonCondition ?
                 'opacity-60' : 'hover:bg-stone-700 hover:border-stone-400'}`}
                 disabled={leftButtonCondition}

@@ -87,7 +87,7 @@ const ResultBlock = () => {
         <Pagination />
       </div>
       <div className='flex flex-col bg-stone-800'>
-        <div className="w-full p-1 flex justify-center"><ResultFilter /></div>
+        <div className="w-full flex justify-center"><ResultFilter /></div>
         <div className="w-full flex flex-wrap justify-evenly">{pageElements}</div>
         {!inView &&
           <div className="rounded-xl opacity-80 w-14 h-14 fixed bottom-[50px]

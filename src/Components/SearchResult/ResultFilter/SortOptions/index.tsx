@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../../../utils/hooks'
 
 const SortOptions = () => {
   const liClass = `flex cursor-pointer pl-2 justify-start font-thin hover:brightness-150
-   bg-stone-800 h-9 items-center text-emerald-300 transition-all group`
+   bg-stone-900 h-9 items-center text-emerald-300 transition-all group`
   const options = []
   const { sortFilter, visibilityChecks } = useAppSelector(state => state.dataFilter)
   const dispatch = useAppDispatch()

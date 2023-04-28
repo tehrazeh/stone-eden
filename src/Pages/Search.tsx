@@ -24,7 +24,7 @@ const Search: React.FC = () => {
     }
   }, [status, dispatch, type])
   return (
-    <div className="flex justify-center items-center flex-col">
+    <div className="flex justify-center items-center w-full flex-col">
       <div className='bg-stone-900 px-2 pt-2 w-full grid h-[224px] grid-cols-4 grid-rows-1 gap-4'>
         <div className='bg-stone-700 rounded col-span-3 overflow-y-auto'>
           <Filter type={(type) ? type : 'classes'} />

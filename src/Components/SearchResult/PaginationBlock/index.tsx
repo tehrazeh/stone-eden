@@ -25,11 +25,11 @@ const Pagination = () => {
   }
 
       return (
-          <div className="grid w-11/12 rounded grid-cols-2 grid-rows-1">
-            <div>
+          <div className="grid w-full rounded grid-cols-7 grid-rows-1">
+            <div className=" col-span-3">
               <InputFilter/>
             </div>
-            <div className="flex justify-between items-center">
+            <div className="flex justify-end items-center col-span-4">
               <PaginationButtons/>
               <ElementsNumber/>
             </div>

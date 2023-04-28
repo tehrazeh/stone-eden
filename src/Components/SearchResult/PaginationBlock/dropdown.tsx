@@ -5,7 +5,7 @@ const ElementsNumber = () => {
   const elementsPerPage = useAppSelector(state => state.pagination.elementsPerPage)
   const dispatch = useAppDispatch()
   return (
-    <div className="flex flex-col mx-2">
+    <div className="flex flex-col mx-4">
       <label className="text-emerald-400 mb-1">Cards per page</label>
       <select className="rounded ring-0 bg-stone-800 border-solid border-2 mb-2 border-stone-500 text-emerald-400
       hover:bg-stone-600 hover:border-stone-400 focus:ring-0 focus:bg-stone-700 focus:border-stone-500 outline-0"

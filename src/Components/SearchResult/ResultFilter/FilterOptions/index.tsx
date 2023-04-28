@@ -20,7 +20,7 @@ const FilterOptions: React.FC<FilterOptionsProps> = (props) => {
         require(`../../../../Assets/${props.assetType}/fallback.png`))
       }
         alt='as' className={`${(element.toLowerCase().split(' ').join('') === props.filter ? 'brightness-110' : 'brightness-75')}
-       w-14 my-1 cursor-pointer hover:brightness-125 hover:scale-105 transition-all`}
+       w-14 m-1 cursor-pointer hover:brightness-125 hover:scale-105 transition-all`}
         onClick={() => {
           dispatch(setClassFilter(element.toLowerCase().split(' ').join('')))
           dispatch(toggleDropdown({ visibility: false, filterType: props.assetType }))
@@ -30,7 +30,7 @@ const FilterOptions: React.FC<FilterOptionsProps> = (props) => {
 
   return (
     <div className={`${(props.dropdownVisibility ? 'visible' : 'hidden')}
-    w-full rounded bg-stone-800 flex flex-wrap justify-around`}>
+    w-full rounded bg-stone-900 flex flex-wrap justify-around`}>
       {elements}
     </div>
   )
