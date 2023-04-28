@@ -17,7 +17,7 @@ const FilterOptions: React.FC<FilterOptionsProps> = (props) => {
     elements = props.options.map(element => {
       return <img key={element} src={(optionCheck(props.assetType).includes(element.toLowerCase().split(' ').join('')) ?
         require(`../../../../Assets/${props.assetType}/${element.toLowerCase().split(' ').join('')}.png`) :
-        require(`../../../../Assets/${props.assetType}/fallback.png`))
+        require(`../../../../Assets/fallbackFilter.png`))
       }
         alt='as' className={`${(element.toLowerCase().split(' ').join('') === props.filter ? 'brightness-110' : 'brightness-75')}
        w-14 m-1 cursor-pointer hover:brightness-125 hover:scale-105 transition-all`}

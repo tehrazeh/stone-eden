@@ -33,7 +33,7 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({ filter, dropdownVisibil
             :
           <img src={(optionCheck(filterType).includes(filter.toLowerCase().split(' ').join('')) ?
             require(`../../../../Assets/${filterType}/${filter.toLowerCase().split(' ').join('')}.png`) :
-            require(`../../../../Assets/${filterType}/fallback.png`))} className="w-11 h-11" alt={filter} />
+            require(`../../../../Assets/fallbackFilter.png`))} className="w-11 h-11" alt={filter} />
         }
         {(filterType === 'Attribute') ? <img src={require(`../../../../Assets/${filter.split('_')[1].toLowerCase()}.png`)}
           className="w-11 h-10 brightness-75"

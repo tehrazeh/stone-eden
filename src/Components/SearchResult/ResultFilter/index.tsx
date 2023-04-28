@@ -33,6 +33,15 @@ const ResultFilter = () => {
           dropdownVisibility={visibilityChecks.classDropdownVisibility}
           assetType="Class" filter={classFilter} />}
       </div>
+      <div className="w-[25%] h-12 my-1" onMouseLeave={() => setTimeout(() => {
+        dispatch(toggleDropdown({ visibility: false, filterType: 'Type' }))
+      }, 200)}>
+        <DropdownButton filter={typeFilter} dropdownVisibility={visibilityChecks.typeDropdownVisibility}
+          filterType='Type' filterList={filterList} />
+        {info?.types && <FilterOptions options={info.types}
+          dropdownVisibility={visibilityChecks.typeDropdownVisibility}
+          assetType="Type" filter={typeFilter} />}
+      </div>
     </div>
   )
 }
