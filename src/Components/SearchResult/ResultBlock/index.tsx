@@ -86,9 +86,9 @@ const ResultBlock = () => {
       <div ref={setRefs} className="w-full my-4 flex justify-center">
         <Pagination />
       </div>
-      <div className='grid grid-cols-9 w-full grid-rows-1 bg-stone-800'>
-        <div className="w-full col-span-2 p-1 flex justify-center"><ResultFilter /></div>
-        <div className="w-full col-span-7 flex flex-wrap justify-evenly">{pageElements}</div>
+      <div className='flex flex-col bg-stone-800'>
+        <div className="w-full p-1 flex justify-center"><ResultFilter /></div>
+        <div className="w-full flex flex-wrap justify-evenly">{pageElements}</div>
         {!inView &&
           <div className="rounded-xl opacity-80 w-14 h-14 fixed bottom-[50px]
            left-[30px] cursor-pointer  hover:brightness-125"

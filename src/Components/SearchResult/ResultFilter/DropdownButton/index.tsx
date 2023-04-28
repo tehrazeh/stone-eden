@@ -14,7 +14,7 @@ type DropdownButtonProps = {
 const DropdownButton: React.FC<DropdownButtonProps> = ({ filter, dropdownVisibility, filterType, filterList }) => {
   const dispatch = useAppDispatch()
   return (
-    <button className="bg-stone-800 my-2 h-12 hover:bg-stone-600 w-full
+    <button className="bg-stone-800 h-12 hover:bg-stone-600 w-full
     rounded font-thin text-emerald-300 relative flex items-center justify-start pl-2"
       onClick={() => {
         dispatch(toggleDropdown({ visibility: !dropdownVisibility, filterType }))

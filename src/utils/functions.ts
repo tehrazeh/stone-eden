@@ -1,6 +1,7 @@
 import { Card } from "../Redux/data/types";
 import { DataSort } from "../Redux/datafilter/types";
 
+
 export const paginateArray = (arr: Card[], elementsPerPage: number, currentPage: number) => {
     const indexMin = currentPage * elementsPerPage // start index of a portion that will be displayed
     const indexMax = indexMin + elementsPerPage // end index of a portion that will be displayed
