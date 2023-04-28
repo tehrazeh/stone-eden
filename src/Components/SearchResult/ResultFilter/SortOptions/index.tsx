@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../../../utils/hooks'
 
 const SortOptions = () => {
   const liClass = `flex cursor-pointer pl-2 justify-start font-thin hover:brightness-150
-   bg-stone-800 h-9 items-center text-emerald-300`
+   bg-stone-800 h-9 items-center text-emerald-300 transition-all group`
   const options = []
   const { sortFilter, visibilityChecks } = useAppSelector(state => state.dataFilter)
   const dispatch = useAppDispatch()
@@ -22,7 +22,10 @@ const SortOptions = () => {
             alt={value.toLowerCase()} />
           <img src={require(`../../../../Assets/${DataSort[value as keyof typeof DataSort].split('_')[1].toLowerCase()}.png`)}
             className="w-8 h-7 brightness-75"
-            alt={value.toLowerCase()} /></>}
+            alt={value.toLowerCase()} />
+            <p className='group-hover:opacity-100 transition-opacity opacity-0 ml-2'>
+              {DataSort[value as keyof typeof DataSort].split('_')[0].toUpperCase()}</p>
+            </>}
       </li>)
   }
   return (
