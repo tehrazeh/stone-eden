@@ -43,7 +43,7 @@ const ResultFilter = () => {
           dropdownVisibility={visibilityChecks.typeDropdownVisibility}
           assetType="Type" filter={dropdownFilters.typeFilter} />}
       </div>
-      <div className="w-[20%] h-12 my-1"><QualityFilterBlock /></div>
+      <div className="w-[20%]"><QualityFilterBlock /></div>
     </div>
   )
 }

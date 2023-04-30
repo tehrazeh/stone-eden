@@ -3,6 +3,7 @@ import { DataFilterSliceState, DataSort, DropdownFilters, VisibilityChecks } fro
 
 const initialState: DataFilterSliceState = {
     nameFilter: '',
+    qualityFilter: '',
     dropdownFilters: {
         classFilter: 'Class',
         typeFilter: 'Type',
@@ -33,9 +34,13 @@ const dataFilterSlice = createSlice({
         setClassFilter: (state, action:PayloadAction<{filterValue: string, filterType:string}>) => {
             const name = action.payload.filterType.toLowerCase() + 'Filter'
             state.dropdownFilters[name as keyof DropdownFilters] = action.payload.filterValue
+        },
+        setQualityFilter: (state, action:PayloadAction<string>) => {
+            state.qualityFilter = action.payload
         }
+
     }
 })
 
-export const {setNameFilter, setDataFilter, toggleDropdown, setClassFilter} = dataFilterSlice.actions
+export const {setNameFilter, setDataFilter, toggleDropdown, setClassFilter, setQualityFilter} = dataFilterSlice.actions
 export default dataFilterSlice.reducer
