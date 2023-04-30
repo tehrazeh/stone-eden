@@ -12,8 +12,9 @@ const ResultBlock = () => {
   // get data from state
   const { data } = useAppSelector((state) => state.data)
   const { currentPage, elementsPerPage, infiniteScroll, infinitePile } = useAppSelector(state => state.pagination)
-  const { nameFilter, sortFilter } = useAppSelector(state => state.dataFilter)
+  const { nameFilter, sortFilter, dropdownFilters  } = useAppSelector(state => state.dataFilter)
   const [displayedData, setDisplayedData] = useState(data)
+  const dispatch = useAppDispatch()
 
   // https://github.com/thebuilder/react-intersection-observer#readme
   // using multiple refs because inView ref does not know how to handle scroll
@@ -38,8 +39,6 @@ const ResultBlock = () => {
     inViewRef(node)
   }, [inViewRef])
 
-  const dispatch = useAppDispatch()
-
   // filter the data returned from api, based on input
   useEffect(() => {
     setDisplayedData(data.filter(element => {
@@ -47,11 +46,17 @@ const ResultBlock = () => {
     }))
   }, [nameFilter, data])
 
-
-  // sort the data depending on type user selected
+  // sort the data depending on setting that user selected
   useEffect(() => {
     setDisplayedData(sortArray(displayedData, data, sortFilter))
   }, [sortFilter])
+
+  // useEffect(() => {
+  //   setDisplayedData(data.filter(element => {
+  //     return element.playerClass?.toLowerCase().split(' ').join('') === dropdownFilters.classFilter
+  //   }))
+  //   console.log('zdarova bro ' + dropdownFilters.classFilter)
+  // }, [dropdownFilters.classFilter])
 
   // set the number of displayed items based on the input filter
   useEffect(() => {
@@ -70,7 +75,7 @@ const ResultBlock = () => {
     }
   }, [currentPage, infiniteScroll])
 
-  if (infiniteScroll) { // infinit scroll is one, display pile that will be updated with each scroll to footer
+  if (infiniteScroll) { // infinit scroll is on, display pile that will be updated with each scroll to footer
     pageElements = infinitePile.map((element, index) => {
       return <CardBlock key={index} card={element} />
     })
