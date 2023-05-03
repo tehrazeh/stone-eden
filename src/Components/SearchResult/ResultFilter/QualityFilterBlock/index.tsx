@@ -9,8 +9,8 @@ const QualityFilterBlock = () => {
 
     const qualityElements = qualities.map(element => {
         return <img src={require(`../../../../Assets/Qualities/${element}.png`)} alt={element} key={element}
-            className={`${(activeFilter === element) ? 'brightness-[115%] scale-105' : 'brightness-[60%]'} 
-            w-11 cursor-pointer hover:brightness-125 hover:scale-105 transition-all`}
+            className={`${(activeFilter === element) ? 'brightness-[115%] scale-105' : 'brightness-[60%] hover:brightness-105'} 
+            w-11 cursor-pointer transition-all`}
             onClick={() => {
                 dispatch((activeFilter === element) ? setQualityFilter('') : setQualityFilter(element))
             }}
