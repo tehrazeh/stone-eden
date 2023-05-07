@@ -11,8 +11,7 @@ type FilterOptionsProps = {
 
 const FilterOptions: React.FC<FilterOptionsProps> = ({ options, assetType }) => {
   const dispatch = useAppDispatch()
-  const dropdownVisibility = useAppSelector(state => state.dataFilter.visibilityChecks)
-  const filter = useAppSelector(state => state.dataFilter.dropdownFilters)
+  const {visibilityChecks, dropdownFilters} = useAppSelector(state => state.dataFilter)
   let elements
   if (options) {
     elements = options.map(element => {
@@ -22,7 +21,7 @@ const FilterOptions: React.FC<FilterOptionsProps> = ({ options, assetType }) => 
           require(`../../../../Assets/fallbackFilter.png`))
         }
         alt={element}
-        className={`${(element.toLowerCase().split(' ').join('') === filter[`${assetType.toLowerCase()}Filter` as keyof DropdownFilters]
+        className={`${(element.toLowerCase().split(' ').join('') === dropdownFilters[`${assetType.toLowerCase()}Filter` as keyof DropdownFilters]
           ? 'brightness-110 scale-105' : 'brightness-50')}
         w-14 m-1 cursor-pointer hover:brightness-125 hover:scale-105 transition-all`}
         onClick={() => {
@@ -36,7 +35,7 @@ const FilterOptions: React.FC<FilterOptionsProps> = ({ options, assetType }) => 
   }
 
   return (
-    <div className={`${dropdownVisibility[`${assetType.toLowerCase()}DropdownVisibility` as keyof VisibilityChecks]
+    <div className={`${visibilityChecks[`${assetType.toLowerCase()}DropdownVisibility` as keyof VisibilityChecks]
       ? 'visible' : 'hidden'}
     w-full rounded bg-stone-900 flex flex-wrap justify-around`}>
       {elements}
