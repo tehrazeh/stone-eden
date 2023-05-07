@@ -14,7 +14,8 @@ const initialState: DataFilterSliceState = {
         typeDropdownVisibility: false,
         classDropdownVisibility: false,
     },
-    filterList: ['Class', 'Type', 'Attribute']
+    filterList: ['Class', 'Type', 'Attribute'],
+    activeFilters: []
 }
 
 const dataFilterSlice = createSlice({
@@ -37,10 +38,14 @@ const dataFilterSlice = createSlice({
         },
         setQualityFilter: (state, action:PayloadAction<string>) => {
             state.qualityFilter = action.payload
+        },
+        setActiveFilters: (state, action:PayloadAction<string[]>) => {
+            state.activeFilters = action.payload
         }
 
     }
 })
 
-export const {setNameFilter, setDataFilter, toggleDropdown, setClassFilter, setQualityFilter} = dataFilterSlice.actions
+export const {setNameFilter, setDataFilter, toggleDropdown, 
+    setClassFilter, setQualityFilter, setActiveFilters} = dataFilterSlice.actions
 export default dataFilterSlice.reducer

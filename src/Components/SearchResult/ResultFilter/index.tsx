@@ -21,27 +21,25 @@ const ResultFilter = () => {
       <div className="w-[20%] h-12 my-1" onMouseLeave={() => setTimeout(() => {
         dispatch(toggleDropdown({ visibility: false, filterType: 'Attribute' }))
       }, 200)}>
-        <DropdownButton filter={sortFilter} dropdownVisibility={visibilityChecks.attributeDropdownVisibility}
+        <DropdownButton filter={sortFilter}
           filterType='Attribute' filterList={filterList} />
         <SortOptions />
       </div>
       <div className="w-[20%] h-12 my-1" onMouseLeave={() => setTimeout(() => {
         dispatch(toggleDropdown({ visibility: false, filterType: 'Class' }))
       }, 200)}>
-        <DropdownButton filter={dropdownFilters.classFilter} dropdownVisibility={visibilityChecks.classDropdownVisibility}
+        <DropdownButton filter={dropdownFilters.classFilter}
           filterType='Class' filterList={filterList} />
         {info?.classes && <FilterOptions options={info.classes}
-          dropdownVisibility={visibilityChecks.classDropdownVisibility}
-          assetType="Class" filter={dropdownFilters.classFilter} />}
+          assetType="Class" />}
       </div>
       <div className="w-[20%] h-12 my-1" onMouseLeave={() => setTimeout(() => {
         dispatch(toggleDropdown({ visibility: false, filterType: 'Type' }))
       }, 200)}>
-        <DropdownButton filter={dropdownFilters.typeFilter} dropdownVisibility={visibilityChecks.typeDropdownVisibility}
+        <DropdownButton filter={dropdownFilters.typeFilter}
           filterType='Type' filterList={filterList} />
         {info?.types && <FilterOptions options={info.types}
-          dropdownVisibility={visibilityChecks.typeDropdownVisibility}
-          assetType="Type" filter={dropdownFilters.typeFilter} />}
+          assetType="Type"/>}
       </div>
       <div className="w-[20%]"><QualityFilterBlock /></div>
     </div>

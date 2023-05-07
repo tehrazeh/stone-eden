@@ -4,7 +4,8 @@ export type DataFilterSliceState = {
     sortFilter: DataSort,
     dropdownFilters: DropdownFilters
     visibilityChecks: VisibilityChecks,
-    filterList: ['Class', 'Type', 'Attribute']
+    filterList: ['Class', 'Type', 'Attribute'],
+    activeFilters: string[]
 }
 
 export type VisibilityChecks = {

@@ -1,36 +1,36 @@
 import dropdownImg from "../../../../Assets/dropdown.png"
 import { toggleDropdown } from '../../../../Redux/datafilter/slice'
-import { DataSort } from "../../../../Redux/datafilter/types"
+import { DataSort, VisibilityChecks } from "../../../../Redux/datafilter/types"
 import { optionCheck } from "../../../../utils/functions"
-import { useAppDispatch } from '../../../../utils/hooks'
+import { useAppDispatch, useAppSelector } from '../../../../utils/hooks'
 
 type DropdownButtonProps = {
   filter: DataSort | string,
-  dropdownVisibility: boolean,
   filterType: string,
   filterList: string[]
 }
 
-const DropdownButton: React.FC<DropdownButtonProps> = ({ filter, dropdownVisibility, filterType, filterList }) => {
+const DropdownButton: React.FC<DropdownButtonProps> = ({ filter, filterType, filterList }) => {
   const dispatch = useAppDispatch()
+  const dropdownVisibility = useAppSelector(state => state.dataFilter.visibilityChecks)
   return (
     <button className="bg-stone-800 h-12 hover:bg-stone-600 w-full
     rounded font-thin text-emerald-300 relative flex items-center justify-start pl-2"
       onClick={() => {
-        dispatch(toggleDropdown({ visibility: !dropdownVisibility, filterType }))
-      }}
-    //  onBlur={() => { // to give time for onclick of li element to execute before rerender that caused by onblur
-    //    setTimeout(() => dispatch(toggleDropdown({visibility: !dropdownVisibility, filter})), 150)
-    //  }}
-    >
+        dispatch(toggleDropdown(
+          {
+            visibility: !dropdownVisibility[`${filterType.toLowerCase()}DropdownVisibility` as keyof VisibilityChecks],
+            filterType
+          }))
+      }}>
       {/* if the default value, display the text of filter type, else show the current state of selected filter */}
       {(filterList.includes(filter)) ? <>{filter.toUpperCase()}</> : <>
 
-        { (filterType === 'Attribute') ? 
+        {(filterType === 'Attribute') ?
           <img src={require(`../../../../Assets/${filterType}/${filter.split('_')[0].toLowerCase()}.png`)}
-          className="w-12 h-11" alt={filter}/> 
-           
-            :
+            className="w-12 h-11" alt={filter} />
+
+          :
           <img src={(optionCheck(filterType).includes(filter.toLowerCase().split(' ').join('')) ?
             require(`../../../../Assets/${filterType}/${filter.toLowerCase().split(' ').join('')}.png`) :
             require(`../../../../Assets/fallbackFilter.png`))} className="w-11 h-11" alt={filter} />
@@ -40,7 +40,8 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({ filter, dropdownVisibil
           alt={filter.toLowerCase()} /> : <p className="ml-4 uppercase">{filter}</p>}
       </>}
       <img src={dropdownImg}
-        className={`${dropdownVisibility ? 'brightness-125' : 'brightness-75'} w-[9px] absolute bottom-1 right-1`}
+        className={`${dropdownVisibility[`${filterType.toLowerCase()}DropdownVisibility` as keyof VisibilityChecks]
+          ? 'brightness-125' : 'brightness-75'} w-[9px] absolute bottom-1 right-1`}
         alt='dropdown' />
     </button>
   )
