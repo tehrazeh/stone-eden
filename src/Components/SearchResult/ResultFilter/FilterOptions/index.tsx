@@ -11,7 +11,7 @@ type FilterOptionsProps = {
 
 const FilterOptions: React.FC<FilterOptionsProps> = ({ options, assetType }) => {
   const dispatch = useAppDispatch()
-  const {visibilityChecks, dropdownFilters} = useAppSelector(state => state.dataFilter)
+  const {visibilityChecks, dropdownFilters, activeFilters} = useAppSelector(state => state.dataFilter)
   let elements
   if (options) {
     elements = options.map(element => {
@@ -30,6 +30,9 @@ const FilterOptions: React.FC<FilterOptionsProps> = ({ options, assetType }) => 
             filterType: assetType
           }))
           dispatch(toggleDropdown({ visibility: false, filterType: assetType }))
+          if (!activeFilters.includes(assetType)) {
+              dispatch(setActiveFilters([...activeFilters, assetType]))
+          }
         }} />
     })
   }
@@ -43,7 +46,7 @@ const FilterOptions: React.FC<FilterOptionsProps> = ({ options, assetType }) => 
         onClick={() => {
           dispatch(setClassFilter({ filterValue: assetType, filterType: assetType }))
           dispatch(toggleDropdown({ visibility: false, filterType: assetType }))
-          // dispatch(setActiveFilters({}))
+          dispatch(setActiveFilters(activeFilters.filter(filterOption => filterOption !== assetType)))
         }}
         className='w-14 m-1 cursor-pointer hover:brightness-125 brightness-50 hover:scale-105 transition-all' />
     </div>

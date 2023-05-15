@@ -39,7 +39,7 @@ const dataFilterSlice = createSlice({
         setQualityFilter: (state, action:PayloadAction<string>) => {
             state.qualityFilter = action.payload
         },
-        setActiveFilters: (state, action:PayloadAction<string[]>) => {
+        setActiveFilters: (state, action:PayloadAction<string[]>) => {      
             state.activeFilters = action.payload
         }
 
