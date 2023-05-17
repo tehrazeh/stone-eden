@@ -17,7 +17,7 @@ const SortOptions = () => {
           dispatch(toggleDropdown({visibility: false, filterType: DataSort.DEFAULT}))
         })}>
         {(value === "DEFAULT") ? 'DEFAULT' : <>
-          <img src={require(`../../../../Assets/Attribute/${DataSort[value as keyof typeof DataSort].split('_')[0].toLowerCase()}.png`)}
+          <img src={require(`../../../../Assets/attribute/${DataSort[value as keyof typeof DataSort].split('_')[0].toLowerCase()}.png`)}
             className="w-8 h-7"
             alt={value.toLowerCase()} />
           <img src={require(`../../../../Assets/${DataSort[value as keyof typeof DataSort].split('_')[1].toLowerCase()}.png`)}

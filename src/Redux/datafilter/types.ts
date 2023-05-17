@@ -4,7 +4,7 @@ export type DataFilterSliceState = {
     sortFilter: DataSort,
     dropdownFilters: DropdownFilters
     visibilityChecks: VisibilityChecks,
-    filterList: ['Class', 'Type', 'Attribute'],
+    filterList: ['class', 'type', 'attribute'],
     activeFilters: string[]
 }
 
@@ -26,5 +26,5 @@ export enum DataSort {
     HEALTH_ASC = 'health_asc',
     ATTACK_DESC = 'attack_desc',
     ATTACK_ASC = 'attack_asc',
-    DEFAULT = 'Attribute'
+    DEFAULT = 'attribute'
 }

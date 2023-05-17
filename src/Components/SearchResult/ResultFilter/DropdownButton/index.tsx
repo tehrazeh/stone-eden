@@ -26,7 +26,7 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({ filter, filterType, fil
       {/* if the default value, display the text of filter type, else show the current state of selected filter */}
       {(filterList.includes(filter)) ? <>{filter.toUpperCase()}</> : <>
 
-        {(filterType === 'Attribute') ?
+        {(filterType === 'attribute') ?
           <img src={require(`../../../../Assets/${filterType}/${filter.split('_')[0].toLowerCase()}.png`)}
             className="w-12 h-11" alt={filter} />
 
@@ -35,7 +35,7 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({ filter, filterType, fil
             require(`../../../../Assets/${filterType}/${filter.toLowerCase().split(' ').join('')}.png`) :
             require(`../../../../Assets/fallbackFilter.png`))} className="w-11 h-11" alt={filter} />
         }
-        {(filterType === 'Attribute') ? <img src={require(`../../../../Assets/${filter.split('_')[1].toLowerCase()}.png`)}
+        {(filterType === 'attribute') ? <img src={require(`../../../../Assets/${filter.split('_')[1].toLowerCase()}.png`)}
           className="w-11 h-10 brightness-75"
           alt={filter.toLowerCase()} /> : <p className="ml-4 uppercase">{filter}</p>}
       </>}

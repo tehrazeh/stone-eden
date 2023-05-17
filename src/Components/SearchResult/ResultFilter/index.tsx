@@ -19,27 +19,27 @@ const ResultFilter = () => {
     <div className="bg-stone-900 text-lg border-solid border-2 flex justify-evenly
      border-neutral-600 w-full mx-4 max-h-[60px] h-[60px] z-30 items-center rounded">
       <div className="w-[20%] h-12 my-1" onMouseLeave={() => setTimeout(() => {
-        dispatch(toggleDropdown({ visibility: false, filterType: 'Attribute' }))
+        dispatch(toggleDropdown({ visibility: false, filterType: 'attribute' }))
       }, 350)}>
         <DropdownButton filter={sortFilter}
-          filterType='Attribute' filterList={filterList} />
+          filterType='attribute' filterList={filterList} />
         <SortOptions />
       </div>
       <div className="w-[20%] h-12 my-1" onMouseLeave={() => setTimeout(() => {
-        dispatch(toggleDropdown({ visibility: false, filterType: 'Class' }))
+        dispatch(toggleDropdown({ visibility: false, filterType: 'class' }))
       }, 350)}>
         <DropdownButton filter={dropdownFilters.classFilter}
-          filterType='Class' filterList={filterList} />
+          filterType='class' filterList={filterList} />
         {info?.classes && <FilterOptions options={info.classes}
-          assetType="Class" />}
+          assetType="class" />}
       </div>
       <div className="w-[20%] h-12 my-1" onMouseLeave={() => setTimeout(() => {
-        dispatch(toggleDropdown({ visibility: false, filterType: 'Type' }))
+        dispatch(toggleDropdown({ visibility: false, filterType: 'type' }))
       }, 350)}>
         <DropdownButton filter={dropdownFilters.typeFilter}
-          filterType='Type' filterList={filterList} />
+          filterType='type' filterList={filterList} />
         {info?.types && <FilterOptions options={info.types}
-          assetType="Type"/>}
+          assetType="type"/>}
       </div>
       <div className="w-[20%]"><QualityFilterBlock /></div>
     </div>
