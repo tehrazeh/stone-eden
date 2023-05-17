@@ -10,10 +10,10 @@ import ResultFilter from "../ResultFilter"
 const ResultBlock = () => {
 
   // get data from state
-  const { data } = useAppSelector((state) => state.data)
+  const { data, tempData } = useAppSelector((state) => state.data)
   const { currentPage, elementsPerPage, infiniteScroll, infinitePile } = useAppSelector(state => state.pagination)
-  const { nameFilter, sortFilter, dropdownFilters  } = useAppSelector(state => state.dataFilter)
-  const [displayedData, setDisplayedData] = useState(data)
+  const { nameFilter, sortFilter, dropdownFilters, activeFilters  } = useAppSelector(state => state.dataFilter)
+  const [displayedData, setDisplayedData] = useState(tempData)
   const dispatch = useAppDispatch()
 
   // https://github.com/thebuilder/react-intersection-observer#readme
@@ -41,27 +41,33 @@ const ResultBlock = () => {
 
   // filter the data returned from api, based on input
   useEffect(() => {
-    setDisplayedData(data.filter(element => {
+    setDisplayedData(tempData.filter(element => {
       return element.name.toLowerCase().includes(nameFilter.toLowerCase())
     }))
-  }, [nameFilter, data])
+  }, [nameFilter, tempData])
 
   // sort the data depending on setting that user selected
   useEffect(() => {
-    setDisplayedData(sortArray(displayedData, data, sortFilter))
+    setDisplayedData(sortArray(displayedData, tempData, sortFilter))
   }, [sortFilter])
 
-  // useEffect(() => {
-  //   setDisplayedData(data.filter(element => {
-  //     return element.playerClass?.toLowerCase().split(' ').join('') === dropdownFilters.classFilter
-  //   }))
-  //   console.log('zdarova bro ' + dropdownFilters.classFilter)
-  // }, [dropdownFilters.classFilter])
+  useEffect(() => {
+    // setDisplayedData(data.filter(element => {
+    //   if (element['playerClass'])
+    //   return element[`playerClass`].toLowerCase().split(' ').join('') === dropdownFilters.classFilter
+    // }))
+    // if (activeFilters.length > 0) {
+    //   let tempItems = activeFilters.map((selectedFilter) => {
+    //     return data.filter((card) => card)
+    //   })
+    // }
+    // console.log(activeFilters)
+  }, [activeFilters])
 
   // set the number of displayed items based on the input filter
   useEffect(() => {
     dispatch(setDisplayedItems(displayedData.length))
-  }, [displayedData.length, dispatch, data.length])
+  }, [displayedData.length, dispatch, tempData.length])
 
   // return paginated version to display the specific number of elemets per page
   const cards = paginateArray(displayedData, elementsPerPage, currentPage - 1)

@@ -5,7 +5,8 @@ import { DataSliceState } from "./types";
 
 const initialState: DataSliceState = {
     status: Status.IDLE,
-    data: []
+    data: [],
+    tempData: []
 }
 
 const dataSlice = createSlice({
@@ -16,14 +17,17 @@ const dataSlice = createSlice({
     extraReducers(builder) {
         builder.addCase(fetchData.fulfilled, (state, action) => {
             state.data = action.payload
+            state.tempData = action.payload
             state.status = Status.SUCCESS
         });
         builder.addCase(fetchData.pending, (state, action) => {
             state.data = []
+            state.tempData = []
             state.status = Status.LOADING
         });
         builder.addCase(fetchData.rejected, (state, action) => {
             state.data = []
+            state.tempData = []
             state.status = Status.ERROR
         });
     }
