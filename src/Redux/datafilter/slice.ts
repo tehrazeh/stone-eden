@@ -5,16 +5,16 @@ const initialState: DataFilterSliceState = {
     nameFilter: '',
     rarityFilter: '',
     dropdownFilters: {
-        classFilter: 'class',
+        playerClassFilter: 'playerClass',
         typeFilter: 'type',
     },
     sortFilter: DataSort.DEFAULT,
     visibilityChecks: {
         attributeDropdownVisibility: false,
         typeDropdownVisibility: false,
-        classDropdownVisibility: false,
+        playerClassDropdownVisibility: false,
     },
-    filterList: ['class', 'type', 'attribute'],
+    filterList: ['playerClass', 'type', 'attribute'],
     activeFilters: []
 }
 

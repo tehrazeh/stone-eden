@@ -26,12 +26,12 @@ const ResultFilter = () => {
         <SortOptions />
       </div>
       <div className="w-[20%] h-12 my-1" onMouseLeave={() => setTimeout(() => {
-        dispatch(toggleDropdown({ visibility: false, filterType: 'class' }))
+        dispatch(toggleDropdown({ visibility: false, filterType: 'playerClass' }))
       }, 350)}>
-        <DropdownButton filter={dropdownFilters.classFilter}
-          filterType='class' filterList={filterList} />
+        <DropdownButton filter={dropdownFilters.playerClassFilter}
+          filterType='playerClass' filterList={filterList} />
         {info?.classes && <FilterOptions options={info.classes}
-          assetType="class" />}
+          assetType="playerClass" />}
       </div>
       <div className="w-[20%] h-12 my-1" onMouseLeave={() => setTimeout(() => {
         dispatch(toggleDropdown({ visibility: false, filterType: 'type' }))
