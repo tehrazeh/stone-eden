@@ -1,6 +1,6 @@
 export type DataFilterSliceState = {
     nameFilter: string,
-    qualityFilter: string,
+    rarityFilter: string,
     sortFilter: DataSort,
     dropdownFilters: DropdownFilters
     visibilityChecks: VisibilityChecks,

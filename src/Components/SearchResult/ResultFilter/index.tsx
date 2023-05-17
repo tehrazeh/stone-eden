@@ -4,7 +4,7 @@ import { useAppSelector, useAppDispatch } from "../../../utils/hooks";
 import { isInfo } from "../../../utils/guards";
 import FilterOptions from "./FilterOptions";
 import { toggleDropdown } from "../../../Redux/datafilter/slice";
-import QualityFilterBlock from "./QualityFilterBlock";
+import RarityFilterBlock from "./RarityFilterBlock";
 
 const ResultFilter = () => {
   const { sortFilter, visibilityChecks, dropdownFilters, filterList } = useAppSelector(state => state.dataFilter)
@@ -41,7 +41,7 @@ const ResultFilter = () => {
         {info?.types && <FilterOptions options={info.types}
           assetType="type"/>}
       </div>
-      <div className="w-[20%]"><QualityFilterBlock /></div>
+      <div className="w-[20%]"><RarityFilterBlock/></div>
     </div>
   )
 }

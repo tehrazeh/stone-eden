@@ -19,7 +19,7 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({ filter, filterType, fil
       onClick={() => {
         dispatch(toggleDropdown(
           {
-            visibility: !dropdownVisibility[`${filterType.toLowerCase()}DropdownVisibility` as keyof VisibilityChecks],
+            visibility: !dropdownVisibility[`${filterType}DropdownVisibility` as keyof VisibilityChecks],
             filterType
           }))
       }}>
@@ -27,15 +27,15 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({ filter, filterType, fil
       {(filterList.includes(filter)) ? <>{filter.toUpperCase()}</> : <>
 
         {(filterType === 'attribute') ?
-          <img src={require(`../../../../Assets/${filterType}/${filter.split('_')[0].toLowerCase()}.png`)}
+          <img src={require(`../../../../Assets/${filterType}/${filter.split('_')[0]}.png`)}
             className="w-12 h-11" alt={filter} />
 
           :
-          <img src={(optionCheck(filterType).includes(filter.toLowerCase().split(' ').join('')) ?
-            require(`../../../../Assets/${filterType}/${filter.toLowerCase().split(' ').join('')}.png`) :
+          <img src={(optionCheck(filterType).includes(filter.split(' ').join('')) ?
+            require(`../../../../Assets/${filterType}/${filter.split(' ').join('')}.png`) :
             require(`../../../../Assets/fallbackFilter.png`))} className="w-11 h-11" alt={filter} />
         }
-        {(filterType === 'attribute') ? <img src={require(`../../../../Assets/${filter.split('_')[1].toLowerCase()}.png`)}
+        {(filterType === 'attribute') ? <img src={require(`../../../../Assets/${filter.split('_')[1]}.png`)}
           className="w-11 h-10 brightness-75"
           alt={filter.toLowerCase()} /> : <p className="ml-4 uppercase">{filter}</p>}
       </>}
