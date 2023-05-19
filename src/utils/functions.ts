@@ -38,7 +38,7 @@ export  const getInputStyle = (isValid: boolean = true) => {
 
 export  const optionCheck = (option: string) => {
     // TODO! find a better way to set up a fallback image without creating pre supported data
-    return (option.toLowerCase() === 'class' ?
+    return (option === 'playerClass' ?
       ['deathknight', 'druid', 'hunter', 'mage', 'warrior', 'demonhunter',
         'paladin', 'priest', 'rogue', 'shaman', 'warlock'] : [
         'location', 'spell', 'minion', 'hero', 'weapon', 'heropower'

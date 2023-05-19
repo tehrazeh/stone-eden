@@ -37,10 +37,10 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({ filter, filterType, fil
         }
         {(filterType === 'attribute') ? <img src={require(`../../../../Assets/${filter.split('_')[1]}.png`)}
           className="w-11 h-10 brightness-75"
-          alt={filter.toLowerCase()} /> : <p className="ml-4 uppercase">{filter}</p>}
+          alt={filter} /> : <p className="ml-4 uppercase">{filter}</p>}
       </>}
       <img src={dropdownImg}
-        className={`${dropdownVisibility[`${filterType.toLowerCase()}DropdownVisibility` as keyof VisibilityChecks]
+        className={`${dropdownVisibility[`${filterType}DropdownVisibility` as keyof VisibilityChecks]
           ? 'brightness-125' : 'brightness-75'} w-[9px] absolute bottom-1 right-1`}
         alt='dropdown' />
     </button>

@@ -38,7 +38,7 @@ const FilterOptions: React.FC<FilterOptionsProps> = ({ options, assetType }) => 
   }
 
   return (
-    <div className={`${visibilityChecks[`${assetType.toLowerCase()}DropdownVisibility` as keyof VisibilityChecks]
+    <div className={`${visibilityChecks[`${assetType}DropdownVisibility` as keyof VisibilityChecks]
       ? 'visible' : 'hidden'}
     w-full rounded bg-stone-900 flex flex-wrap justify-around`}>
       {elements}
