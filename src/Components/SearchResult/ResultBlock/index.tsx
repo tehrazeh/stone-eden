@@ -55,21 +55,23 @@ const ResultBlock = () => {
     setDisplayedData(sortArray(displayedData, tempData, sortFilter))
   }, [sortFilter])
 
-  // useEffect(() => {
-  //   if (activeFilters.length > 0) {
-  //     let tempItems = activeFilters.map((selectedFilter) => {
-  //       return data.filter((card) => {
-  //         if (card[selectedFilter as keyof Card]) {
-  //           console.log(card[selectedFilter as keyof Card])
-  //           return card[selectedFilter as keyof Card] === dropdownFilters[`${selectedFilter}Filter` as keyof DropdownFilters]
-  //         }
-  //       }) 
-  //     })
-  //     dispatch(setTempData(tempItems.flat())) // merge all arrays left after filter
-  //   } else {
-  //     dispatch(setTempData([...data])) // no filters are active, reset the data
-  //   }
-  // }, [activeFilters])
+  useEffect(() => {
+    if (activeFilters.length > 0) {
+      let tempItems = activeFilters.map((selectedFilter) => {
+        return data.filter((card) => {
+          if (card[selectedFilter as keyof Card] !== undefined) {
+            return card[selectedFilter as keyof Card]?.toString().toLowerCase().split(' ').join('') === dropdownFilters[`${selectedFilter}Filter` as keyof DropdownFilters]
+          }
+        }) 
+      })
+      // thanks!!!, combine the intersection from each array of items that match one filter
+      // https://stackoverflow.com/questions/37320296/how-to-calculate-intersection-of-multiple-arrays-in-javascript-and-what-does-e
+      const filteredData = tempItems.reduce((a, b) => a.filter(c => b.includes(c)))
+      dispatch(setTempData(filteredData))
+    } else {
+      dispatch(setTempData([...data])) // no filters are active, reset the data
+    }
+  }, [activeFilters, dropdownFilters])
 
   // set the number of displayed items based on the input filter
   useEffect(() => {
