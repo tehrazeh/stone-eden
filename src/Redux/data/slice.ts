@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Status } from "../info/types";
 import { fetchData } from "./asyncActions";
-import { DataSliceState } from "./types";
+import { Card, DataSliceState } from "./types";
 
 const initialState: DataSliceState = {
     status: Status.IDLE,
@@ -13,6 +13,9 @@ const dataSlice = createSlice({
     name: 'data',
     initialState,
     reducers : {
+        setTempData: (state, action:PayloadAction<Card[]>) => {
+            state.tempData = action.payload
+        }
     },
     extraReducers(builder) {
         builder.addCase(fetchData.fulfilled, (state, action) => {
@@ -32,5 +35,7 @@ const dataSlice = createSlice({
         });
     }
 })
+
+export const {setTempData} = dataSlice.actions
 
 export default dataSlice.reducer

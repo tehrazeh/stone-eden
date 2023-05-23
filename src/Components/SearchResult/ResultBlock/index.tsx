@@ -7,6 +7,10 @@ import scrollUpImg from "../../../Assets/scrollup.png"
 import CardBlock from "../CardBlock"
 import Pagination from "../PaginationBlock"
 import ResultFilter from "../ResultFilter"
+import { DropdownFilters } from "../../../Redux/datafilter/types"
+import { Card } from "../../../Redux/data/types"
+import { setTempData } from "../../../Redux/data/slice"
+import { type } from "os"
 const ResultBlock = () => {
 
   // get data from state
@@ -51,18 +55,21 @@ const ResultBlock = () => {
     setDisplayedData(sortArray(displayedData, tempData, sortFilter))
   }, [sortFilter])
 
-  useEffect(() => {
-    // setDisplayedData(data.filter(element => {
-    //   if (element['playerClass'])
-    //   return element[`playerClass`].toLowerCase().split(' ').join('') === dropdownFilters.classFilter
-    // }))
-    // if (activeFilters.length > 0) {
-    //   let tempItems = activeFilters.map((selectedFilter) => {
-    //     return data.filter((card) => card)
-    //   })
-    // }
-    // console.log(activeFilters)
-  }, [activeFilters])
+  // useEffect(() => {
+  //   if (activeFilters.length > 0) {
+  //     let tempItems = activeFilters.map((selectedFilter) => {
+  //       return data.filter((card) => {
+  //         if (card[selectedFilter as keyof Card]) {
+  //           console.log(card[selectedFilter as keyof Card])
+  //           return card[selectedFilter as keyof Card] === dropdownFilters[`${selectedFilter}Filter` as keyof DropdownFilters]
+  //         }
+  //       }) 
+  //     })
+  //     dispatch(setTempData(tempItems.flat())) // merge all arrays left after filter
+  //   } else {
+  //     dispatch(setTempData([...data])) // no filters are active, reset the data
+  //   }
+  // }, [activeFilters])
 
   // set the number of displayed items based on the input filter
   useEffect(() => {

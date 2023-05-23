@@ -30,7 +30,7 @@ const FilterOptions: React.FC<FilterOptionsProps> = ({ options, assetType }) => 
             filterType: assetType
           }))
           dispatch(toggleDropdown({ visibility: false, filterType: assetType }))
-          if (!activeFilters.includes(assetType)) {
+          if (!activeFilters.includes(assetType)) { // add a filter type if it was not active
               dispatch(setActiveFilters([...activeFilters, assetType]))
           }
         }} />
