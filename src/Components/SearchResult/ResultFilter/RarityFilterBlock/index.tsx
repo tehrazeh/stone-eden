@@ -1,18 +1,28 @@
-import React from 'react'
-import { setRarityFilter } from '../../../../Redux/datafilter/slice'
+import { setActiveFilters, setClassFilter } from '../../../../Redux/datafilter/slice'
 import { useAppDispatch, useAppSelector } from '../../../../utils/hooks'
 
 const RarityFilterBlock = () => {
     const rarityOptions = ['common', 'rare', 'epic', 'legendary']
-    const activeFilter = useAppSelector(state => state.dataFilter.rarityFilter)
+    const { dropdownFilters, activeFilters } = useAppSelector(state => state.dataFilter)
     const dispatch = useAppDispatch()
+    console.log('zdarova ' + dropdownFilters.rarityFilter)
 
     const qualityElements = rarityOptions.map(element => {
         return <img src={require(`../../../../Assets/rarity/${element}.png`)} alt={element} key={element}
-            className={`${(activeFilter === element) ? 'brightness-[115%] scale-105' : 'brightness-[60%] hover:brightness-105'} 
+            className={`${(dropdownFilters.rarityFilter === element) ? 'brightness-[115%] scale-105' : 'brightness-[60%] hover:brightness-105'} 
             w-11 cursor-pointer transition-all`}
             onClick={() => {
-                dispatch((activeFilter === element) ? setRarityFilter('') : setRarityFilter(element))
+                dispatch((dropdownFilters.rarityFilter === element) ? () => {
+                        dispatch(setClassFilter({ filterType: 'rarity', filterValue: '' }))
+                        dispatch(setActiveFilters(activeFilters.filter(filterOption => filterOption !== 'rarity')))
+                    }
+                    : () => {
+                        dispatch(setClassFilter({ filterType: 'rarity', filterValue: element }))
+                        if (!activeFilters.includes('rarity')) { // add a filter type if it was not active
+                            dispatch(setActiveFilters([...activeFilters, 'rarity']))
+                        }
+                    }
+                )
             }}
         />
     })

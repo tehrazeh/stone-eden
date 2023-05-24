@@ -10,7 +10,6 @@ import ResultFilter from "../ResultFilter"
 import { DropdownFilters } from "../../../Redux/datafilter/types"
 import { Card } from "../../../Redux/data/types"
 import { setTempData } from "../../../Redux/data/slice"
-import { type } from "os"
 const ResultBlock = () => {
 
   // get data from state

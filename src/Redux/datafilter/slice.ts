@@ -3,10 +3,10 @@ import { DataFilterSliceState, DataSort, DropdownFilters, VisibilityChecks } fro
 
 const initialState: DataFilterSliceState = {
     nameFilter: '',
-    rarityFilter: '',
     dropdownFilters: {
         playerClassFilter: 'playerClass',
         typeFilter: 'type',
+        rarityFilter: ''
     },
     sortFilter: DataSort.DEFAULT,
     visibilityChecks: {
@@ -36,9 +36,6 @@ const dataFilterSlice = createSlice({
             const name = action.payload.filterType + 'Filter'
             state.dropdownFilters[name as keyof DropdownFilters] = action.payload.filterValue
         },
-        setRarityFilter: (state, action:PayloadAction<string>) => {
-            state.rarityFilter = action.payload
-        },
         setActiveFilters: (state, action:PayloadAction<string[]>) => {      
             state.activeFilters = action.payload
         }
@@ -47,5 +44,5 @@ const dataFilterSlice = createSlice({
 })
 
 export const {setNameFilter, setDataFilter, toggleDropdown, 
-    setClassFilter, setRarityFilter, setActiveFilters} = dataFilterSlice.actions
+    setClassFilter, setActiveFilters} = dataFilterSlice.actions
 export default dataFilterSlice.reducer

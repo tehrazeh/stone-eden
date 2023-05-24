@@ -1,6 +1,5 @@
 export type DataFilterSliceState = {
     nameFilter: string,
-    rarityFilter: string,
     sortFilter: DataSort,
     dropdownFilters: DropdownFilters
     visibilityChecks: VisibilityChecks,
@@ -16,7 +15,8 @@ export type VisibilityChecks = {
 
 export type DropdownFilters = {
     typeFilter: string,
-    playerClassFilter: string
+    playerClassFilter: string,
+    rarityFilter: string
 }
 
 export enum DataSort {
