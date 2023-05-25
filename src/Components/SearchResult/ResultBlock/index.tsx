@@ -103,7 +103,7 @@ const ResultBlock = () => {
     })
   }
 
-  
+  // loader spinner  
   if (status === Status.LOADING) {
     return <div className="flex flex-wrap justify-center h-full w-full items-center">
       <FadeLoader color="#36d7b7" height={40} margin={40} radius={20} width={10}/>

@@ -4,6 +4,7 @@ import { DOTS, returnPagination, useAppDispatch, useAppSelector } from '../../..
 const PaginationButtons = () => {
 
     const { currentPage, totalPages, infiniteScroll } = useAppSelector(state => state.pagination)
+    const {tempData} = useAppSelector(state => state.data)
     const dispatch = useAppDispatch()
 
     const regularButton = `bg-stone-800 border-solid border-2 border-stone-500
@@ -40,8 +41,8 @@ const PaginationButtons = () => {
             }
         })
     }
-    const leftButtonCondition = currentPage - 1 === 0 || infiniteScroll
-    const rightButtonCondition = currentPage === totalPages || infiniteScroll
+    const leftButtonCondition = tempData.length === 0 || currentPage - 1 === 0 || infiniteScroll
+    const rightButtonCondition = tempData.length === 0 || currentPage === totalPages || infiniteScroll
     return (
         <div className='flex w-[64%] justify-between'>
             <button className={`${changePageButton} ${leftButtonCondition ?
