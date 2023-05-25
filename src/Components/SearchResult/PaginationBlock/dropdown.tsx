@@ -14,7 +14,7 @@ const ElementsNumber = () => {
           if (e.target.value === '0') { // condition for infinite scrolling
             dispatch(setTotalPages(0))
             dispatch(setInfiniteScroll(true))
-            dispatch(setElementsPerPage(12))
+            dispatch(setElementsPerPage(15))
           } else { // conditions for regular pagination
             dispatch(setElementsPerPage(Number(e.target.value)))
             dispatch(setInfiniteScroll(false))
@@ -22,10 +22,10 @@ const ElementsNumber = () => {
           dispatch(setCurrentPage(1)) // after filter reset set the fisrt page as current bu default
         }}
         defaultValue={elementsPerPage}>
-        <option>12</option>
-        <option>24</option>
-        <option>48</option>
-        <option>96</option>
+        <option>15</option>
+        <option>25</option>
+        <option>50</option>
+        <option>100</option>
         <option value={0}>All</option>
       </select>
     </div>

@@ -4,7 +4,7 @@ import { PaginationSliceState } from "./types"
 
 const initialState: PaginationSliceState = {
     currentPage: 0,
-    elementsPerPage: 12,
+    elementsPerPage: 15,
     totalPages: 0,
     totalItems: 0, // not needed for now
     displayedItems: 0,
