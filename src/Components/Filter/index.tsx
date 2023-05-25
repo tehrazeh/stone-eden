@@ -2,6 +2,7 @@ import { Info } from "../../Redux/info/types"
 import { useAppSelector, useAppDispatch } from "../../utils/hooks"
 import { setFilterValue } from "../../Redux/filter/slice"
 import { isInfo } from "../../utils/guards"
+import FadeLoader from "react-spinners/FadeLoader"
 
 type FilterProps = {
     type: string
@@ -23,7 +24,7 @@ const Filter: React.FC<FilterProps> = ({type}) => {
     const dispatch = useAppDispatch()
 
     return (
-        <div className="flex flex-wrap justify-center items-center">
+        <div className="flex flex-wrap justify-center items-start w-full h-full">
             {(elements) ? (elements.filter((item, index) => { // indexOf to return first occurence and filter duplicates
                 return elements.indexOf(item) === index
             }).filter((item) => {
@@ -36,7 +37,9 @@ const Filter: React.FC<FilterProps> = ({type}) => {
                     key={index}>{item}
                 </button>
             }))
-                : <h2>Loading...</h2>}
+                : <div className="flex flex-wrap justify-center h-full w-full items-center">
+                    <FadeLoader color="#36d7b7" />
+                    </div>}
         </div>
     )
 }

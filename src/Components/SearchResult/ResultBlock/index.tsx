@@ -10,12 +10,15 @@ import ResultFilter from "../ResultFilter"
 import { DropdownFilters } from "../../../Redux/datafilter/types"
 import { Card } from "../../../Redux/data/types"
 import { setTempData } from "../../../Redux/data/slice"
+import { stat } from "fs"
+import { Status } from "../../../Redux/info/types"
+import FadeLoader from "react-spinners/FadeLoader"
 const ResultBlock = () => {
 
   // get data from state
-  const { data, tempData } = useAppSelector((state) => state.data)
+  const { data, tempData, status } = useAppSelector((state) => state.data)
   const { currentPage, elementsPerPage, infiniteScroll, infinitePile } = useAppSelector(state => state.pagination)
-  const { nameFilter, sortFilter, dropdownFilters, activeFilters  } = useAppSelector(state => state.dataFilter)
+  const { nameFilter, sortFilter, dropdownFilters, activeFilters } = useAppSelector(state => state.dataFilter)
   const [displayedData, setDisplayedData] = useState(tempData)
   const dispatch = useAppDispatch()
 
@@ -61,7 +64,7 @@ const ResultBlock = () => {
           if (card[selectedFilter as keyof Card] !== undefined) {
             return card[selectedFilter as keyof Card]?.toString().toLowerCase().split(' ').join('') === dropdownFilters[`${selectedFilter}Filter` as keyof DropdownFilters]
           }
-        }) 
+        })
       })
       // thanks!!!, combine the intersection from each array of items that match one filter
       // https://stackoverflow.com/questions/37320296/how-to-calculate-intersection-of-multiple-arrays-in-javascript-and-what-does-e
@@ -98,6 +101,13 @@ const ResultBlock = () => {
     pageElements = cards.map((element, index) => {
       return <CardBlock key={index} card={element} />
     })
+  }
+
+  
+  if (status === Status.LOADING) {
+    return <div className="flex flex-wrap justify-center h-full w-full items-center">
+      <FadeLoader color="#36d7b7" height={40} margin={40} radius={20} width={10}/>
+    </div>
   }
 
   return (
