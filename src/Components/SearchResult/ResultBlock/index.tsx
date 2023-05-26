@@ -112,12 +112,12 @@ const ResultBlock = () => {
 
   return (
     <div className='w-full bg-stone-800 flex flex-wrap justify-center items-center flex-col'>
-      <div ref={setRefs} className="w-full my-1 flex justify-center">
+      <div ref={setRefs} className="w-full mt-1 flex justify-center">
         <Pagination />
       </div>
-      <div className='flex flex-col bg-stone-800'>
+      <div className='flex flex-col w-full bg-stone-800 mb-1'>
         <div className="w-full flex justify-center"><ResultFilter /></div>
-        <div className="w-full flex flex-wrap justify-evenly">{pageElements}</div>
+        <div className="w-full flex flex-wrap justify-evenly my-1">{pageElements}</div>
         {!inView &&
           <div className="rounded-xl opacity-80 w-14 h-14 fixed bottom-[50px]
            left-[30px] cursor-pointer  hover:brightness-125"
