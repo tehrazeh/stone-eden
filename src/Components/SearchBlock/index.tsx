@@ -5,8 +5,7 @@ import { useEffect } from "react"
 import { Params } from "../../Redux/filter/types"
 import { fetchData } from "../../Redux/data/asyncActions"
 import { resetPile, setCurrentPage, setInfiniteScroll } from "../../Redux/pagination/slice"
-import { setDataFilter } from "../../Redux/datafilter/slice"
-import { DataSort } from "../../Redux/datafilter/types"
+import { resetAllFilters } from "../../Redux/datafilter/slice"
 import WarningBlock from "./warningBlock"
 
 const activeClass = `bg-green-900 m-2 border-green-600 h-14 w-40 text-green-600 text-lg
@@ -60,7 +59,7 @@ const SearchBlock = () => {
         params.type = filterType // add type for the fetch request
         dispatch(fetchData(params)) // fetch data from api
         dispatch(setCurrentPage(1)) // set 1st page by default
-        dispatch(setDataFilter(DataSort.DEFAULT)) // reset sort filters
+        dispatch(resetAllFilters())
         if (infiniteScroll) {
             dispatch(resetPile()) // reset infinite pile of cards to empty array
             dispatch(setInfiniteScroll(false)) // set infinite scroll to false

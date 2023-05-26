@@ -38,11 +38,18 @@ const dataFilterSlice = createSlice({
         },
         setActiveFilters: (state, action:PayloadAction<string[]>) => {      
             state.activeFilters = action.payload
+        },
+        resetAllFilters: (state) => {
+            state.nameFilter = ''
+            state.sortFilter = DataSort.DEFAULT
+            state.dropdownFilters.playerClassFilter = 'playerClass'
+            state.dropdownFilters.rarityFilter = ''
+            state.dropdownFilters.typeFilter = 'type'
         }
 
     }
 })
 
 export const {setNameFilter, setDataFilter, toggleDropdown, 
-    setClassFilter, setActiveFilters} = dataFilterSlice.actions
+    setClassFilter, setActiveFilters , resetAllFilters} = dataFilterSlice.actions
 export default dataFilterSlice.reducer

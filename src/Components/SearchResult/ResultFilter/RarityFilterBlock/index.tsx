@@ -5,7 +5,6 @@ const RarityFilterBlock = () => {
     const rarityOptions = ['common', 'rare', 'epic', 'legendary']
     const { dropdownFilters, activeFilters } = useAppSelector(state => state.dataFilter)
     const dispatch = useAppDispatch()
-    console.log('zdarova ' + dropdownFilters.rarityFilter)
 
     const qualityElements = rarityOptions.map(element => {
         return <img src={require(`../../../../Assets/rarity/${element}.png`)} alt={element} key={element}
