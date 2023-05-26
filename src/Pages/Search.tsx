@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import Filter from "../Components/Filter"
 import { useParams } from "react-router-dom"
 import OptionalFilter from "../Components/OptionalFilter"
@@ -23,9 +23,14 @@ const Search: React.FC = () => {
       }
     }
   }, [status, dispatch, type])
+
+  const [visibility, setVisibility] = useState(true)
+  // className={`${(dropdownFilters.rarityFilter === element) ? 'brightness-[115%] scale-105' : 'brightness-[60%] hover:brightness-105'} 
+  // w-11 cursor-pointer transition-all`}
   return (
     <div className="flex justify-center items-center w-full h-full flex-col">
-      <div className='bg-stone-900 px-2 pt-2 w-full grid h-[224px] grid-cols-4 grid-rows-1 gap-4'>
+      <div className={`${(visibility) ? '' : 'hidden'}
+       bg-stone-900 px-2 pt-2 w-full h-[224px] grid grid-cols-4 grid-rows-1 gap-4 transition-all`}>
         <div className='bg-stone-700 h-full rounded col-span-3 overflow-y-auto'>
           <Filter type={(type) ? type : 'classes'} />
         </div>
@@ -34,7 +39,7 @@ const Search: React.FC = () => {
         </div>
       </div>
 
-      <SearchBlock />
+      <SearchBlock blockVisibility={visibility} toggleBlockVisibility={(changeVisibility) => setVisibility(changeVisibility)}/>
 
       {(fetchStatus === Status.SUCCESS || fetchStatus === Status.LOADING) && <ResultBlock />}
       {fetchStatus === Status.ERROR && <div>{fetchStatus}</div>}
