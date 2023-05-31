@@ -8,12 +8,13 @@ import SearchBlock from "../Components/SearchBlock"
 import { setFilterType } from "../Redux/filter/slice"
 import ResultBlock from "../Components/SearchResult/ResultBlock"
 import { Status } from "../Redux/info/types"
+import notFoundImg from "../Assets/not-found.png"
 
 const Search: React.FC = () => {
   const { type } = useParams()
   const { status } = useAppSelector((state) => state.info)
   const fetchStatus = useAppSelector((state) => state.data.status)
-
+  const { tempData } = useAppSelector((state) => state.data)
   const dispatch = useAppDispatch()
   useEffect(() => {
     if (status === 'loading') {
@@ -25,8 +26,6 @@ const Search: React.FC = () => {
   }, [status, dispatch, type])
 
   const [visibility, setVisibility] = useState(true)
-  // className={`${(dropdownFilters.rarityFilter === element) ? 'brightness-[115%] scale-105' : 'brightness-[60%] hover:brightness-105'} 
-  // w-11 cursor-pointer transition-all`}
   return (
     <div className="flex justify-center items-center w-full h-full flex-col">
       <div className={`${(visibility) ? '' : 'hidden'}
@@ -39,10 +38,13 @@ const Search: React.FC = () => {
         </div>
       </div>
 
-      <SearchBlock blockVisibility={visibility} toggleBlockVisibility={(changeVisibility) => setVisibility(changeVisibility)}/>
+      <SearchBlock blockVisibility={visibility} toggleBlockVisibility={(changeVisibility) => setVisibility(changeVisibility)} />
 
       {(fetchStatus === Status.SUCCESS || fetchStatus === Status.LOADING) && <ResultBlock />}
-      {fetchStatus === Status.ERROR && <div>{fetchStatus}</div>}
+      {fetchStatus === Status.ERROR && <div className="text-6xl pt-4 text-cyan-600">{fetchStatus.toUpperCase()}</div>}
+      {((tempData.length === 0 && fetchStatus === Status.SUCCESS) || fetchStatus === Status.ERROR)
+        && <img src={notFoundImg} alt='not found' />}
+      
     </div>
   )
 }
