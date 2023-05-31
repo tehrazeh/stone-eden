@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import { useInView } from "react-intersection-observer"
-import { addCardsToPile, setDisplayedItems } from "../../../Redux/pagination/slice"
+import { addCardsToPile, setCurrentPage, setDisplayedItems } from "../../../Redux/pagination/slice"
 import { paginateArray, sortArray } from "../../../utils/functions"
 import { useAppSelector, useAppDispatch } from "../../../utils/hooks"
 import scrollUpImg from "../../../Assets/scrollup.png"
@@ -58,6 +58,7 @@ const ResultBlock = () => {
   }, [sortFilter])
 
   useEffect(() => {
+    dispatch(setCurrentPage(1)) // reset current page on filter update to avoid being stuck on not existing page
     if (activeFilters.length > 0) {
       let tempItems = activeFilters.map((selectedFilter) => {
         return data.filter((card) => {

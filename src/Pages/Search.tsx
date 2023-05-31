@@ -24,7 +24,6 @@ const Search: React.FC = () => {
       }
     }
   }, [status, dispatch, type])
-
   const [visibility, setVisibility] = useState(true)
   return (
     <div className="flex justify-center items-center w-full h-full flex-col">
