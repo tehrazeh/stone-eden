@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import { useInView } from "react-intersection-observer"
-import { addCardsToPile, setCurrentPage, setDisplayedItems } from "../../../Redux/pagination/slice"
+import {setCurrentPage, setDisplayedItems} from "../../../Redux/pagination/slice"
 import { paginateArray, sortArray } from "../../../utils/functions"
 import { useAppSelector, useAppDispatch } from "../../../utils/hooks"
 import scrollUpImg from "../../../Assets/scrollup.png"
@@ -9,15 +9,14 @@ import Pagination from "../PaginationBlock"
 import ResultFilter from "../ResultFilter"
 import { DropdownFilters } from "../../../Redux/datafilter/types"
 import { Card } from "../../../Redux/data/types"
-import { setTempData } from "../../../Redux/data/slice"
-import { stat } from "fs"
+import { addCardsToPile, setTempData } from "../../../Redux/data/slice"
 import { Status } from "../../../Redux/info/types"
 import FadeLoader from "react-spinners/FadeLoader"
 const ResultBlock = () => {
 
   // get data from state
-  const { data, tempData, status } = useAppSelector((state) => state.data)
-  const { currentPage, elementsPerPage, infiniteScroll, infinitePile } = useAppSelector(state => state.pagination)
+  const { data, tempData, status, infinitePile } = useAppSelector((state) => state.data)
+  const { currentPage, elementsPerPage, infiniteScroll} = useAppSelector(state => state.pagination)
   const { nameFilter, sortFilter, dropdownFilters, activeFilters } = useAppSelector(state => state.dataFilter)
   const [displayedData, setDisplayedData] = useState(tempData)
   const dispatch = useAppDispatch()
@@ -81,7 +80,7 @@ const ResultBlock = () => {
     dispatch(setDisplayedItems(displayedData.length))
   }, [displayedData.length, dispatch, tempData.length])
 
-  // return paginated version to display the specific number of elemets per page
+  // return paginated portion of spesicic number (elementsPerPage) of cards for current page
   const cards = paginateArray(displayedData, elementsPerPage, currentPage - 1)
   let pageElements: JSX.Element[]
 
@@ -92,6 +91,9 @@ const ResultBlock = () => {
       dispatch(addCardsToPile(cards))
     }
   }, [currentPage, infiniteScroll])
+
+  // console.log(infinitePile.length + ' pile')
+  // console.log(tempData.length + ' tempdata')
 
   if (infiniteScroll) { // infinit scroll is on, display pile that will be updated with each scroll to footer
     pageElements = infinitePile.map((element, index) => {

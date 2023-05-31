@@ -4,7 +4,8 @@ import { Status } from "../info/types"
 export type DataSliceState = {
     status: Status
     data: Array<Card>,
-    tempData: Array<Card>
+    tempData: Array<Card>,
+    infinitePile: Card[]
 }
 
 export type Card = {

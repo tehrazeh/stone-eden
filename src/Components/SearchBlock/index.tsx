@@ -4,11 +4,12 @@ import { setAdditionalFilter, setFilterValue } from "../../Redux/filter/slice"
 import { useEffect } from "react"
 import { Params } from "../../Redux/filter/types"
 import { fetchData } from "../../Redux/data/asyncActions"
-import { resetPile, setCurrentPage, setInfiniteScroll } from "../../Redux/pagination/slice"
+import {setCurrentPage, setInfiniteScroll} from "../../Redux/pagination/slice"
 import { resetAllFilters } from "../../Redux/datafilter/slice"
 import WarningBlock from "./warningBlock"
 import showButton from "../../Assets/show.png"
 import hideButton from "../../Assets/hide.png"
+import { resetPile } from "../../Redux/data/slice"
 
 const activeClass = `bg-green-900 m-2 border-green-600 h-14 w-40 text-green-600 text-lg
 border-solid border-2 rounded shadow-inner shadow-green-700

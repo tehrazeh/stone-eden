@@ -6,7 +6,8 @@ import { Card, DataSliceState } from "./types";
 const initialState: DataSliceState = {
     status: Status.IDLE,
     data: [],
-    tempData: []
+    tempData: [],
+    infinitePile: []
 }
 
 const dataSlice = createSlice({
@@ -15,7 +16,13 @@ const dataSlice = createSlice({
     reducers : {
         setTempData: (state, action:PayloadAction<Card[]>) => {
             state.tempData = action.payload
-        }
+        },       
+        addCardsToPile: (state, action: PayloadAction<Card[]>) => {
+            state.infinitePile = state.infinitePile.concat(action.payload)
+        },
+        resetPile: (state) => {
+            state.infinitePile = []
+        },
     },
     extraReducers(builder) {
         builder.addCase(fetchData.fulfilled, (state, action) => {
@@ -36,6 +43,6 @@ const dataSlice = createSlice({
     }
 })
 
-export const {setTempData} = dataSlice.actions
+export const {setTempData, addCardsToPile, resetPile} = dataSlice.actions
 
 export default dataSlice.reducer

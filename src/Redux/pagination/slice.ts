@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { Card } from "../data/types"
 import { PaginationSliceState } from "./types"
 
 const initialState: PaginationSliceState = {
@@ -9,7 +8,6 @@ const initialState: PaginationSliceState = {
     totalItems: 0, // not needed for now
     displayedItems: 0,
     infiniteScroll: false, // for infinite scrolling
-    infinitePile: []
 }
 
 const paginationSlice = createSlice({
@@ -32,12 +30,6 @@ const paginationSlice = createSlice({
         setInfiniteScroll: (state, action: PayloadAction<boolean>) => {
             state.infiniteScroll = action.payload
         },
-        addCardsToPile: (state, action: PayloadAction<Card[]>) => {
-            state.infinitePile = state.infinitePile.concat(action.payload)
-        },
-        resetPile: (state) => {
-            state.infinitePile = []
-        },
         // not needed for now
         // setTotalItems: (state, action: PayloadAction<number>) => {
         //     state.totalItems = action.payload
@@ -47,6 +39,6 @@ const paginationSlice = createSlice({
 })
 
 export const { setTotalPages, setElementsPerPage, setCurrentPage,
-    setDisplayedItems, setInfiniteScroll, addCardsToPile, resetPile } = paginationSlice.actions
+    setDisplayedItems, setInfiniteScroll } = paginationSlice.actions
 
 export default paginationSlice.reducer
