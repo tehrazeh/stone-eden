@@ -16,7 +16,7 @@ const InputFilter = () => {
         { nameFilter && <img src={clearImg} onClick={() => {
           dispatch(setNameFilter(''))
         }} 
-        className='w-5 absolute top-5 right-16 cursor-pointer opacity-70 hover:brightness-125 hover:scale-110' alt='clear'/>}
+        className='w-5 absolute top-auto left-[67%] cursor-pointer opacity-70 hover:brightness-125 hover:scale-110' alt='clear'/>}
     </div>
   )
 }

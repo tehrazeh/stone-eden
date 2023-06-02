@@ -56,6 +56,8 @@ const ResultBlock = () => {
     setDisplayedData(sortArray(displayedData, tempData, sortFilter))
   }, [sortFilter])
 
+
+  // when filters change
   useEffect(() => {
     dispatch(setCurrentPage(1)) // reset current page on filter update to avoid being stuck on not existing page
     if (activeFilters.length > 0) {
@@ -92,10 +94,7 @@ const ResultBlock = () => {
     }
   }, [currentPage, infiniteScroll])
 
-  // console.log(infinitePile.length + ' pile')
-  // console.log(tempData.length + ' tempdata')
-
-  if (infiniteScroll) { // infinit scroll is on, display pile that will be updated with each scroll to footer
+  if (infiniteScroll) { // infinite scroll is on, display pile that will be updated with each scroll to footer
     pageElements = infinitePile.map((element, index) => {
       return <CardBlock key={index} card={element} />
     })
