@@ -12,6 +12,7 @@ import { Card } from "../../../Redux/data/types"
 import { addCardsToPile, setTempData } from "../../../Redux/data/slice"
 import { Status } from "../../../Redux/info/types"
 import FadeLoader from "react-spinners/FadeLoader"
+import notFoundImg from "../../../Assets/not-found.png"
 const ResultBlock = () => {
 
   // get data from state
@@ -120,6 +121,9 @@ const ResultBlock = () => {
       <div className='flex flex-col w-full bg-stone-800 mb-1'>
         <div className="w-full flex justify-center"><ResultFilter /></div>
         <div className="w-full flex flex-wrap justify-evenly my-1">{pageElements}</div>
+        {status === Status.ERROR && <div className="text-6xl pt-4 text-cyan-600">{status.toUpperCase()}</div>}
+      {((displayedData.length === 0 && status === Status.SUCCESS) || status === Status.ERROR)
+        && <img src={notFoundImg} className='w-[500px] m-auto' alt='not found' />}
         {!inView &&
           <div className="rounded-xl opacity-80 w-14 h-14 fixed bottom-[50px]
            left-[30px] cursor-pointer  hover:brightness-125"

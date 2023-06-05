@@ -8,13 +8,11 @@ import SearchBlock from "../Components/SearchBlock"
 import { setFilterType } from "../Redux/filter/slice"
 import ResultBlock from "../Components/SearchResult/ResultBlock"
 import { Status } from "../Redux/info/types"
-import notFoundImg from "../Assets/not-found.png"
 
 const Search: React.FC = () => {
   const { type } = useParams()
   const { status } = useAppSelector((state) => state.info)
   const fetchStatus = useAppSelector((state) => state.data.status)
-  const { tempData } = useAppSelector((state) => state.data)
   const dispatch = useAppDispatch()
   useEffect(() => {
     if (status === 'loading') {
@@ -40,9 +38,6 @@ const Search: React.FC = () => {
       <SearchBlock blockVisibility={visibility} toggleBlockVisibility={(changeVisibility) => setVisibility(changeVisibility)} />
 
       {(fetchStatus === Status.SUCCESS || fetchStatus === Status.LOADING) && <ResultBlock />}
-      {fetchStatus === Status.ERROR && <div className="text-6xl pt-4 text-cyan-600">{fetchStatus.toUpperCase()}</div>}
-      {((tempData.length === 0 && fetchStatus === Status.SUCCESS) || fetchStatus === Status.ERROR)
-        && <img src={notFoundImg} alt='not found' />}
       
     </div>
   )
