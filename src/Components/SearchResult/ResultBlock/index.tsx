@@ -60,7 +60,11 @@ const ResultBlock = () => {
 
   // when filters change
   useEffect(() => {
-    dispatch(setCurrentPage(1)) // reset current page on filter update to avoid being stuck on not existing page
+    if (!infiniteScroll) { 
+      // during infinite mode scroll there is technically one page, and if it changes, it triggers
+      // process of adding elements to an array of displayed items, which allows an infinite glitch
+      dispatch(setCurrentPage(1)) // reset current page on filter update to avoid being stuck on not existing page
+    }   
     if (activeFilters.length > 0) {
       let tempItems = activeFilters.map((selectedFilter) => {
         return data.filter((card) => {
@@ -91,6 +95,7 @@ const ResultBlock = () => {
   // in case of infinitescroll when the footer is seen, page is incremented
   useEffect(() => {
     if (infiniteScroll) {
+      console.log(currentPage)
       dispatch(addCardsToPile(cards))
     }
   }, [currentPage, infiniteScroll])
