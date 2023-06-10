@@ -88,7 +88,7 @@ const ResultBlock = () => {
   }, [displayedData.length, dispatch, tempData.length])
 
   // return paginated portion of spesicic number (elementsPerPage) of cards for current page
-  const cards = paginateArray(displayedData, elementsPerPage, currentPage - 1)
+  const cardPortion = paginateArray(displayedData, elementsPerPage, currentPage - 1)
   let pageElements: JSX.Element[]
 
   // if infinitescroll is on, add cards to pile with each currentpage change
@@ -108,8 +108,8 @@ const ResultBlock = () => {
       return <CardBlock key={index} card={element} />
     })
   } else { // regular pagination mode
-    // get array of component elements to display
-    pageElements = cards.map((element, index) => {
+    // get array of component elements to display, map through portion of cards for current page
+    pageElements = cardPortion.map((element, index) => {
       return <CardBlock key={index} card={element} />
     })
   }
@@ -120,6 +120,7 @@ const ResultBlock = () => {
       <FadeLoader color="#36d7b7" height={40} margin={40} radius={20} width={10}/>
     </div>
   }
+  console.log(status)
 
   return (
     <div className='w-full bg-stone-800 flex flex-wrap justify-center items-center flex-col'>
@@ -131,7 +132,7 @@ const ResultBlock = () => {
         <div className="w-full flex flex-wrap justify-evenly my-1">{pageElements}</div>
         {status === Status.ERROR && <div className="text-6xl pt-4 text-cyan-600">{status.toUpperCase()}</div>}
       {((displayedData.length === 0 && status === Status.SUCCESS) || status === Status.ERROR)
-        && <img src={notFoundImg} className='w-[500px] m-auto' alt='not found' />}
+        && <div><img src={notFoundImg} className='w-[500px] m-auto' alt='not found' /></div>}
         {!inView &&
           <div className="rounded-xl opacity-80 w-14 h-14 fixed bottom-[50px]
            left-[30px] cursor-pointer  hover:brightness-125"
