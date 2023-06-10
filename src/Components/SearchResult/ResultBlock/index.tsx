@@ -9,14 +9,14 @@ import Pagination from "../PaginationBlock"
 import ResultFilter from "../ResultFilter"
 import { DropdownFilters } from "../../../Redux/datafilter/types"
 import { Card } from "../../../Redux/data/types"
-import { addCardsToPile, setTempData } from "../../../Redux/data/slice"
+import { setTempData } from "../../../Redux/data/slice"
 import { Status } from "../../../Redux/info/types"
 import FadeLoader from "react-spinners/FadeLoader"
 import notFoundImg from "../../../Assets/not-found.png"
 const ResultBlock = () => {
 
   // get data from state
-  const { data, tempData, status, infinitePile } = useAppSelector((state) => state.data)
+  const { data, tempData, status } = useAppSelector((state) => state.data)
   const { currentPage, elementsPerPage, infiniteScroll} = useAppSelector(state => state.pagination)
   const { nameFilter, sortFilter, dropdownFilters, activeFilters } = useAppSelector(state => state.dataFilter)
   const [displayedData, setDisplayedData] = useState(tempData)
@@ -82,7 +82,7 @@ const ResultBlock = () => {
     }
   }, [activeFilters, dropdownFilters])
 
-  // set the number of displayed items based on the input filter
+  // set the number of displayed items based on the input filter, for pagination
   useEffect(() => {
     dispatch(setDisplayedItems(displayedData.length))
   }, [displayedData.length, dispatch, tempData.length])
@@ -93,15 +93,18 @@ const ResultBlock = () => {
 
   // if infinitescroll is on, add cards to pile with each currentpage change
   // in case of infinitescroll when the footer is seen, page is incremented
-  useEffect(() => {
-    if (infiniteScroll) {
-      console.log(currentPage)
-      dispatch(addCardsToPile(cards))
-    }
-  }, [currentPage, infiniteScroll])
+  // useEffect(() => {
+  //   if (infiniteScroll) {
+  //     dispatch(addCardsToPile(cards))
+  //   }
+  // }, [currentPage, infiniteScroll])
+
+  
 
   if (infiniteScroll) { // infinite scroll is on, display pile that will be updated with each scroll to footer
-    pageElements = infinitePile.map((element, index) => {
+    // when you come back to implementing this featere with preloading and combine it with filters, map through
+    // infinite pile, or create third array that will always contain what should be displayed
+    pageElements = displayedData.map((element, index) => { 
       return <CardBlock key={index} card={element} />
     })
   } else { // regular pagination mode

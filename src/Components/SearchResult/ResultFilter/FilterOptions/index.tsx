@@ -21,7 +21,7 @@ const FilterOptions: React.FC<FilterOptionsProps> = ({ options, assetType }) => 
           require(`../../../../Assets/fallbackFilter.png`))
         }
         alt={element}
-        className={`${(element.toLowerCase().split(' ').join('') === dropdownFilters[`${assetType.toLowerCase()}Filter` as keyof DropdownFilters]
+        className={`${(element.toLowerCase().split(' ').join('') === dropdownFilters[`${assetType}Filter` as keyof DropdownFilters]
           ? 'brightness-110 scale-105' : 'brightness-50')}
         w-14 m-1 cursor-pointer hover:brightness-125 hover:scale-105 transition-all`}
         onClick={() => {
