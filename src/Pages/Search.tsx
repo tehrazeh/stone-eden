@@ -9,6 +9,7 @@ import { setFilterType } from "../Redux/filter/slice"
 import ResultBlock from "../Components/SearchResult/ResultBlock"
 import { Status } from "../Redux/info/types"
 import notFoundImg from "../Assets/not-found.png"
+import notFoundLazy from "../Assets/not-found-lazy.png"
 
 const Search: React.FC = () => {
   const { type } = useParams()
@@ -24,6 +25,7 @@ const Search: React.FC = () => {
     }
   }, [status, dispatch, type])
   const [visibility, setVisibility] = useState(true)
+  const [loaded, setLoaded] = useState(false)
   return (
     <div className="flex justify-center items-center w-full h-full flex-col">
       <div className={`${(visibility) ? '' : 'hidden'}
@@ -42,9 +44,9 @@ const Search: React.FC = () => {
       {fetchStatus === Status.ERROR && <div className="flex justify-center m-2 rounded border-4 border-emerald-700
        items-center flex-col w-[98%] bg-stone-900">
         <h2 className="text-4xl tracking-wide text-emerald-300">{fetchStatus.toUpperCase()}</h2>
-        <img src={notFoundImg} className='w-[600px]' alt='Not Found'/>
+        { loaded ? null : <img src={notFoundLazy} className='w-[600px]' alt='not found loading'/> }
+          <img src={notFoundImg} className={`${loaded ? 'w-[600px]' : 'hidden'}`} onLoad={() => setLoaded(true)} alt='Not Found'/>
           </div>}
-      
     </div>
   )
 }
