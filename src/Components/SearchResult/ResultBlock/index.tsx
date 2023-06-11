@@ -13,6 +13,7 @@ import { setTempData } from "../../../Redux/data/slice"
 import { Status } from "../../../Redux/info/types"
 import FadeLoader from "react-spinners/FadeLoader"
 import notFoundImg from "../../../Assets/not-found.png"
+import notFoundLazy from "../../../Assets/not-found-lazy.png"
 const ResultBlock = () => {
 
   // get data from state
@@ -20,6 +21,7 @@ const ResultBlock = () => {
   const { currentPage, elementsPerPage, infiniteScroll} = useAppSelector(state => state.pagination)
   const { nameFilter, sortFilter, dropdownFilters, activeFilters } = useAppSelector(state => state.dataFilter)
   const [displayedData, setDisplayedData] = useState(tempData)
+  const [loaded, setLoaded] = useState(false)
   const dispatch = useAppDispatch()
 
   // https://github.com/thebuilder/react-intersection-observer#readme
@@ -120,7 +122,6 @@ const ResultBlock = () => {
       <FadeLoader color="#36d7b7" height={40} margin={40} radius={20} width={10}/>
     </div>
   }
-  console.log(status)
 
   return (
     <div className='w-full bg-stone-800 flex flex-wrap justify-center items-center flex-col'>
@@ -132,7 +133,14 @@ const ResultBlock = () => {
         <div className="w-full flex flex-wrap justify-evenly my-1">{pageElements}</div>
         {status === Status.ERROR && <div className="text-6xl pt-4 text-cyan-600">{status.toUpperCase()}</div>}
       {((displayedData.length === 0 && status === Status.SUCCESS) || status === Status.ERROR)
-        && <div><img src={notFoundImg} className='w-[500px] m-auto' alt='not found' /></div>}
+        && 
+        <>
+            { loaded ? null : <img src={notFoundLazy} className='w-[500px] m-auto' alt='not found loading'/> }
+              <div><img src={notFoundImg} className={`${loaded ? 'w-[500px] m-auto' : 'hidden'}`}
+               onLoad={() => setLoaded(true)}
+               alt='not found' /></div>
+        </>
+      }
         {!inView &&
           <div className="rounded-xl opacity-80 w-14 h-14 fixed bottom-[50px]
            left-[30px] cursor-pointer  hover:brightness-125"
