@@ -15,25 +15,30 @@ const FilterOptions: React.FC<FilterOptionsProps> = ({ options, assetType }) => 
   let elements
   if (options) {
     elements = options.map(element => {
-      return <img key={element}
-        src={(optionCheck(assetType).includes(element.toLowerCase().split(' ').join('')) ?
-          require(`../../../../Assets/${assetType}/${element.toLowerCase().split(' ').join('')}.png`) :
-          require(`../../../../Assets/fallbackFilter.png`))
-        }
-        alt={element}
-        className={`${(element.toLowerCase().split(' ').join('') === dropdownFilters[`${assetType}Filter` as keyof DropdownFilters]
-          ? 'brightness-110 scale-105' : 'brightness-50')}
-        w-14 m-1 cursor-pointer hover:brightness-125 hover:scale-105 transition-all`}
-        onClick={() => {
-          dispatch(setClassFilter({
-            filterValue: element.toLowerCase().split(' ').join(''),
-            filterType: assetType
-          }))
-          dispatch(toggleDropdown({ visibility: false, filterType: assetType }))
-          if (!activeFilters.includes(assetType)) { // add a filter type if it was not active
-              dispatch(setActiveFilters([...activeFilters, assetType]))
+      return <div key={element} className='group relative
+      w-[58px] rounded-3xl h-[58px] flex justify-center items-center m-[4px]'>
+        <img src={(optionCheck(assetType).includes(element.toLowerCase().split(' ').join('')) ?
+            require(`../../../../Assets/${assetType}/${element.toLowerCase().split(' ').join('')}.png`) :
+            require(`../../../../Assets/fallbackFilter.png`))
           }
+          alt={element}
+          className={`${(element.toLowerCase().split(' ').join('') === dropdownFilters[`${assetType}Filter` as keyof DropdownFilters]
+            ? 'brightness-110 scale-105' : 'brightness-50')}
+          w-14 m-1 cursor-pointer group-hover:brightness-125 group-hover:scale-105 transition-all`}
+          onClick={() => {
+            dispatch(setClassFilter({
+              filterValue: element.toLowerCase().split(' ').join(''),
+              filterType: assetType
+            }))
+            dispatch(toggleDropdown({ visibility: false, filterType: assetType }))
+            if (!activeFilters.includes(assetType)) { // add a filter type if it was not active
+                dispatch(setActiveFilters([...activeFilters, assetType]))
+            }
         }} />
+        <p className='group-hover:opacity-80 transition-all  flex justify-center items-center
+        opacity-0 bg-stone-900 absolute rounded-2xl top-[42px] leading-[11px]
+        text-[12px] w-16 h-[22px] text-center text-emerald-400'>{element}</p>
+        </div>
     })
   }
 
