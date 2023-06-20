@@ -6,12 +6,12 @@
   .button-regular {
     @apply m-4 text-emerald-300 uppercase bg-stone-700
            rounded-sm shadow-lg hover:text-emerald-200 hover:bg-stone-900
-           transition-all duration-200 ease-linear w-20 h-8 flex justify-center items-center text-xs tracking-wider
+           transition-all duration-200 ease-linear w-20 h-8 flex justify-center items-center text-xs tracking-wider;
   }
   .button-active {
     @apply m-4 text-emerald-200 uppercase bg-emerald-800
            rounded-sm transition-all duration-200 ease-linear w-20 h-8 text-xs
-           flex justify-center items-center shadow-lg tracking-wider
+           flex justify-center items-center shadow-lg tracking-wider;
   }
 }
 
@@ -19,14 +19,14 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }

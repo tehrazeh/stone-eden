@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import NotFound from "../Pages/NotFound";
 import Search from "../Pages/Search";
 
 const AppRouter = () => {
@@ -10,6 +11,7 @@ const AppRouter = () => {
       />
       <Route path="/search/:type" element={<Search />} />
       <Route path="/filter" element={<div>bro its a test bro</div>} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };
