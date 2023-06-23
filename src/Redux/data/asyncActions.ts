@@ -1,36 +1,41 @@
-import { createAsyncThunk } from "@reduxjs/toolkit"
-import axios from "axios"
-import { Params } from "../filter/types"
-import { Card, RequestOptions } from "./types"
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+import { Params } from "../filter/types";
+import { Card, RequestOptions } from "./types";
 
 export const fetchData = createAsyncThunk<Array<Card>, Params>(
-  'data/fetchData', async (params: Params) => {
-    const paramsType = params.type ? params.type.toLowerCase() : ''
-    const paramsValue = params.value.split(' ').join('%20')
+  "data/fetchData",
+  async (params: Params) => {
+    const paramsType = params.type ? params.type.toLowerCase() : "";
+    const paramsValue = params.value.split(" ").join("%20");
     const options: RequestOptions = {
-      method: 'GET',
+      method: "GET",
       url: `https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/${paramsType}/${paramsValue}`,
       headers: {
-        'X-RapidAPI-Key': process.env.REACT_APP_KEY as string,
-        'X-RapidAPI-Host': 'omgvamp-hearthstone-v1.p.rapidapi.com'
-      }
-    }
+        "X-RapidAPI-Key": process.env.REACT_APP_KEY as string,
+        "X-RapidAPI-Host": "omgvamp-hearthstone-v1.p.rapidapi.com",
+      },
+    };
 
     if (Object.entries(params).length > 2) {
-      let additionalParams: RequestOptions["params"] = {}
-      let key: keyof typeof params
+      let additionalParams: RequestOptions["params"] = {};
+      let key: keyof typeof params;
       for (key in params) {
-        if (key !== 'type' && key !== 'value')
-          additionalParams[key] = params[key]
+        if (key !== "type" && key !== "value")
+          additionalParams[key] = params[key];
       }
-      options.params = additionalParams
+      options.params = additionalParams;
     }
-    const {data} = await axios.request<Array<Card>>(options)
-    const filteredData = data.filter((element, index, arr) => 
-    // thanks! https://stackoverflow.com/questions/2218999/how-to-remove-all-duplicates-from-an-array-of-objects
-    arr.findIndex(element2 => (element2.name===element.name)) === index).filter((item) => {
-      return item.type?.toLowerCase() !== 'enchantment' // temporarily avoid enchantments cause they are baggy
-    })
-    return filteredData
+    const { data } = await axios.request<Array<Card>>(options);
+    const filteredData = data
+      .filter(
+        (element, index, arr) =>
+          // thanks! https://stackoverflow.com/questions/2218999/how-to-remove-all-duplicates-from-an-array-of-objects
+          arr.findIndex((element2) => element2.name === element.name) === index
+      )
+      .filter((item) => {
+        return item.type?.toLowerCase() !== "enchantment"; // temporarily avoid enchantments cause they are baggy
+      });
+    return filteredData;
   }
-)
+);
