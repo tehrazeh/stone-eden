@@ -15,7 +15,7 @@ export const renderTestApp = (
   initialRoute: string = ""
 ) => {
   return render(
-    <MemoryRouter>
+    <MemoryRouter initialEntries={[initialRoute]}>
       <Provider store={store}>
         <AppRouter />
         {component}
