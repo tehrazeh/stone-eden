@@ -14,10 +14,14 @@ type FilterProps = {
 // instances of header sections
 const Filter: React.FC<FilterProps> = ({ type }) => {
   // get the text of elements to create filter buttons
+  // const [warningDisplay, setWarningDisplay] = useState(false);
+  let [warningDisplay, setWarningDisplay] = useState(false);
   const elements = useAppSelector((state) => {
     if (isInfo(state.info.info) && type in state.info.info) {
       // thanks !! https://stackoverflow.com/questions/57086672/element-implicitly-has-an-any-type-because-expression-of-type-string-cant-b
       return state.info.info[type as keyof Info];
+    } else {
+      setTimeout(() => setWarningDisplay(true), 2000);
     }
   }) as string[];
 
@@ -27,14 +31,13 @@ const Filter: React.FC<FilterProps> = ({ type }) => {
 
   // ref to subscribe to current status, if the loading is over 10 seconds or api request returns error
   // hide the loader and display what went wrong with button to redirect to home page
-  const [warningDisplay, setWarningDisplay] = useState(false);
   const countRef = useRef(status);
   countRef.current = status;
 
   useEffect(() => {
     setTimeout(() => {
       if (countRef.current === "loading" || countRef.current === "error") {
-        setWarningDisplay(true);
+        setWarningDisplay(true); // change in ref does not cause rerender- find something that causes
       }
     }, 10000);
   }, []);
