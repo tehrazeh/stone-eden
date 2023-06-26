@@ -1,21 +1,16 @@
-import NavButton from "./NavButton"
+import { NavButtons } from "../../Redux/datafilter/types";
+import NavButton from "./NavButton";
 export const Header: React.FC = () => {
-
-  const navButtons = [
-    { name: 'Classes' },
-    { name: 'Races' },
-    { name: 'Qualities' },
-    { name: 'Types' },
-    { name: 'Sets' },
-  ]
-
-  const buttonElems = navButtons.map((item) => {
-    return <NavButton title={item.name} key={item.name} />
-  })
-
+  const buttonElems = (
+    Object.keys(NavButtons) as Array<keyof typeof NavButtons>
+  ).map((key) => {
+    return <NavButton title={key} key={key} />;
+  });
   return (
-    <div className='bg-neutral-800 h-16 flex justify-center items-center'>{buttonElems}</div>
-  )
-}
+    <div className="bg-neutral-800 h-16 flex justify-center items-center">
+      {buttonElems}
+    </div>
+  );
+};
 
-export default Header
+export default Header;

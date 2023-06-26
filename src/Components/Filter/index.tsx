@@ -14,13 +14,13 @@ type FilterProps = {
 // instances of header sections
 const Filter: React.FC<FilterProps> = ({ type }) => {
   // get the text of elements to create filter buttons
-  // const [warningDisplay, setWarningDisplay] = useState(false);
   let [warningDisplay, setWarningDisplay] = useState(false);
   const elements = useAppSelector((state) => {
     if (isInfo(state.info.info) && type in state.info.info) {
       // thanks !! https://stackoverflow.com/questions/57086672/element-implicitly-has-an-any-type-because-expression-of-type-string-cant-b
       return state.info.info[type as keyof Info];
     } else {
+      // incorrect params in link, display warning in 2 seconds
       setTimeout(() => setWarningDisplay(true), 2000);
     }
   }) as string[];

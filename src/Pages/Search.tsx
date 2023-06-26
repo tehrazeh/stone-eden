@@ -10,16 +10,19 @@ import ResultBlock from "../Components/SearchResult/ResultBlock";
 import { Status } from "../Redux/info/types";
 import notFoundImg from "../Assets/not-found.png";
 import notFoundLazy from "../Assets/not-found-lazy.png";
+import { NavButtons } from "../Redux/datafilter/types";
 
 const Search: React.FC = () => {
   const { type } = useParams();
   const { status } = useAppSelector((state) => state.info);
   const fetchStatus = useAppSelector((state) => state.data.status);
   const dispatch = useAppDispatch();
+
   useEffect(() => {
     if (status === "loading") {
       dispatch(fetchInfo());
-      if (type) {
+      if (type && type in NavButtons) {
+        // thanks https://stackoverflow.com/questions/43804805/check-if-value-exists-in-enum-in-typescript
         dispatch(setFilterType(type));
       }
     }

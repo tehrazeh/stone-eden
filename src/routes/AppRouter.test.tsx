@@ -6,9 +6,10 @@ describe("Not found page appearence test", () => {
     renderTestApp(null, "/search");
     expect(screen.getByText(/not found/i)).toBeInTheDocument();
   });
-  it.todo("Not found page displays when params are incorrect");
   it("Not found page is not displayed when link is correct", () => {
     renderTestApp(null, "/search/class");
     expect(screen.queryByText(/not found/i)).not.toBeInTheDocument();
   });
 });
+
+// add describe to check params, incorrect params - magic fix buttons to appear, correct params - get them by text + fix Select RACESADDASD option
