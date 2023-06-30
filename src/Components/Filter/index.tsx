@@ -86,7 +86,7 @@ const Filter: React.FC<FilterProps> = ({ type }) => {
               </Link>
             </>
           ) : (
-            <FadeLoader color="#36d7b7" />
+            <FadeLoader color="#36d7b7" aria-label="filterLoader" />
           )}
         </div>
       )}

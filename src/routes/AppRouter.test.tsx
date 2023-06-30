@@ -11,5 +11,3 @@ describe("Not found page appearence test", () => {
     expect(screen.queryByText(/not found/i)).not.toBeInTheDocument();
   });
 });
-
-// add describe to check params, incorrect params - magic fix buttons to appear, correct params - get them by text + fix Select RACESADDASD option
