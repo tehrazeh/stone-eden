@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { FadeLoader } from "react-spinners";
 import { Card } from "../Redux/data/types";
 import { getCard } from "../utils/functions";
 
@@ -16,10 +17,18 @@ const CardPage = () => {
   }, [params.id]);
 
   if (!card) {
-    return <p>Loading...</p>;
+    return (
+      <div className="w-full min-h-[85vh] flex justify-center items-start">
+        <FadeLoader
+          color="#36d7b7"
+          height={40}
+          margin={60}
+          radius={20}
+          width={10}
+        />
+      </div>
+    );
   }
-
-  console.log(card);
   return (
     <div>
       <button
