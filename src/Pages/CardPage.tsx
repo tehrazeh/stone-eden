@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { FadeLoader } from "react-spinners";
 import { Card } from "../Redux/data/types";
 import { getCard } from "../utils/functions";
+import fallbackImg from "../Assets/fallback.png";
 
 const CardPage = () => {
   const params = useParams();
@@ -15,6 +16,8 @@ const CardPage = () => {
       });
     }
   }, [params.id]);
+
+  console.log(card);
 
   if (!card) {
     return (
@@ -37,8 +40,9 @@ const CardPage = () => {
       >
         GO BACK BRO
       </button>
-      <p>{params.id}</p>
-      {card.cardId}
+      <div>
+        <img src={card.img ? card.img : fallbackImg} alt="card" />
+      </div>
     </div>
   );
 };
