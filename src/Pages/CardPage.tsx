@@ -4,11 +4,13 @@ import { FadeLoader } from "react-spinners";
 import { Card } from "../Redux/data/types";
 import { getCard } from "../utils/functions";
 import fallbackImg from "../Assets/fallback.png";
+import fallbackLazy from "../Assets/lazy.png";
 
 const CardPage = () => {
   const params = useParams();
   const history = useNavigate();
   const [card, setCard] = useState<Card | undefined>();
+  const [loaded, setLoaded] = useState(false);
   useEffect(() => {
     if (params.id) {
       getCard(params.id).then((res) => {
@@ -16,8 +18,6 @@ const CardPage = () => {
       });
     }
   }, [params.id]);
-
-  console.log(card);
 
   if (!card) {
     return (
@@ -45,10 +45,16 @@ const CardPage = () => {
         GO BACK BRO
       </button>
       <div>
+        {loaded ? null : <img src={fallbackLazy} alt="card" />}
+
         <img
+          className={`${loaded ? "w-30" : "hidden"}`}
           src={`https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${card.cardId}.png`}
           alt="card"
           onError={addImageFallback}
+          onLoad={() => {
+            setLoaded(true);
+          }}
         />
       </div>
     </div>
