@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { SyntheticEvent, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { FadeLoader } from "react-spinners";
 import { Card } from "../Redux/data/types";
@@ -32,6 +32,10 @@ const CardPage = () => {
       </div>
     );
   }
+  // in case the api does not have an image for the card
+  const addImageFallback = (event: SyntheticEvent<HTMLImageElement, Event>) => {
+    event.currentTarget.src = fallbackImg;
+  };
   return (
     <div>
       <button
@@ -41,7 +45,11 @@ const CardPage = () => {
         GO BACK BRO
       </button>
       <div>
-        <img src={card.img ? card.img : fallbackImg} alt="card" />
+        <img
+          src={`https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${card.cardId}.png`}
+          alt="card"
+          onError={addImageFallback}
+        />
       </div>
     </div>
   );
