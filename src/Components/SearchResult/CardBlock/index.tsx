@@ -4,6 +4,7 @@ import fallBackImg from "../../../Assets/fallback.png";
 import lazyImg from "../../../Assets/lazy.png";
 import { useInView } from "react-intersection-observer";
 import { Link } from "react-router-dom";
+import AttributesBlock from "./AttributesBlock";
 
 type CardProps = {
   card: Card;
@@ -12,25 +13,6 @@ type CardProps = {
 const textClass = "text-base text-emerald-200 opacity-85 tracking-wider";
 
 const CardBlock: React.FC<CardProps> = (props) => {
-  const attributes = ["attack", "health", "cost"]; // attributes that are displayed on card
-  const attributesBlocks = attributes.map((attribute) => {
-    return (
-      <div
-        className="flex justify-center items-center relative"
-        key={attribute}
-      >
-        <img
-          src={require(`../../../Assets/attribute/${attribute}.png`)}
-          className="w-14 h-12 brightness-50"
-          alt="attack"
-        />
-        <p className="absolute text-[38px] font-bold shadow-zinc-900 opacity-80 text-slate-100 top-auto right-auto">
-          {props.card[attribute as keyof Card]}
-        </p>
-      </div>
-    );
-  });
-
   const [loaded, setLoaded] = useState(false);
 
   const { ref, inView } = useInView({
@@ -57,9 +39,14 @@ const CardBlock: React.FC<CardProps> = (props) => {
         <p className={textClass}>
           {(props.card.playerClass || "") + " " + props.card.type}
         </p>
-        <div className=" mt-2 w-[90%] bg-zinc-900 rounded h-14 grid grid-cols-3 grid-rows-1">
+        {/* <div className=" mt-2 w-[90%] bg-zinc-900 rounded h-14 grid grid-cols-3 grid-rows-1">
           {attributesBlocks}
-        </div>
+        </div> */}
+        <AttributesBlock
+          attack={props.card.attack}
+          health={props.card.health}
+          cost={props.card.cost}
+        />
       </div>
       <div className="w-[90%] h-full flex justify-center items-center">
         {/* thanks! https://stackoverflow.com/questions/37312122/how-to-do-a-nested-if-else-statement-in-reactjs-jsx */}
