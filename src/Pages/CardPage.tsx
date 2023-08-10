@@ -36,6 +36,8 @@ const CardPage = () => {
   const addImageFallback = (event: SyntheticEvent<HTMLImageElement, Event>) => {
     event.currentTarget.src = fallbackImg;
   };
+
+  console.log(card);
   return (
     <div>
       <button
@@ -44,18 +46,38 @@ const CardPage = () => {
       >
         GO BACK BRO
       </button>
-      <div>
-        {loaded ? null : <img src={fallbackLazy} alt="card" />}
-
-        <img
-          className={`${loaded ? "w-30" : "hidden"}`}
-          src={`https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${card.cardId}.png`}
-          alt="card"
-          onError={addImageFallback}
-          onLoad={() => {
-            setLoaded(true);
-          }}
-        />
+      <div className="w-full bg-amber-500 bg-opacity-50 min-h-[90vh] flex justify-center items-center">
+        <div>
+          <div>
+            {loaded ? null : <img src={fallbackLazy} alt="card" />}
+            <img
+              className={`${loaded ? "w-30" : "hidden"}`}
+              src={`https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${card.cardId}.png`}
+              alt="card"
+              onError={addImageFallback}
+              onLoad={() => {
+                setLoaded(true);
+              }}
+            />
+          </div>
+          <div>
+            <p>Attack: {card.attack}</p>
+            <p>Health: {card.health}</p>
+            <p>Cost: {card.cost}</p>
+            <p>Text: {card.text}</p>
+            <p>Race: {card.race}</p>
+            <p>Type: {card.type}</p>
+            <p>{card.name}</p>
+            <p>Rarity: {card.rarity}</p>
+            <p>Player Class: {card.playerClass}</p>
+          </div>
+        </div>
+        <div>
+          <img
+            src={`https://art.hearthstonejson.com/v1/orig/${card.cardId}.png`}
+            alt="card art"
+          />
+        </div>
       </div>
     </div>
   );
