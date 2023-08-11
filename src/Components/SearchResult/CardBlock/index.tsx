@@ -39,9 +39,6 @@ const CardBlock: React.FC<CardProps> = (props) => {
         <p className={textClass}>
           {(props.card.playerClass || "") + " " + props.card.type}
         </p>
-        {/* <div className=" mt-2 w-[90%] bg-zinc-900 rounded h-14 grid grid-cols-3 grid-rows-1">
-          {attributesBlocks}
-        </div> */}
         <AttributesBlock
           attack={props.card.attack}
           health={props.card.health}
