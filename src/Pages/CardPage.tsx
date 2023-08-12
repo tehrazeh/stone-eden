@@ -74,12 +74,15 @@ const CardPage = () => {
             {card.race && (
               <div className={cardInfoBlock}>
                 <div className="w-[50%]">Race:</div>
-                <div className="w-[50%] flex justify-center">
+                <div className="w-[50%] flex justify-center relative">
                   <img
-                    className="w-36 h-20"
+                    className="w-40 h-20 brightness-[80%]"
                     src={require(`../Assets/race.png`)}
                     alt="type"
                   />
+                  <p className="absolute top-[31%] left-auto font-bold tracking-wider text-white">
+                    {card.race}
+                  </p>
                 </div>
               </div>
             )}
