@@ -6,13 +6,13 @@ import { getCard, optionCheck } from "../utils/functions";
 import fallbackImg from "../Assets/fallback.png";
 import fallbackLazy from "../Assets/lazy.png";
 import AttributesBlock from "../Components/SearchResult/CardBlock/AttributesBlock";
+import CardInfo from "../Components/CardPageBlock/CardInfoBlock";
 
 const CardPage = () => {
   const params = useParams();
   const [card, setCard] = useState<Card | undefined>();
   const [loaded, setLoaded] = useState(false);
 
-  const cardInfoBlock = `bg-stone-800 bg-opacity-50 p-1 rounded w-[90%] flex justify-evenly items-center text-[20px] text-slate-200`;
   useEffect(() => {
     if (params.id) {
       getCard(params.id).then((res) => {
@@ -57,69 +57,12 @@ const CardPage = () => {
               }}
             />
           </div>
-          <div className="flex flex-col justify-evenly items-center w-[50%]">
-            <div className={cardInfoBlock}>
-              <div className="w-[50%]">Type:</div>
-              <div className="w-[50%] flex justify-center">
-                <img
-                  className="w-20"
-                  src={require(`../Assets/type/${card.type
-                    .toLowerCase()
-                    .split(" ")
-                    .join("")}.png`)}
-                  alt="type"
-                />
-              </div>
-            </div>
-            {card.race && (
-              <div className={cardInfoBlock}>
-                <div className="w-[50%]">Race:</div>
-                <div className="w-[50%] flex justify-center relative">
-                  <img
-                    className="w-40 h-20 brightness-[80%]"
-                    src={require(`../Assets/race.png`)}
-                    alt="type"
-                  />
-                  <p className="absolute top-[31%] left-auto font-bold tracking-wider text-white">
-                    {card.race}
-                  </p>
-                </div>
-              </div>
-            )}
-            {card.rarity && (
-              <div className={cardInfoBlock}>
-                <div className="w-[50%]">Rarity:</div>
-                <div className="w-[50%] flex justify-center">
-                  <img
-                    className="w-20"
-                    src={require(`../Assets/rarity/${card.rarity.toLowerCase()}.png`)}
-                    alt="type"
-                  />
-                </div>
-              </div>
-            )}
-            {card.playerClass && (
-              <div className={cardInfoBlock}>
-                <div className="w-[50%]">Player Class:</div>
-                <div className="w-[50%] flex justify-center">
-                  <img
-                    className="w-20"
-                    src={
-                      optionCheck("playerClass").includes(
-                        card.playerClass.toLowerCase().split(" ").join("")
-                      )
-                        ? require(`../Assets/playerClass/${card.playerClass
-                            .toLowerCase()
-                            .split(" ")
-                            .join("")}.png`)
-                        : require(`../Assets/fallbackFilter.png`)
-                    }
-                    alt="type"
-                  />
-                </div>
-              </div>
-            )}
-          </div>
+          <CardInfo
+            type={card.type}
+            race={card.race}
+            rarity={card.rarity}
+            playerClass={card.playerClass}
+          />
           {/* <img
             src={`https://images.hearthcard.io/expansions/Journey%20to%20Un'Goro.png`}
           /> */}
