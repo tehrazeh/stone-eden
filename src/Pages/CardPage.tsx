@@ -60,43 +60,60 @@ const CardPage = () => {
           <div className="flex flex-col justify-evenly items-center w-[50%]">
             <div className={cardInfoBlock}>
               <div className="w-[50%]">Type:</div>
-              <img
-                className="w-20"
-                src={require(`../Assets/type/${card.type
-                  .toLowerCase()
-                  .split(" ")
-                  .join("")}.png`)}
-                alt="type"
-              />
+              <div className="w-[50%] flex justify-center">
+                <img
+                  className="w-20"
+                  src={require(`../Assets/type/${card.type
+                    .toLowerCase()
+                    .split(" ")
+                    .join("")}.png`)}
+                  alt="type"
+                />
+              </div>
             </div>
-            {card.race && <div>Race: {card.race}</div>}
+            {card.race && (
+              <div className={cardInfoBlock}>
+                <div className="w-[50%]">Race:</div>
+                <div className="w-[50%] flex justify-center">
+                  <img
+                    className="w-36 h-20"
+                    src={require(`../Assets/race.png`)}
+                    alt="type"
+                  />
+                </div>
+              </div>
+            )}
             {card.rarity && (
               <div className={cardInfoBlock}>
                 <div className="w-[50%]">Rarity:</div>
-                <img
-                  className="w-20"
-                  src={require(`../Assets/rarity/${card.rarity.toLowerCase()}.png`)}
-                  alt="type"
-                />
+                <div className="w-[50%] flex justify-center">
+                  <img
+                    className="w-20"
+                    src={require(`../Assets/rarity/${card.rarity.toLowerCase()}.png`)}
+                    alt="type"
+                  />
+                </div>
               </div>
             )}
             {card.playerClass && (
               <div className={cardInfoBlock}>
                 <div className="w-[50%]">Player Class:</div>
-                <img
-                  className="w-20"
-                  src={
-                    optionCheck("playerClass").includes(
-                      card.playerClass.toLowerCase().split(" ").join("")
-                    )
-                      ? require(`../Assets/playerClass/${card.playerClass
-                          .toLowerCase()
-                          .split(" ")
-                          .join("")}.png`)
-                      : require(`../Assets/fallbackFilter.png`)
-                  }
-                  alt="type"
-                />
+                <div className="w-[50%] flex justify-center">
+                  <img
+                    className="w-20"
+                    src={
+                      optionCheck("playerClass").includes(
+                        card.playerClass.toLowerCase().split(" ").join("")
+                      )
+                        ? require(`../Assets/playerClass/${card.playerClass
+                            .toLowerCase()
+                            .split(" ")
+                            .join("")}.png`)
+                        : require(`../Assets/fallbackFilter.png`)
+                    }
+                    alt="type"
+                  />
+                </div>
               </div>
             )}
           </div>
