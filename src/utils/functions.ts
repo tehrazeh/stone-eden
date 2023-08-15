@@ -59,8 +59,9 @@ export const getInputStyle = (isValid: boolean = true) => {
 
 export const optionCheck = (option: string) => {
   // TODO! find a better way to set up a fallback image without creating pre supported data
-  return option === "playerClass"
-    ? [
+  switch (option) {
+    case "playerClass": {
+      return [
         "deathknight",
         "druid",
         "hunter",
@@ -72,8 +73,18 @@ export const optionCheck = (option: string) => {
         "rogue",
         "shaman",
         "warlock",
-      ]
-    : ["location", "spell", "minion", "hero", "weapon", "heropower"];
+      ];
+    }
+    case "rarity": {
+      return ["free", "common", "rare", "epic", "legendary"];
+    }
+    case "type": {
+      return ["location", "spell", "minion", "hero", "weapon", "heropower"];
+    }
+    default: {
+      return ["free", "common", "rare", "epic", "legendary"];
+    }
+  }
 };
 
 export const getCard = async (cardId: string) => {

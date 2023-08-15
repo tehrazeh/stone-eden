@@ -34,6 +34,11 @@ const CardPage = () => {
       </div>
     );
   }
+  console.log(
+    `https://images.hearthcard.io/expansions/${card.cardSet
+      .split(" ")
+      .join("%20")}.png`
+  );
   // in case the api does not have an image for the card
   const addImageFallback = (event: SyntheticEvent<HTMLImageElement, Event>) => {
     event.currentTarget.src = fallbackImg;

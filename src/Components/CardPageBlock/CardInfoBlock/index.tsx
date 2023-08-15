@@ -9,6 +9,46 @@ export type CardInfoProps = {
 
 const CardInfo: React.FC<CardInfoProps> = (props) => {
   const cardInfoBlock = `bg-stone-800 bg-opacity-50 p-1 rounded w-[90%] flex justify-evenly items-center text-[20px] text-slate-200`;
+
+  const getImageInfoBlock = (imageType: string) => {
+    const imageBlockTypes = {
+      withFallback: ["type", "playerClass"],
+      regular: ["rarity"],
+      withText: ["race"],
+    };
+    console.log(props[imageType as keyof CardInfoProps] !== undefined);
+
+    // if (
+    //   typeof props[imageType as keyof CardInfoProps] === 'string'
+    // ) {
+    //   return (
+    //     <img
+    //       className="w-20"
+    //       src={
+    //         optionCheck("type").includes(
+    //           props[imageType as keyof CardInfoProps]
+    //             .toLowerCase()
+    //             .split(" ")
+    //             .join("")
+    //         )
+    //           ? require(`../../../Assets/type/${props[
+    //               imageType as keyof CardInfoProps
+    //             ]
+    //               .toLowerCase()
+    //               .split(" ")
+    //               .join("")}.png`)
+    //           : require(`../../../Assets/fallbackFilter.png`)
+    //       }
+    //       alt="type"
+    //     />
+    //   );
+    // }
+  };
+
+  getImageInfoBlock("race");
+  const infoBlocks = Object.keys(props).map(() => {
+    return;
+  });
   return (
     <div className="flex flex-col justify-evenly items-center w-[50%]">
       {props.type && (
@@ -17,16 +57,22 @@ const CardInfo: React.FC<CardInfoProps> = (props) => {
           <div className="w-[50%] flex justify-center">
             <img
               className="w-20"
-              src={require(`../../../Assets/type/${props.type
-                .toLowerCase()
-                .split(" ")
-                .join("")}.png`)}
+              src={
+                optionCheck("type").includes(
+                  props.type.toLowerCase().split(" ").join("")
+                )
+                  ? require(`../../../Assets/type/${props.type
+                      .toLowerCase()
+                      .split(" ")
+                      .join("")}.png`)
+                  : require(`../../../Assets/fallbackFilter.png`)
+              }
               alt="type"
             />
           </div>
         </div>
       )}
-      {props.race && (
+      {/* {props.race && (
         <div className={cardInfoBlock}>
           <div className="w-[50%]">Race:</div>
           <div className="w-[50%] flex justify-center relative">
@@ -50,7 +96,7 @@ const CardInfo: React.FC<CardInfoProps> = (props) => {
             </p>
           </div>
         </div>
-      )}
+      )} */}
       {props.rarity && (
         <div className={cardInfoBlock}>
           <div className="w-[50%]">Rarity:</div>
