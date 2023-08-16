@@ -2,9 +2,10 @@ import { SyntheticEvent, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FadeLoader } from "react-spinners";
 import { Card } from "../Redux/data/types";
-import { getCard, optionCheck } from "../utils/functions";
+import { getCard } from "../utils/functions";
 import fallbackImg from "../Assets/fallback.png";
 import fallbackLazy from "../Assets/lazy.png";
+import fallbackArt from "../Assets/artFallback.png";
 import AttributesBlock from "../Components/SearchResult/CardBlock/AttributesBlock";
 import CardInfo from "../Components/CardPageBlock/CardInfoBlock";
 
@@ -34,14 +35,19 @@ const CardPage = () => {
       </div>
     );
   }
-  console.log(
-    `https://images.hearthcard.io/expansions/${card.cardSet
-      .split(" ")
-      .join("%20")}.png`
-  );
+  // console.log(
+  //   `https://images.hearthcard.io/expansions/${card.cardSet
+  //     .split(" ")
+  //     .join("%20")}.png`
+  // );
   // in case the api does not have an image for the card
-  const addImageFallback = (event: SyntheticEvent<HTMLImageElement, Event>) => {
+  // do the function composition or something
+  const addCardFallback = (event: SyntheticEvent<HTMLImageElement, Event>) => {
     event.currentTarget.src = fallbackImg;
+  };
+  const addArtFallback = (event: SyntheticEvent<HTMLImageElement, Event>) => {
+    event.currentTarget.src = fallbackArt;
+    event.currentTarget.className = "w-[100%] max-w-[600px]";
   };
   return (
     <div className="bg-zinc-700 min-h-[90vh] flex justify-evenly flex-wrap">
@@ -56,7 +62,7 @@ const CardPage = () => {
               className={`${loaded ? "w-30" : "hidden"}`}
               src={`https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${card.cardId}.png`}
               alt="card"
-              onError={addImageFallback}
+              onError={addCardFallback}
               onLoad={() => {
                 setLoaded(true);
               }}
@@ -68,9 +74,6 @@ const CardPage = () => {
             rarity={card.rarity}
             playerClass={card.playerClass}
           />
-          {/* <img
-            src={`https://images.hearthcard.io/expansions/Journey%20to%20Un'Goro.png`}
-          /> */}
         </div>
         <div className="h-full flex justify-evenly m-1 flex-col items-center bg-slate-300 bg-opacity-25 rounded">
           <AttributesBlock
@@ -96,6 +99,7 @@ const CardPage = () => {
           className="w-[100%] max-w-[600px] rounded-lg"
           src={`https://art.hearthstonejson.com/v1/orig/${card.cardId}.png`}
           alt="card art"
+          onError={addArtFallback}
         />
         <div className="text-[20px] text-slate-200">{card.flavor}</div>
       </div>
