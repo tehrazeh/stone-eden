@@ -35,11 +35,11 @@ const CardPage = () => {
       </div>
     );
   }
-  // console.log(
-  //   `https://images.hearthcard.io/expansions/${card.cardSet
-  //     .split(" ")
-  //     .join("%20")}.png`
-  // );
+  console.log(
+    `https://images.hearthcard.io/expansions/${card.cardSet
+      .split(" ")
+      .join("%20")}.png`
+  );
   // in case the api does not have an image for the card
   // do the function composition or something
   const addCardFallback = (event: SyntheticEvent<HTMLImageElement, Event>) => {
@@ -50,13 +50,20 @@ const CardPage = () => {
     event.currentTarget.className = "w-[100%] max-w-[600px]";
   };
   return (
-    <div className="bg-zinc-700 min-h-[90vh] flex justify-evenly flex-wrap">
+    <div className="bg-zinc-900 min-h-[90vh] flex justify-evenly flex-wrap">
       <p className="font-bold text-slate-200 text-center tracking-wide w-full  text-3xl">
         {card.name}
       </p>
-      <div className=" flex flex-col justify-between w-[50%] m-2">
-        <div className="bg-opacity-25 flex m-1 bg-slate-300 rounded">
-          <div className="w-[50%]">
+      <div className="flex flex-col justify-between w-[50%] m-2">
+        <div className="bg-stone-600/50 flex my-1 rounded-lg h-full relative">
+          <img
+            className="absolute inset-1 left-auto top-[50px] bg-no-repeat bg-center bg-contain blur-[2px] opacity-75 w-[65%]"
+            src={`https://images.hearthcard.io/expansions/${card.cardSet
+              .split(" ")
+              .join("%20")}.png`}
+            alt="expansion"
+          ></img>
+          <div className="w-[50%] z-10 opacity-80">
             {loaded ? null : <img src={fallbackLazy} alt="card" />}
             <img
               className={`${loaded ? "w-30" : "hidden"}`}
@@ -75,7 +82,7 @@ const CardPage = () => {
             playerClass={card.playerClass}
           />
         </div>
-        <div className="h-full flex justify-evenly m-1 flex-col items-center bg-slate-300 bg-opacity-25 rounded">
+        <div className="h-full flex justify-evenly my-1 flex-col items-center bg-stone-600/50 rounded">
           <AttributesBlock
             attack={card.attack}
             health={card.health}
@@ -94,14 +101,16 @@ const CardPage = () => {
         </div>
       </div>
 
-      <div className="bg-stone-800 p-2 rounded-lg h-full m-2 flex flex-col items-center">
+      <div className="bg-stone-800 p-2 rounded-lg h-full max-w-[620px] w-1/2 m-2 flex flex-col items-center">
         <img
           className="w-[100%] max-w-[600px] rounded-lg"
           src={`https://art.hearthstonejson.com/v1/orig/${card.cardId}.png`}
           alt="card art"
           onError={addArtFallback}
         />
-        <div className="text-[20px] text-slate-200">{card.flavor}</div>
+        <div className="text-[20px] flex flex-wrap text-slate-200">
+          {card.flavor}
+        </div>
       </div>
     </div>
   );

@@ -16,7 +16,6 @@ const CardInfo: React.FC<CardInfoProps> = (props) => {
       regular: ["rarity"],
       withText: ["race"],
     };
-    console.log(props[imageType as keyof CardInfoProps] !== undefined);
 
     // if (
     //   typeof props[imageType as keyof CardInfoProps] === 'string'
