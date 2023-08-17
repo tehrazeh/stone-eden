@@ -8,7 +8,7 @@ export type CardInfoProps = {
 };
 
 const CardInfo: React.FC<CardInfoProps> = (props) => {
-  const cardInfoBlock = `bg-stone-800 bg-opacity-50 p-1 rounded w-[90%] flex justify-evenly items-center text-[20px] text-slate-200`;
+  const cardInfoBlock = `bg-stone-800 bg-opacity-[65%] p-1 rounded w-[90%] flex justify-evenly items-center text-[20px] text-slate-200`;
 
   const getImageInfoBlock = (imageType: string) => {
     const imageBlockTypes = {
@@ -49,7 +49,7 @@ const CardInfo: React.FC<CardInfoProps> = (props) => {
     return;
   });
   return (
-    <div className="flex flex-col justify-evenly items-center w-[50%]">
+    <div className="flex flex-col justify-evenly items-center w-[50%] z-10">
       {props.type && (
         <div className={cardInfoBlock}>
           <div className="w-[50%]">Type:</div>

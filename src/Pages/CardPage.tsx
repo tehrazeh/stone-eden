@@ -55,15 +55,15 @@ const CardPage = () => {
         {card.name}
       </p>
       <div className="flex flex-col justify-between w-[50%] m-2">
-        <div className="bg-stone-600/50 flex my-1 rounded-lg h-full relative">
-          <img
+        <div className="bg-stone-600/50 flex mb-1 rounded h-full relative">
+          {/* <img
             className="absolute inset-1 left-auto top-[50px] bg-no-repeat bg-center bg-contain blur-[2px] opacity-75 w-[65%]"
             src={`https://images.hearthcard.io/expansions/${card.cardSet
               .split(" ")
               .join("%20")}.png`}
             alt="expansion"
-          ></img>
-          <div className="w-[50%] z-10 opacity-80">
+          /> */}
+          <div className="w-[50%] z-10">
             {loaded ? null : <img src={fallbackLazy} alt="card" />}
             <img
               className={`${loaded ? "w-30" : "hidden"}`}
@@ -82,17 +82,17 @@ const CardPage = () => {
             playerClass={card.playerClass}
           />
         </div>
-        <div className="h-full flex justify-evenly my-1 flex-col items-center bg-stone-600/50 rounded">
+        <div className="h-full flex justify-evenly mt-1 flex-col items-center bg-stone-600/50 rounded">
           <AttributesBlock
             attack={card.attack}
             health={card.health}
             cost={card.cost}
           />
           {card.text && (
-            <div className="flex justify-center w-[90%] items-center">
+            <div className="flex justify-center w-[90%] bg-zinc-900 rounded p-2 items-center">
               <img
                 src={require("../Assets/text.png")}
-                className="w-12"
+                className="w-12 mr-2"
                 alt="text"
               />
               <p className="text-[20px] text-slate-200">{card.text}</p>
@@ -101,16 +101,23 @@ const CardPage = () => {
         </div>
       </div>
 
-      <div className="bg-stone-800 p-2 rounded-lg h-full max-w-[620px] w-1/2 m-2 flex flex-col items-center">
+      <div className="bg-stone-600/50 p-2 rounded h-full max-w-[620px] w-1/2 m-2 flex flex-col items-center">
         <img
           className="w-[100%] max-w-[600px] rounded-lg"
           src={`https://art.hearthstonejson.com/v1/orig/${card.cardId}.png`}
           alt="card art"
           onError={addArtFallback}
         />
-        <div className="text-[20px] flex flex-wrap text-slate-200">
-          {card.flavor}
-        </div>
+        {card.flavor && (
+          <div className="flex justify-center items-center my-2 bg-zinc-900 rounded-lg p-1">
+            <img
+              src={require("../Assets/text.png")}
+              className="w-12 mr-2  "
+              alt="text"
+            />
+            <p className="text-[20px] text-slate-200">{card.flavor}</p>
+          </div>
+        )}
       </div>
     </div>
   );
