@@ -13,7 +13,6 @@ const CardPage = () => {
   const params = useParams();
   const [card, setCard] = useState<Card | undefined>();
   const [loadedCard, setLoadedCard] = useState(false);
-  const [loadedArt, setLoadedArt] = useState(false);
 
   useEffect(() => {
     if (params.id) {
@@ -36,8 +35,6 @@ const CardPage = () => {
       </div>
     );
   }
-  console.log(loadedArt);
-
   // in case the api does not have an image for the card
   // do the function composition or something
   const addCardFallback = (event: SyntheticEvent<HTMLImageElement, Event>) => {
@@ -54,13 +51,6 @@ const CardPage = () => {
       </p>
       <div className="flex flex-col justify-between w-[50%] m-2">
         <div className="bg-stone-600/50 flex mb-1 rounded h-full relative">
-          {/* <img
-            className="absolute inset-1 left-auto top-[50px] bg-no-repeat bg-center bg-contain blur-[2px] opacity-75 w-[65%]"
-            src={`https://images.hearthcard.io/expansions/${card.cardSet
-              .split(" ")
-              .join("%20")}.png`}
-            alt="expansion"
-          /> */}
           <div className="w-[50%] z-10">
             {loadedCard ? null : <img src={fallbackLazy} alt="card" />}
             <img
@@ -80,14 +70,9 @@ const CardPage = () => {
             playerClass={card.playerClass}
           />
         </div>
-        <div className="h-full flex justify-evenly mt-1 flex-col items-center bg-stone-600/50 rounded">
-          <AttributesBlock
-            attack={card.attack}
-            health={card.health}
-            cost={card.cost}
-          />
+        <div className="h-full flex mt-1 p-4 flex-wrap justify-between  bg-stone-600/50 rounded">
           {card.text && (
-            <div className="flex justify-center w-[90%] bg-zinc-900 rounded p-2 items-center">
+            <div className="flex w-full bg-zinc-900 rounded p-2 items-center">
               <img
                 src={require("../Assets/text.png")}
                 className="w-12 mr-2"
@@ -96,6 +81,21 @@ const CardPage = () => {
               <p className="text-[20px] text-slate-200">{card.text}</p>
             </div>
           )}
+          <div className="w-[45%] rounded bg-zinc-900 mt-2">
+            <img
+              // prettier-ignore
+              src={`https://images.hearthcard.io/expansions/${card.cardSet.split(" ").join("%20")}.png`}
+              className="w-full"
+              alt=""
+            />
+          </div>
+          <div className="w-1/2 mt-2 flex justify-center items-start">
+            <AttributesBlock
+              attack={card.attack}
+              health={card.health}
+              cost={card.cost}
+            />
+          </div>
         </div>
       </div>
 
@@ -105,7 +105,6 @@ const CardPage = () => {
           src={`https://art.hearthstonejson.com/v1/orig/${card.cardId}.png`}
           alt="card art"
           onError={addArtFallback}
-          onLoad={() => setLoadedArt(true)}
         />
         {card.flavor && (
           <div className="flex justify-center items-center my-2 bg-zinc-900 rounded-lg p-1">
