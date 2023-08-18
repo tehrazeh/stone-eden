@@ -12,7 +12,8 @@ import CardInfo from "../Components/CardPageBlock/CardInfoBlock";
 const CardPage = () => {
   const params = useParams();
   const [card, setCard] = useState<Card | undefined>();
-  const [loaded, setLoaded] = useState(false);
+  const [loadedCard, setLoadedCard] = useState(false);
+  const [loadedArt, setLoadedArt] = useState(false);
 
   useEffect(() => {
     if (params.id) {
@@ -24,22 +25,19 @@ const CardPage = () => {
 
   if (!card) {
     return (
-      <div className="w-full min-h-[85vh] flex justify-center items-start">
+      <div className="w-full min-h-[85vh] flex justify-center my-20 items-start">
         <FadeLoader
           color="#36d7b7"
-          height={40}
-          margin={60}
-          radius={20}
-          width={10}
+          height={10}
+          margin={2}
+          radius={2}
+          width={2}
         />
       </div>
     );
   }
-  console.log(
-    `https://images.hearthcard.io/expansions/${card.cardSet
-      .split(" ")
-      .join("%20")}.png`
-  );
+  console.log(loadedArt);
+
   // in case the api does not have an image for the card
   // do the function composition or something
   const addCardFallback = (event: SyntheticEvent<HTMLImageElement, Event>) => {
@@ -64,14 +62,14 @@ const CardPage = () => {
             alt="expansion"
           /> */}
           <div className="w-[50%] z-10">
-            {loaded ? null : <img src={fallbackLazy} alt="card" />}
+            {loadedCard ? null : <img src={fallbackLazy} alt="card" />}
             <img
-              className={`${loaded ? "w-30" : "hidden"}`}
+              className={`${loadedCard ? "w-30" : "hidden"}`}
               src={`https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${card.cardId}.png`}
               alt="card"
               onError={addCardFallback}
               onLoad={() => {
-                setLoaded(true);
+                setLoadedCard(true);
               }}
             />
           </div>
@@ -107,6 +105,7 @@ const CardPage = () => {
           src={`https://art.hearthstonejson.com/v1/orig/${card.cardId}.png`}
           alt="card art"
           onError={addArtFallback}
+          onLoad={() => setLoadedArt(true)}
         />
         {card.flavor && (
           <div className="flex justify-center items-center my-2 bg-zinc-900 rounded-lg p-1">
