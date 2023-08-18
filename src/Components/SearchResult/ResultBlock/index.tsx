@@ -46,9 +46,8 @@ const ResultBlock = () => {
     });
   };
 
-  // @ts-ignore
   const setRefs = useCallback(
-    (node) => {
+    (node: HTMLDivElement) => {
       ref.current = node;
       inViewRef(node);
     },
