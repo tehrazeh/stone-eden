@@ -52,7 +52,7 @@ const CardInfo: React.FC<CardInfoProps> = (props) => {
     <div className="flex flex-col justify-evenly items-center w-[50%] z-10">
       {props.type && (
         <div className={cardInfoBlock}>
-          <div className="w-[50%]">Type:</div>
+          <div className="w-[50%] ml-4">Type:</div>
           <div className="w-[50%] flex justify-center">
             <img
               className="w-20"
@@ -98,7 +98,7 @@ const CardInfo: React.FC<CardInfoProps> = (props) => {
       )} */}
       {props.rarity && (
         <div className={cardInfoBlock}>
-          <div className="w-[50%]">Rarity:</div>
+          <div className="w-[50%] ml-4">Rarity:</div>
           <div className="w-[50%] flex justify-center">
             <img
               className="w-20"
@@ -110,7 +110,7 @@ const CardInfo: React.FC<CardInfoProps> = (props) => {
       )}
       {props.playerClass && (
         <div className={cardInfoBlock}>
-          <div className="w-[50%]">Player Class:</div>
+          <div className="w-[50%] ml-4">Player Class:</div>
           <div className="w-[50%] flex justify-center">
             <img
               className="w-20"

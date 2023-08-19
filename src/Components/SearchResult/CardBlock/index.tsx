@@ -20,7 +20,8 @@ const CardBlock: React.FC<CardProps> = (props) => {
     triggerOnce: true,
   });
 
-  const regularClass = `w-56 rounded align-middle p-0 m-0 hover:brightness-110 hover:cursor-pointer transition-all`;
+  const regularClass = `w-56 rounded align-middle p-0 m-0 scale-105
+   hover:brightness-125 hover:scale-110 hover:cursor-pointer transition-all`;
 
   // in case the api does not have an image for the card
   const addImageFallback = (event: SyntheticEvent<HTMLImageElement, Event>) => {

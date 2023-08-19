@@ -33,7 +33,7 @@ const AttributesBlock: React.FC<AttributeBlockProps> = (props) => {
   });
 
   return (
-    <div className=" w-full h-[50%] bg-zinc-900 rounded grid grid-cols-3 grid-rows-1">
+    <div className=" w-full h-full bg-zinc-900 rounded grid grid-cols-3 grid-rows-1">
       {attributesBlocks}
     </div>
   );

@@ -15,18 +15,8 @@ const CardDescription: React.FC<CardDescriptionProps> = ({ card }) => {
   const [artState, setArtState] = useState(true);
 
   return (
-    <div className="h-full flex mt-1 p-4 flex-wrap justify-between  bg-stone-600/50 rounded">
-      {card.text && (
-        <div className="flex w-full bg-zinc-900 justify-center rounded p-2 items-center">
-          <img
-            src={require("../../../Assets/text.png")}
-            className="w-12 mr-4"
-            alt="text"
-          />
-          <p className="text-[20px] text-slate-200">{card.text}</p>
-        </div>
-      )}
-      <div className="w-[45%] rounded flex items-center justify-center bg-zinc-900 mt-2">
+    <div className="h-full mt-1 p-4 grid grid-cols-2 grid-rows-2 bg-stone-600/50 rounded">
+      <div className="w-[98%] rounded flex col-span-1 row-span-2 items-center justify-center bg-zinc-900 mr-1">
         {artState ? (
           <img
             // prettier-ignore
@@ -46,8 +36,18 @@ const CardDescription: React.FC<CardDescriptionProps> = ({ card }) => {
           </>
         )}
       </div>
+      {card.text && (
+        <div className="flex w-[98%] bg-zinc-900 ml-1 justify-center rounded p-2 items-center">
+          <img
+            src={require("../../../Assets/text.png")}
+            className="w-12 mr-4"
+            alt="text"
+          />
+          <p className="text-[20px] text-slate-200">{card.text}</p>
+        </div>
+      )}
       {(card.attack || card.health || card.attack) && (
-        <div className="w-1/2 mt-2 flex justify-center items-start">
+        <div className="w-[98%] mt-2 ml-1 flex justify-center items-center">
           <AttributesBlock
             attack={card.attack}
             health={card.health}

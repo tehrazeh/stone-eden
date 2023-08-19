@@ -44,7 +44,7 @@ const CardPage = () => {
       </p>
       <div className="flex flex-col justify-between w-[50%] m-2">
         <div className="bg-stone-600/50 flex mb-1 rounded h-full relative">
-          <div className="w-[50%] z-10">
+          <div className="w-[50%] z-10 flex justify-center">
             {loadedCard ? null : <img src={fallbackLazy} alt="card" />}
             <img
               className={`${loadedCard ? "w-30" : "hidden"}`}
