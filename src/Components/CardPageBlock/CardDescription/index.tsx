@@ -27,34 +27,49 @@ const CardDescription: React.FC<CardDescriptionProps> = ({ card }) => {
           />
         ) : (
           <>
-            <img
-              src={require("../../../Assets/cardSet.png")}
-              alt=""
-              className="w-14 mr-2"
-            />
+            <div className=" h-[50%] w-[33%] flex justify-center items-center group">
+              <img
+                src={require("../../../Assets/cardSet.png")}
+                alt=""
+                className="w-14 group-hover:brightness-110"
+              />
+              <p
+                className="absolute bottom-[-14px] rounded bg-stone-700/75 h-4 p-[10px] 
+          left-auto hidden group-hover:flex items-center text-slate-200"
+              >
+                Expansion
+              </p>
+            </div>
             <p className="text-[20px] text-slate-200">{card.cardSet}</p>
           </>
         )}
       </div>
-      {card.text && (
-        <div className="flex w-[98%] bg-zinc-900 ml-1 justify-center rounded p-2 items-center">
+      <div className="flex w-[98%] bg-zinc-900 justify-center rounded items-center">
+        <div className="h-full w-[30%] relative flex justify-center items-center group">
           <img
             src={require("../../../Assets/text.png")}
-            className="w-12 mr-4"
+            className="w-12 group-hover:brightness-110"
             alt="text"
           />
-          <p className="text-[20px] text-slate-200">{card.text}</p>
+          <p
+            className="absolute bottom-0 rounded bg-stone-700/75 h-4 p-[10px] 
+          left-auto hidden group-hover:flex items-center text-slate-200"
+          >
+            Description
+          </p>
         </div>
-      )}
-      {(card.attack || card.health || card.attack) && (
-        <div className="w-[98%] mt-2 ml-1 flex justify-center items-center">
-          <AttributesBlock
-            attack={card.attack}
-            health={card.health}
-            cost={card.cost}
-          />
-        </div>
-      )}
+        <p className="text-[20px] text-slate-200">
+          {card.text ? card.text : "It speaks for itself"}
+        </p>
+      </div>
+
+      <div className="w-[98%] mt-2 flex justify-center items-center">
+        <AttributesBlock
+          attack={card.attack}
+          health={card.health}
+          cost={card.cost}
+        />
+      </div>
     </div>
   );
 };

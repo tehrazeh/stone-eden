@@ -11,7 +11,8 @@ const AttributesBlock: React.FC<AttributeBlockProps> = (props) => {
   const attributesBlocks = attributes.map((attribute) => {
     return (
       <div
-        className="flex justify-center items-center relative group"
+        // prettier-ignore
+        className={`${(props[attribute as keyof AttributeBlockProps] ? "group" : "brightness-[40%]")} bg-zinc-900 flex justify-center items-center relative rounded`}
         key={attribute}
       >
         <img
@@ -24,7 +25,7 @@ const AttributesBlock: React.FC<AttributeBlockProps> = (props) => {
         </p>
         <p
           className="absolute top-auto hidden right-auto rounded group-hover:flex h-[100%] w-[100%] 
-        justify-center items-center bg-stone-700/50 text-slate-100"
+        justify-center items-center bg-stone-600/50 text-slate-100"
         >
           {attribute.toLocaleUpperCase()}
         </p>
