@@ -8,7 +8,6 @@ import fallbackLazy from "../Assets/lazy.png";
 import CardInfo from "../Components/CardPageBlock/CardInfoBlock";
 import CardArtBlock from "../Components/CardPageBlock/CardArtBlock";
 import CardDescription from "../Components/CardPageBlock/CardDescription";
-import { text } from "stream/consumers";
 
 const CardPage = () => {
   const params = useParams();
@@ -22,6 +21,10 @@ const CardPage = () => {
       });
     }
   }, [params.id]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (!card) {
     return (

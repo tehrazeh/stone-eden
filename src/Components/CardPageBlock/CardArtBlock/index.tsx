@@ -14,19 +14,6 @@ const CardArtBlock: React.FC<ArtBlocksProps> = (props) => {
     event.currentTarget.className = "w-[100%] max-w-[600px]";
   };
 
-  //   <div className="w-[50%] z-10 flex justify-center">
-  //   {loadedCard ? null : <img src={fallbackLazy} alt="card" />}
-  //   <img
-  //     className={`${loadedCard ? "w-30" : "hidden"}`}
-  //     src={`https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${card.cardId}.png`}
-  //     alt="card"
-  //     onError={addCardFallback}
-  //     onLoad={() => {
-  //       setLoadedCard(true);
-  //     }}
-  //   />
-  // </div>
-
   return (
     <div className="bg-stone-600/50 p-2 rounded h-full min-h-[90vh] max-w-[620px] w-1/2 m-2 flex flex-col items-center">
       {!loaded && (
