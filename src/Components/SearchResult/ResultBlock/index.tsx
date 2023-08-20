@@ -6,7 +6,6 @@ import {
 } from "../../../Redux/pagination/slice";
 import { paginateArray, sortArray } from "../../../utils/functions";
 import { useAppSelector, useAppDispatch } from "../../../utils/hooks";
-import scrollUpImg from "../../../Assets/scrollup.png";
 import CardBlock from "../CardBlock";
 import Pagination from "../PaginationBlock";
 import ResultFilter from "../ResultFilter";
@@ -15,8 +14,6 @@ import { Card } from "../../../Redux/data/types";
 import { setTempData } from "../../../Redux/data/slice";
 import { Status } from "../../../Redux/info/types";
 import FadeLoader from "react-spinners/FadeLoader";
-import notFoundImg from "../../../Assets/not-found.png";
-import notFoundLazy from "../../../Assets/not-found-lazy.png";
 const ResultBlock = () => {
   // get data from state
   const { data, tempData, status } = useAppSelector((state) => state.data);
@@ -176,14 +173,14 @@ const ResultBlock = () => {
           <>
             {loaded ? null : (
               <img
-                src={notFoundLazy}
+                src={require("../../../Assets/not-found-lazy.png")}
                 className="w-[500px] m-auto"
                 alt="not found loading"
               />
             )}
             <div>
               <img
-                src={notFoundImg}
+                src={require("../../../Assets/not-found.png")}
                 className={`${loaded ? "w-[500px] m-auto" : "hidden"}`}
                 onLoad={() => setLoaded(true)}
                 alt="not found"
@@ -199,7 +196,10 @@ const ResultBlock = () => {
               handleScroll();
             }}
           >
-            <img src={scrollUpImg} alt="scroll up" />
+            <img
+              src={require("../../../Assets/misc/scrollup.png")}
+              alt="scroll up"
+            />
           </div>
         )}
       </div>

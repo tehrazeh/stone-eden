@@ -29,7 +29,7 @@ const CardDescription: React.FC<CardDescriptionProps> = ({ card }) => {
           <>
             <div className="relative h-[40%] w-[33%] flex justify-center items-center group">
               <img
-                src={require("../../../Assets/cardSet.png")}
+                src={require("../../../Assets/cardPage/cardSet.png")}
                 alt=""
                 className="w-14 group-hover:brightness-110"
               />
@@ -47,7 +47,7 @@ const CardDescription: React.FC<CardDescriptionProps> = ({ card }) => {
       <div className="flex w-[98%] bg-zinc-900 justify-center rounded items-center">
         <div className="h-[75%] w-[30%] mx-2 relative flex justify-center items-center group">
           <img
-            src={require("../../../Assets/text.png")}
+            src={require("../../../Assets/cardPage/text.png")}
             className="w-12 group-hover:brightness-110"
             alt="text"
           />

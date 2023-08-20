@@ -10,8 +10,6 @@ import {
 } from "../../Redux/pagination/slice";
 import { resetAllFilters } from "../../Redux/datafilter/slice";
 import WarningBlock from "./warningBlock";
-import showButton from "../../Assets/show.png";
-import hideButton from "../../Assets/hide.png";
 import { resetPile } from "../../Redux/data/slice";
 
 const activeClass = `bg-green-900 m-2 border-green-600 h-14 w-40 text-green-600 text-lg
@@ -103,7 +101,7 @@ const SearchBlock: React.FC<SearchBlockProps> = ({
               onClick={() => {
                 toggleBlockVisibility(false);
               }}
-              src={hideButton}
+              src={require("../../Assets/misc/hide.png")}
               alt="hide"
             />
           )}
@@ -113,7 +111,7 @@ const SearchBlock: React.FC<SearchBlockProps> = ({
               onClick={() => {
                 toggleBlockVisibility(true);
               }}
-              src={showButton}
+              src={require("../../Assets/misc/show.png")}
               alt="show"
             />
           )}

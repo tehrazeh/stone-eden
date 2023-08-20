@@ -35,7 +35,7 @@ const CardArtBlock: React.FC<ArtBlocksProps> = (props) => {
       {props.flavor && (
         <div className="flex justify-center items-center my-2 bg-zinc-900 rounded-lg p-1">
           <img
-            src={require("../../../Assets/text.png")}
+            src={require("../../../Assets/cardPage/text.png")}
             className="w-12 mr-2  "
             alt="text"
           />

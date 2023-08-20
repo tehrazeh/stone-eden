@@ -8,43 +8,44 @@ export type CardInfoProps = {
 };
 
 const CardInfo: React.FC<CardInfoProps> = (props) => {
-  const cardInfoBlock = `bg-stone-800 bg-opacity-[65%] p-1 h-[22%] rounded w-[90%] flex justify-evenly items-center text-[20px] text-slate-200`;
+  const cardInfoBlock = `bg-stone-800 bg-opacity-[65%] p-1 h-[22%] rounded w-[90%] flex
+   justify-evenly items-center text-[20px] text-slate-200`;
 
-  const getImageInfoBlock = (imageType: string) => {
-    const imageBlockTypes = {
-      withFallback: ["type", "playerClass"],
-      regular: ["rarity"],
-      withText: ["race"],
-    };
+  // const getImageInfoBlock = (imageType: string) => {
+  //   const imageBlockTypes = {
+  //     withFallback: ["type", "playerClass"],
+  //     regular: ["rarity"],
+  //     withText: ["race"],
+  //   };
 
-    // if (
-    //   typeof props[imageType as keyof CardInfoProps] === 'string'
-    // ) {
-    //   return (
-    //     <img
-    //       className="w-20"
-    //       src={
-    //         optionCheck("type").includes(
-    //           props[imageType as keyof CardInfoProps]
-    //             .toLowerCase()
-    //             .split(" ")
-    //             .join("")
-    //         )
-    //           ? require(`../../../Assets/type/${props[
-    //               imageType as keyof CardInfoProps
-    //             ]
-    //               .toLowerCase()
-    //               .split(" ")
-    //               .join("")}.png`)
-    //           : require(`../../../Assets/fallbackFilter.png`)
-    //       }
-    //       alt="type"
-    //     />
-    //   );
-    // }
-  };
-
-  getImageInfoBlock("race");
+  //   if (imageBlockTypes.withFallback.includes(imageType)) {
+  //     return (
+  //       <img
+  //         className="w-20"
+  //         src={
+  //           optionCheck("type").includes(
+  //             // @ts-ignore
+  //             props[imageType as keyof CardInfoProps]
+  //               .toLowerCase()
+  //               .split(" ")
+  //               .join("")
+  //           )
+  //             ? // @ts-ignore
+  //               require(`../../../Assets/type/${props[
+  //                 imageType as keyof CardInfoProps
+  //               ]
+  //                 .toLowerCase()
+  //                 .split(" ")
+  //                 .join("")}.png`)
+  //             : require(`../../../Assets/fallbackFilter.png`)
+  //         }
+  //         alt=""
+  //       />
+  //     );
+  //   } else if (imageBlockTypes.regular.includes(imageType)) {
+  //     return
+  //   }
+  // };
   const infoBlocks = Object.keys(props).map(() => {
     return;
   });
@@ -64,7 +65,7 @@ const CardInfo: React.FC<CardInfoProps> = (props) => {
                       .toLowerCase()
                       .split(" ")
                       .join("")}.png`)
-                  : require(`../../../Assets/fallbackFilter.png`)
+                  : require(`../../../Assets/type/fallback.png`)
               }
               alt="type"
             />
@@ -78,7 +79,7 @@ const CardInfo: React.FC<CardInfoProps> = (props) => {
             <div className="w-full flex justify-center relative">
               <img
                 className="w-44 brightness-[80%]"
-                src={require(`../../../Assets/race.png`)}
+                src={require(`../../../Assets/cardPage/race.png`)}
                 alt="type"
               />
               <p className="absolute top-[-3px] text-[22px] left-auto font-bold tracking-wider text-white">
@@ -88,7 +89,7 @@ const CardInfo: React.FC<CardInfoProps> = (props) => {
             <div className="w-full flex justify-center relative">
               <img
                 className="w-40 brightness-[80%]"
-                src={require(`../../../Assets/race.png`)}
+                src={require(`../../../Assets/cardPage/race.png`)}
                 alt="type"
               />
               <p className="absolute top-[-3px] text-[22px] left-auto font-bold tracking-wider text-white">
@@ -104,8 +105,17 @@ const CardInfo: React.FC<CardInfoProps> = (props) => {
           <div className="w-[50%] flex justify-center">
             <img
               className="w-20"
-              src={require(`../../../Assets/rarity/${props.rarity.toLowerCase()}.png`)}
-              alt="type"
+              src={
+                optionCheck("rarity").includes(
+                  props.rarity.toLowerCase().split(" ").join("")
+                )
+                  ? require(`../../../Assets/rarity/${props.rarity
+                      .toLowerCase()
+                      .split(" ")
+                      .join("")}.png`)
+                  : require(`../../../Assets/rarity/fallback.png`)
+              }
+              alt=""
             />
           </div>
         </div>
@@ -124,7 +134,7 @@ const CardInfo: React.FC<CardInfoProps> = (props) => {
                       .toLowerCase()
                       .split(" ")
                       .join("")}.png`)
-                  : require(`../../../Assets/fallbackFilter.png`)
+                  : require(`../../../Assets/playerClass/fallback.png`)
               }
               alt="type"
             />

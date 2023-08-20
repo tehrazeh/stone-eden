@@ -76,7 +76,7 @@ export const optionCheck = (option: string) => {
       ];
     }
     case "rarity": {
-      return ["free", "common", "rare", "epic", "legendary"];
+      return ["common", "rare", "epic", "legendary"];
     }
     case "type": {
       return ["location", "spell", "minion", "hero", "weapon", "heropower"];
