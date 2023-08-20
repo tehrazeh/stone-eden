@@ -8,7 +8,7 @@ export type CardInfoProps = {
 };
 
 const CardInfo: React.FC<CardInfoProps> = (props) => {
-  const cardInfoBlock = `bg-stone-800 bg-opacity-[65%] p-1 rounded w-[90%] flex justify-evenly items-center text-[20px] text-slate-200`;
+  const cardInfoBlock = `bg-stone-800 bg-opacity-[65%] p-1 h-[22%] rounded w-[90%] flex justify-evenly items-center text-[20px] text-slate-200`;
 
   const getImageInfoBlock = (imageType: string) => {
     const imageBlockTypes = {
@@ -71,31 +71,33 @@ const CardInfo: React.FC<CardInfoProps> = (props) => {
           </div>
         </div>
       )}
-      {/* {props.race && (
+      {props.race && (
         <div className={cardInfoBlock}>
           <div className="w-[50%]">Race:</div>
-          <div className="w-[50%] flex justify-center relative">
-            <img
-              className="w-40 h-20 brightness-[80%]"
-              src={require(`../../../Assets/race.png`)}
-              alt="type"
-            />
-            <p className="absolute top-[31%] left-auto font-bold tracking-wider text-white">
-              {props.race}
-            </p>
-          </div>
-          <div className="w-[50%] flex justify-center relative">
-            <img
-              className="w-40 h-20 brightness-[80%]"
-              src={require(`../../../Assets/race.png`)}
-              alt="type"
-            />
-            <p className="absolute top-[31%] left-auto font-bold tracking-wider text-white">
-              {props.race}
-            </p>
+          <div className="flex flex-col justify-center items-center">
+            <div className="w-full flex justify-center relative">
+              <img
+                className="w-44 brightness-[80%]"
+                src={require(`../../../Assets/race.png`)}
+                alt="type"
+              />
+              <p className="absolute top-[-3px] text-[22px] left-auto font-bold tracking-wider text-white">
+                {props.race}
+              </p>
+            </div>
+            <div className="w-full flex justify-center relative">
+              <img
+                className="w-40 brightness-[80%]"
+                src={require(`../../../Assets/race.png`)}
+                alt="type"
+              />
+              <p className="absolute top-[-3px] text-[22px] left-auto font-bold tracking-wider text-white">
+                {props.race}
+              </p>
+            </div>
           </div>
         </div>
-      )} */}
+      )}
       {props.rarity && (
         <div className={cardInfoBlock}>
           <div className="w-[50%] ml-4">Rarity:</div>

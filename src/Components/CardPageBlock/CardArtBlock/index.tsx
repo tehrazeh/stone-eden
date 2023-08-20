@@ -1,4 +1,4 @@
-import { SyntheticEvent } from "react";
+import { SyntheticEvent, useState } from "react";
 import fallbackArt from "../../../Assets/artFallback.png";
 
 export type ArtBlocksProps = {
@@ -7,18 +7,43 @@ export type ArtBlocksProps = {
 };
 
 const CardArtBlock: React.FC<ArtBlocksProps> = (props) => {
+  const [loaded, setLoaded] = useState(false);
+
   const addArtFallback = (event: SyntheticEvent<HTMLImageElement, Event>) => {
     event.currentTarget.src = fallbackArt;
     event.currentTarget.className = "w-[100%] max-w-[600px]";
   };
 
+  //   <div className="w-[50%] z-10 flex justify-center">
+  //   {loadedCard ? null : <img src={fallbackLazy} alt="card" />}
+  //   <img
+  //     className={`${loadedCard ? "w-30" : "hidden"}`}
+  //     src={`https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${card.cardId}.png`}
+  //     alt="card"
+  //     onError={addCardFallback}
+  //     onLoad={() => {
+  //       setLoadedCard(true);
+  //     }}
+  //   />
+  // </div>
+
   return (
-    <div className="bg-stone-600/50 p-2 rounded h-full max-w-[620px] w-1/2 m-2 flex flex-col items-center">
+    <div className="bg-stone-600/50 p-2 rounded h-full min-h-[90vh] max-w-[620px] w-1/2 m-2 flex flex-col items-center">
+      {!loaded && (
+        <img
+          className="w-full"
+          src={require("../../../Assets/artLazyFallback.png")}
+          alt=""
+        />
+      )}
       <img
-        className="w-[100%] max-w-[600px] rounded-lg"
+        className={`${
+          loaded ? "" : "hidden"
+        } w-[100%] max-w-[600px] rounded-lg`}
         src={`https://art.hearthstonejson.com/v1/orig/${props.cardId}.png`}
         alt="card art"
         onError={addArtFallback}
+        onLoad={() => setLoaded(true)}
       />
       {props.flavor && (
         <div className="flex justify-center items-center my-2 bg-zinc-900 rounded-lg p-1">
