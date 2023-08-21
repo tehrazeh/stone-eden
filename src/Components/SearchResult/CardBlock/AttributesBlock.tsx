@@ -11,8 +11,12 @@ const AttributesBlock: React.FC<AttributeBlockProps> = (props) => {
   const attributesBlocks = attributes.map((attribute) => {
     return (
       <div
-        // prettier-ignore
-        className={`${(props[attribute as keyof AttributeBlockProps] ? "group" : "brightness-[40%]")} bg-zinc-900 flex justify-center items-center relative`}
+        className={`${
+          // @ts-ignore
+          props[attribute as keyof AttributeBlockProps] >= 0
+            ? "group"
+            : "brightness-[40%]"
+        } bg-zinc-900 flex justify-center items-center relative`}
         key={attribute}
       >
         <img
