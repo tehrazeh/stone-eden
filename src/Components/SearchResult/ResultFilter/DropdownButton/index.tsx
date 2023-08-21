@@ -63,7 +63,9 @@ const DropdownButton: React.FC<DropdownButtonProps> = ({
           )}
           {filterType === "attribute" ? (
             <img
-              src={require(`../../../../Assets/${filter.split("_")[1]}.png`)}
+              src={require(`../../../../Assets/misc/${
+                filter.split("_")[1]
+              }.png`)}
               className="w-11 h-10 brightness-75"
               alt={filter}
             />

@@ -20,7 +20,7 @@ const CardInfo: React.FC<CardInfoProps> = (props) => {
       return (
         <div className="w-1/2 flex justify-center rounded-[34px] items-center group relative">
           <img
-            className="w-full m-auto group-hover:scale-[102%] group-hover:brightness-50"
+            className="w-full m-auto group-hover:scale-[105%] group-hover:brightness-50"
             src={
               optionCheck(imageType).includes(
                 // @ts-ignore

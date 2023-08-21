@@ -10,7 +10,7 @@ type CardProps = {
   card: Card;
 };
 
-const textClass = "text-base text-emerald-200 opacity-85 tracking-wider";
+const textClass = "text-base text-emerald-200 opacity-85 mb-1 tracking-wider";
 
 const CardBlock: React.FC<CardProps> = (props) => {
   const [loaded, setLoaded] = useState(false);
@@ -21,7 +21,7 @@ const CardBlock: React.FC<CardProps> = (props) => {
   });
 
   const regularClass = `w-56 rounded align-middle p-0 m-0 scale-105
-   hover:brightness-125 hover:scale-110 hover:cursor-pointer transition-all`;
+   hover:brightness-125 hover:scale-[110%] hover:cursor-pointer transition-all`;
 
   // in case the api does not have an image for the card
   const addImageFallback = (event: SyntheticEvent<HTMLImageElement, Event>) => {
@@ -46,7 +46,7 @@ const CardBlock: React.FC<CardProps> = (props) => {
           cost={props.card.cost}
         />
       </div>
-      <div className="w-[90%] h-full flex justify-center items-center">
+      <div className="w-[90%] h-full mt-6 flex justify-center items-center">
         {/* thanks! https://stackoverflow.com/questions/37312122/how-to-do-a-nested-if-else-statement-in-reactjs-jsx */}
         {inView ? (
           <>
