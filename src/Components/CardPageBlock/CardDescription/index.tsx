@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AttributesBlock from "../../SearchResult/CardBlock/AttributesBlock";
-
+import parse from "html-react-parser";
 export type CardDescriptionProps = {
   card: {
     text: string | undefined;
@@ -14,6 +14,7 @@ export type CardDescriptionProps = {
 const CardDescription: React.FC<CardDescriptionProps> = ({ card }) => {
   const [artState, setArtState] = useState(true);
 
+  const cardText = card.text ? parse(card.text) : "";
   return (
     <div className="h-full mt-1 p-4 grid grid-cols-2 grid-rows-2 bg-stone-600/50 rounded">
       <div className="w-[98%] rounded flex col-span-1 row-span-2 items-center justify-center bg-zinc-900 mr-1">
@@ -61,7 +62,7 @@ const CardDescription: React.FC<CardDescriptionProps> = ({ card }) => {
           </p>
         </div>
         <p className="text-[17px] tracking-wide w-[70%] p-4 text-center text-slate-200">
-          {card.text ? card.text : "It speaks for itself"}
+          {card.text ? cardText : "It speaks for itself"}
         </p>
       </div>
 
