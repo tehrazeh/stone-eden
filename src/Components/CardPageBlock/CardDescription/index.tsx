@@ -27,7 +27,7 @@ const CardDescription: React.FC<CardDescriptionProps> = ({ card }) => {
           />
         ) : (
           <>
-            <div className="relative h-[40%] w-[33%] flex justify-center items-center group">
+            <div className="relative h-[40%] w-[30%] flex justify-center items-center group">
               <img
                 src={require("../../../Assets/cardPage/cardSet.png")}
                 alt=""
@@ -40,12 +40,14 @@ const CardDescription: React.FC<CardDescriptionProps> = ({ card }) => {
                 Expansion
               </p>
             </div>
-            <p className="text-[20px] text-slate-200">{card.cardSet}</p>
+            <p className="text-[20px] text-center text-slate-200">
+              {card.cardSet}
+            </p>
           </>
         )}
       </div>
       <div className="flex w-[98%] bg-zinc-900 justify-center rounded items-center">
-        <div className="h-[75%] w-[30%] mx-2 relative flex justify-center items-center group">
+        <div className="h-[75%] w-[30%] mx-2  relative flex justify-center items-center group">
           <img
             src={require("../../../Assets/cardPage/text.png")}
             className="w-12 group-hover:brightness-110"
@@ -58,7 +60,7 @@ const CardDescription: React.FC<CardDescriptionProps> = ({ card }) => {
             Description
           </p>
         </div>
-        <p className="text-[18px] w-[70%] p-4 text-slate-200">
+        <p className="text-[17px] tracking-wide w-[70%] p-4 text-center text-slate-200">
           {card.text ? card.text : "It speaks for itself"}
         </p>
       </div>
