@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Filter from "../Components/Filter";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import OptionalFilter from "../Components/OptionalFilter";
 import { fetchInfo } from "../Redux/info/asyncActions";
 import { useAppDispatch, useAppSelector } from "../utils/hooks";
@@ -17,6 +17,8 @@ const Search: React.FC = () => {
   const { status } = useAppSelector((state) => state.info);
   const fetchStatus = useAppSelector((state) => state.data.status);
   const dispatch = useAppDispatch();
+  // const [searchParams, setSearchParams] = useSearchParams();
+  // console.log(searchParams.get("search"));
 
   useEffect(() => {
     if (status === "loading") {

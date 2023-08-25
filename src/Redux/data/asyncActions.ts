@@ -17,11 +17,11 @@ export const fetchData = createAsyncThunk<Array<Card>, Params>(
       },
     };
 
-    if (Object.entries(params).length > 2) {
+    if (Object.entries(params).length > 3) {
       let additionalParams: RequestOptions["params"] = {};
-      let key: keyof typeof params;
-      for (key in params) {
-        if (key !== "type" && key !== "value")
+      let key: keyof typeof additionalParams;
+      for (key in additionalParams) {
+        if (additionalParams.hasOwnProperty(key))
           additionalParams[key] = params[key];
       }
       options.params = additionalParams;

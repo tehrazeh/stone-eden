@@ -55,7 +55,7 @@ const SearchBlock: React.FC<SearchBlockProps> = ({
     // we check and set up additional filters if there are some
     if (searchParams.has("value")) {
       for (const [key, value] of Array.from(searchParams.entries())) {
-        if (key !== "value") {
+        if (key in Object.keys(additionalFilters)) {
           dispatch(
             setAdditionalFilter({
               filterValue: key as keyof typeof additionalFilters,
@@ -65,10 +65,17 @@ const SearchBlock: React.FC<SearchBlockProps> = ({
         }
       }
     }
+
+    if (blockVisibility !== false && searchParams.has("search")) {
+      // hide the filter block above
+      toggleBlockVisibility(!blockVisibility);
+    }
   }, []);
 
-  const handleClick = () => {
+  const searchRequest = () => {
+    dispatch(resetAllFilters());
     const params: Params = {
+      search: "active",
       value: filterValue,
     };
     for (filterKey in additionalFilters) {
@@ -76,16 +83,10 @@ const SearchBlock: React.FC<SearchBlockProps> = ({
         params[filterKey] = additionalFilters[filterKey].value.toString();
       }
     }
-    setSearchParams(params); // update url with selected search parameters
-    params.type = filterType; // add type for the fetch request
+    setSearchParams(params); // update url with selected search parameter
+    params.type = filterType; // add type for the fetch request, but after the setSearchParams to not include it in the link twice
     dispatch(fetchData(params)); // fetch data from api
     dispatch(setCurrentPage(1)); // set 1st page by default
-    dispatch(resetAllFilters());
-    if (blockVisibility !== false) {
-      // hide the filter block above
-      toggleBlockVisibility(!blockVisibility);
-    }
-
     if (infiniteScroll) {
       dispatch(resetPile()); // reset infinite pile of cards to empty array
       dispatch(setInfiniteScroll(false)); // set infinite scroll to false
@@ -127,7 +128,7 @@ const SearchBlock: React.FC<SearchBlockProps> = ({
               ? activeClass
               : disabledClass
           }
-          onClick={handleClick}
+          onClick={searchRequest}
           disabled={!(isInputsValid && filterValue.length > 0)}
         >
           Search
