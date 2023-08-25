@@ -29,6 +29,7 @@ const Search: React.FC = () => {
       }
     }
   }, [status, dispatch, type]);
+
   const [visibility, setVisibility] = useState(true);
   const [loaded, setLoaded] = useState(false);
   return (

@@ -65,11 +65,6 @@ const SearchBlock: React.FC<SearchBlockProps> = ({
         }
       }
     }
-
-    if (blockVisibility !== false && searchParams.has("search")) {
-      // hide the filter block above
-      toggleBlockVisibility(!blockVisibility);
-    }
   }, []);
 
   const searchRequest = () => {
@@ -90,6 +85,11 @@ const SearchBlock: React.FC<SearchBlockProps> = ({
     if (infiniteScroll) {
       dispatch(resetPile()); // reset infinite pile of cards to empty array
       dispatch(setInfiniteScroll(false)); // set infinite scroll to false
+    }
+
+    if (blockVisibility !== false) {
+      // hide the filter block above
+      toggleBlockVisibility(!blockVisibility);
     }
   };
   return (
