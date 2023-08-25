@@ -1,7 +1,14 @@
 import axios from "axios";
+import { useSearchParams } from "react-router-dom";
+import { fetchData } from "../Redux/data/asyncActions";
+import { resetPile } from "../Redux/data/slice";
 import { Card, RequestOptions } from "../Redux/data/types";
+import { resetAllFilters } from "../Redux/datafilter/slice";
 import { DataSort } from "../Redux/datafilter/types";
+import { Params } from "../Redux/filter/types";
+import { setCurrentPage, setInfiniteScroll } from "../Redux/pagination/slice";
 import { fallbackCard } from "./hardData";
+import { useAppDispatch, useAppSelector } from "./hooks";
 
 export const paginateArray = (
   arr: Card[],
@@ -102,4 +109,38 @@ export const getCard = async (cardId: string) => {
   } catch (e) {
     return fallbackCard;
   }
+};
+
+export const useSearchRequest = () => {
+  const [, setSearchParams] = useSearchParams();
+  const dispatch = useAppDispatch();
+  const { filterValue, filterType, additionalFilters } = useAppSelector(
+    (state) => state.filter
+  );
+  const { infiniteScroll } = useAppSelector((state) => state.pagination);
+
+  const performSearch = () => {
+    let filterKey: keyof typeof additionalFilters;
+    dispatch(resetAllFilters());
+    const params: Params = {
+      search: "active",
+      value: filterValue,
+    };
+    for (filterKey in additionalFilters) {
+      if (additionalFilters[filterKey].value !== "") {
+        params[filterKey] = additionalFilters[filterKey].value.toString();
+      }
+    }
+    setSearchParams(params); // update url with selected search parameter
+    params.type = filterType; // add type for the fetch request, but after the setSearchParams to not include it in the link twice
+    // console.log(params);
+    dispatch(fetchData(params)); // fetch data from api
+    dispatch(setCurrentPage(1)); // set 1st page by default
+
+    if (infiniteScroll) {
+      dispatch(resetPile()); // reset infinite pile of cards to empty array
+      dispatch(setInfiniteScroll(false)); // set infinite scroll to false
+    }
+  };
+  return performSearch;
 };

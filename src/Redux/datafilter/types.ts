@@ -30,11 +30,11 @@ export enum DataSort {
 }
 
 export enum NavButtons {
-  CLASSES = "Classes",
-  RACES = "Races",
-  QUALITIES = "Qualities",
-  TYPES = "Types",
-  SETS = "Sets",
+  CLASSES = "classes",
+  RACES = "races",
+  QUALITIES = "qualities",
+  TYPES = "types",
+  SETS = "sets",
 }
 // { name: 'Classes' },
 // { name: 'Races' },

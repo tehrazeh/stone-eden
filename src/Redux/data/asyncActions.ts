@@ -16,6 +16,7 @@ export const fetchData = createAsyncThunk<Array<Card>, Params>(
         "X-RapidAPI-Host": "omgvamp-hearthstone-v1.p.rapidapi.com",
       },
     };
+    // console.log("type - " + paramsType + " value - " + params.value);
 
     if (Object.entries(params).length > 3) {
       let additionalParams: RequestOptions["params"] = {};

@@ -135,7 +135,6 @@ const ResultBlock = () => {
       return <CardBlock key={index} card={element} />;
     });
   }
-
   // loader spinner
   if (status === Status.LOADING) {
     return (
@@ -168,8 +167,9 @@ const ResultBlock = () => {
             {status.toUpperCase()}
           </div>
         )}
-        {((displayedData.length === 0 && status === Status.SUCCESS) ||
-          status === Status.ERROR) && (
+        {((!displayedData && status === Status.SUCCESS) ||
+          status === Status.ERROR ||
+          data.length === 0) && (
           <>
             {loaded ? null : (
               <img

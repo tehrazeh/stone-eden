@@ -2,15 +2,8 @@ import { useAppSelector, useAppDispatch } from "../../utils/hooks";
 import { useSearchParams } from "react-router-dom";
 import { setAdditionalFilter, setFilterValue } from "../../Redux/filter/slice";
 import { useEffect } from "react";
-import { Params } from "../../Redux/filter/types";
-import { fetchData } from "../../Redux/data/asyncActions";
-import {
-  setCurrentPage,
-  setInfiniteScroll,
-} from "../../Redux/pagination/slice";
-import { resetAllFilters } from "../../Redux/datafilter/slice";
 import WarningBlock from "./warningBlock";
-import { resetPile } from "../../Redux/data/slice";
+import { useSearchRequest } from "../../utils/functions";
 
 const activeClass = `bg-green-900 m-2 border-green-600 h-14 w-40 text-green-600 text-lg
 border-solid border-2 rounded shadow-inner shadow-green-700
@@ -33,8 +26,7 @@ const SearchBlock: React.FC<SearchBlockProps> = ({
   const { filterValue, filterType, additionalFilters } = useAppSelector(
     (state) => state.filter
   );
-  const { infiniteScroll } = useAppSelector((state) => state.pagination);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const dispatch = useAppDispatch();
 
   // TRY TO FIND BETTER SOLUTION THAN ITERATING THROUGH OBJECT WITH 4 KEYS FOR EVERY RERENDER
@@ -67,30 +59,13 @@ const SearchBlock: React.FC<SearchBlockProps> = ({
     }
   }, []);
 
-  const searchRequest = () => {
-    dispatch(resetAllFilters());
-    const params: Params = {
-      search: "active",
-      value: filterValue,
-    };
-    for (filterKey in additionalFilters) {
-      if (additionalFilters[filterKey].value !== "") {
-        params[filterKey] = additionalFilters[filterKey].value.toString();
-      }
-    }
-    setSearchParams(params); // update url with selected search parameter
-    params.type = filterType; // add type for the fetch request, but after the setSearchParams to not include it in the link twice
-    dispatch(fetchData(params)); // fetch data from api
-    dispatch(setCurrentPage(1)); // set 1st page by default
-    if (infiniteScroll) {
-      dispatch(resetPile()); // reset infinite pile of cards to empty array
-      dispatch(setInfiniteScroll(false)); // set infinite scroll to false
-    }
-
+  const performSearch = useSearchRequest();
+  const handleClick = () => {
     if (blockVisibility !== false) {
-      // hide the filter block above
+      //     // hide the filter block above
       toggleBlockVisibility(!blockVisibility);
     }
+    performSearch();
   };
   return (
     <div className="w-full grid grid-cols-3 bg-stone-900 h-20 grid-rows-1">
@@ -128,7 +103,7 @@ const SearchBlock: React.FC<SearchBlockProps> = ({
               ? activeClass
               : disabledClass
           }
-          onClick={searchRequest}
+          onClick={handleClick}
           disabled={!(isInputsValid && filterValue.length > 0)}
         >
           Search

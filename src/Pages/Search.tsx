@@ -8,22 +8,36 @@ import SearchBlock from "../Components/SearchBlock";
 import { setFilterType } from "../Redux/filter/slice";
 import ResultBlock from "../Components/SearchResult/ResultBlock";
 import { Status } from "../Redux/info/types";
-import notFoundImg from "../Assets/not-found.png";
-import notFoundLazy from "../Assets/not-found-lazy.png";
 import { NavButtons } from "../Redux/datafilter/types";
+import { useSearchRequest } from "../utils/functions";
 
 const Search: React.FC = () => {
   const { type } = useParams();
   const { status } = useAppSelector((state) => state.info);
-  const fetchStatus = useAppSelector((state) => state.data.status);
+  const { status: fetchStatus, tempData } = useAppSelector(
+    (state) => state.data
+  );
   const dispatch = useAppDispatch();
-  // const [searchParams, setSearchParams] = useSearchParams();
-  // console.log(searchParams.get("search"));
+
+  const [searchParams] = useSearchParams();
+  const performSearch = useSearchRequest();
+
+  useEffect(() => {
+    if (
+      Array.isArray(tempData) &&
+      tempData.length === 0 &&
+      searchParams.get("search") === "active"
+    ) {
+      // console.log(type);
+      // console.log(searchParams.get("value"));
+      // performSearch();
+    }
+  }, []);
 
   useEffect(() => {
     if (status === "loading") {
       dispatch(fetchInfo());
-      if (type && type in NavButtons) {
+      if (type) {
         // thanks https://stackoverflow.com/questions/43804805/check-if-value-exists-in-enum-in-typescript
         dispatch(setFilterType(type));
       }
@@ -66,13 +80,13 @@ const Search: React.FC = () => {
           </h2>
           {loaded ? null : (
             <img
-              src={notFoundLazy}
+              src={require("../Assets/not-found-lazy.png")}
               className="w-[600px]"
               alt="not found loading"
             />
           )}
           <img
-            src={notFoundImg}
+            src={require("../Assets/not-found.png")}
             className={`${loaded ? "w-[600px]" : "hidden"}`}
             onLoad={() => setLoaded(true)}
             alt="Not Found"
