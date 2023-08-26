@@ -44,6 +44,8 @@ const SearchBlock: React.FC<SearchBlockProps> = ({
       dispatch(setFilterValue(searchParams.get("value") || ""));
     }
 
+    // console.log(Array.from(searchParams.entries()));
+
     // we check and set up additional filters if there are some
     if (searchParams.has("value")) {
       for (const [key, value] of Array.from(searchParams.entries())) {

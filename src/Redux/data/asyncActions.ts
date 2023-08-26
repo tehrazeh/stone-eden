@@ -16,15 +16,13 @@ export const fetchData = createAsyncThunk<Array<Card>, Params>(
         "X-RapidAPI-Host": "omgvamp-hearthstone-v1.p.rapidapi.com",
       },
     };
-    // console.log("type - " + paramsType + " value - " + params.value);
-
     if (Object.entries(params).length > 3) {
       let additionalParams: RequestOptions["params"] = {};
-      let key: keyof typeof additionalParams;
-      for (key in additionalParams) {
-        if (additionalParams.hasOwnProperty(key))
-          additionalParams[key] = params[key];
+      for (const key in params) {
+        additionalParams[key as keyof typeof additionalParams] =
+          params[key as keyof typeof additionalParams];
       }
+
       options.params = additionalParams;
     }
     const { data } = await axios.request<Array<Card>>(options);

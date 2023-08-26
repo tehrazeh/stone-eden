@@ -133,7 +133,6 @@ export const useSearchRequest = () => {
     }
     setSearchParams(params); // update url with selected search parameter
     params.type = filterType; // add type for the fetch request, but after the setSearchParams to not include it in the link twice
-    // console.log(params);
     dispatch(fetchData(params)); // fetch data from api
     dispatch(setCurrentPage(1)); // set 1st page by default
 
