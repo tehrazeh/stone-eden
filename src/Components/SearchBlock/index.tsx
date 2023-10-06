@@ -41,6 +41,9 @@ const SearchBlock: React.FC<SearchBlockProps> = ({
   useEffect(() => {
     // if filtervalue is empty, we set up the selected option from link
     if (filterValue === "") {
+      console.log(
+        "setting filtervalue from link as - " + searchParams.get("value")
+      );
       dispatch(setFilterValue(searchParams.get("value") || ""));
     }
 
@@ -64,7 +67,7 @@ const SearchBlock: React.FC<SearchBlockProps> = ({
   const performSearch = useSearchRequest();
   const handleClick = () => {
     if (blockVisibility !== false) {
-      //     // hide the filter block above
+      //hide the filter block above
       toggleBlockVisibility(!blockVisibility);
     }
     performSearch();

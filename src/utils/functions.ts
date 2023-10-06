@@ -118,8 +118,12 @@ export const useSearchRequest = () => {
     (state) => state.filter
   );
   const { infiniteScroll } = useAppSelector((state) => state.pagination);
+  console.log("hook called, everything is empty");
 
   const performSearch = () => {
+    console.log("performin search");
+    console.log("value - " + filterValue);
+    console.log("type - " + filterType);
     let filterKey: keyof typeof additionalFilters;
     dispatch(resetAllFilters());
     const params: Params = {
@@ -131,8 +135,11 @@ export const useSearchRequest = () => {
         params[filterKey] = additionalFilters[filterKey].value.toString();
       }
     }
+    // if the user refreshes the link, the parameter filterValue is empty, that is why it disappeares in the link,
+    // at line setSearchParams, then the fetchData without filterValue returns error.
     setSearchParams(params); // update url with selected search parameter
     params.type = filterType; // add type for the fetch request, but after the setSearchParams to not include it in the link twice
+    console.log(params);
     dispatch(fetchData(params)); // fetch data from api
     dispatch(setCurrentPage(1)); // set 1st page by default
 

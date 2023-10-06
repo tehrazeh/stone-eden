@@ -20,6 +20,18 @@ const Search: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    if (status === "loading") {
+      dispatch(fetchInfo());
+      if (type) {
+        console.log("zdarova bandity");
+        // thanks https://stackoverflow.com/questions/43804805/check-if-value-exists-in-enum-in-typescript
+        dispatch(setFilterType(type));
+      }
+    }
+  }, [status, dispatch, type]);
+
   const performSearch = useSearchRequest();
 
   useEffect(() => {
@@ -30,19 +42,9 @@ const Search: React.FC = () => {
     ) {
       // console.log(type);
       // console.log(searchParams.get("value"));
-      // performSearch();
+      performSearch();
     }
   }, []);
-
-  useEffect(() => {
-    if (status === "loading") {
-      dispatch(fetchInfo());
-      if (type) {
-        // thanks https://stackoverflow.com/questions/43804805/check-if-value-exists-in-enum-in-typescript
-        dispatch(setFilterType(type));
-      }
-    }
-  }, [status, dispatch, type]);
 
   const [visibility, setVisibility] = useState(true);
   const [loaded, setLoaded] = useState(false);
